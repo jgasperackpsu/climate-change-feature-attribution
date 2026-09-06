@@ -15,7 +15,7 @@ def NRMSE(prediction, Y, mask=None):
     return pow((pow(prediction - Y, 2) * mask).sum(), 0.5) / abs(Y).sum() * pow(mask.sum(), 0.5)
 
 
-def MAPE(prediction, Y, mask):
+def MAPE(prediction, Y, mask=None):
     if mask is None:
         mask = np.array((~np.isnan(Y)).astype(int))
     Y[mask == 0] = 0.
