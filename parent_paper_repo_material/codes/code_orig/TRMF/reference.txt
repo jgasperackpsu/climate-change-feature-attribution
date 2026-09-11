@@ -1,0 +1,3 @@
+reference:Yu H F, Rao N, Dhillon I S. Temporal regularized matrix factorization for high-dimensional time series prediction[J]. Advances in neural information processing systems, 2016, 29.
+
+reference code link:https://github.com/SemenovAlex/trmf
