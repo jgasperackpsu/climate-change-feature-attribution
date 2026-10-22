@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Sensitive data, can be found in report, not on my public Github
+data/raw/
