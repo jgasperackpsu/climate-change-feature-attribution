@@ -217,3 +217,14 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Ignore everything under data/raw
+data/raw/**
+
+# but keep the folder structure visible to git
+!data/raw/**/
+
+# Also, keep the pull scripts
+!data/raw/**/*.py
+
+# DS_Store
+.DS_Store
