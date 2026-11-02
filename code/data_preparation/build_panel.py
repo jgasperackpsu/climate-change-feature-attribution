@@ -17,12 +17,15 @@ Data fixes applied here (documented in data_sources.md):
     Indiana 2022 VMT   one-year +22% spike that reverses in 2023 -> mean of 2021 and 2023, flag vmt_imputed
     Delaware 1997-1999 no scheduled air service, so BTS has no rows -> air variables set to 0
     BTS air freight    undercounts all-cargo carriers before 2003 -> set to missing before 2003
+    EPA iron & steel   state-allocation breaks (MN, MI from 2010; MD 2011-2012) -> Y left as is,
+                       flag y_break plus one step dummy per break (brk_*) for the model; robustness
+                       Y y_log_gross_noippu_pc drops all industrial process emissions
 
 Main sample (in_main_sample = 1): the contiguous 48 states, 1997-2022 (1,248 rows). nClimDiv has
 no Hawaii and no Alaska degree days, so HDD/CDD are missing there.
 
 Naming: y_ = outcomes, d_ = treatment components, D_ = treatment indices, W_ = spatial lags of
-the indices; the controls (X in DML notation) are log_pop, log_gdp_real_pc, hdd_k, cdd_k.
+the indices, brk_ = EPA break step dummies (extra controls); the controls (X in DML notation) are log_pop, log_gdp_real_pc, hdd_k, cdd_k.
 
 Indices (z = standardized with the mean and SD of the main sample; AK and HI are scored on the same scale):
     D_corporate = z(mean of z(industrial GDP share), z(log1p fossil production per person),
@@ -53,6 +56,13 @@ HOUSEHOLD = ["d_vmt_pc", "d_air_pax_pc", "d_pce_nonenergy_pc", "d_res_elec_pc"]
 CONTROLS = ["log_pop", "log_gdp_real_pc", "hdd_k", "cdd_k"]
 Y = "y_log_gross_pc"
 
+# EPA iron and steel breaks (Phase 3 review): dummy -> (postal code, first year, last year)
+BREAKS = {
+    "brk_mn_2010": ("MN", 2010, END),
+    "brk_mi_2010": ("MI", 2010, END),
+    "brk_md_2011": ("MD", 2011, 2012),
+}
+
 # variable: (description, unit, role)
 DERIVED = {
     "in_main_sample": ("1 if in the main model sample (contiguous 48 states; HDD/CDD available)", "0/1", "flag"),
@@ -61,6 +71,12 @@ DERIVED = {
     "ghg_net_pc_t": ("net GHG (gross + LULUCF) per person", "t CO2e / person", "outcome (robustness)"),
     "y_log_gross_pc": ("log gross GHG per person: PRIMARY Y", "log t CO2e / person", "outcome"),
     "y_log_co2_energy_pc": ("log EIA energy-related CO2 per person", "log t CO2 / person", "outcome (robustness)"),
+    "ghg_gross_noippu_pc_t": ("gross GHG excluding industrial processes and product use, per person", "t CO2e / person", "outcome (robustness)"),
+    "y_log_gross_noippu_pc": ("log gross GHG excl. industrial processes per person (iron & steel break robustness)", "log t CO2e / person", "outcome (robustness)"),
+    "y_break": ("1 in state-years after an EPA iron & steel allocation break (MN, MI 2010+; MD 2011-2012)", "0/1", "flag"),
+    "brk_mn_2010": ("step dummy: Minnesota 2010+ (EPA iron & steel allocation break)", "0/1", "break dummy"),
+    "brk_mi_2010": ("step dummy: Michigan 2010+ (EPA iron & steel allocation break)", "0/1", "break dummy"),
+    "brk_md_2011": ("step dummy: Maryland 2011-2012 (EPA iron & steel spike before Sparrows Point closure)", "0/1", "break dummy"),
     "d_industrial_share": ("(mining + manufacturing) / all-industry GDP, current $", "share", "corporate driver"),
     "d_fossil_prod_pc": ("log1p fossil fuel production per person (coal + crude + gas)", "log1p MMBtu / person", "corporate driver"),
     "d_grid_fossil_share": ("fossil share of electric power sector energy input", "share", "corporate driver"),
@@ -183,6 +199,12 @@ def main(interim_dir, crosswalk_path, neighbors_path, out_dir):
     p["ghg_net_pc_t"] = p["ghg_net_mmt"] * 1e6 / p["pop"]
     p["y_log_gross_pc"] = np.log(p["ghg_gross_pc_t"])
     p["y_log_co2_energy_pc"] = np.log(p["co2_total_mmt"] * 1e6 / p["pop"])
+    p["ghg_gross_noippu_pc_t"] = (p["ghg_gross_mmt"] - p["ghg_ippu_mmt"]) * 1e6 / p["pop"]
+    p["y_log_gross_noippu_pc"] = np.log(p["ghg_gross_noippu_pc_t"])
+
+    for b, (st, y0, y1) in BREAKS.items():
+        p[b] = ((p.postal_code == st) & p.year.between(y0, y1)).astype(int)
+    p["y_break"] = p[list(BREAKS)].max(axis=1)
 
     p["d_industrial_share"] = p["gdp_industrial_share"]
     p["d_fossil_prod_pc"] = np.log1p(p["fossil_prod_per_capita_mmbtu"])
@@ -244,10 +266,23 @@ def report(p):
     print(f"check: 50-state gross GHG 2022 = {epa22:,.0f} MMT (expected ~6,308; EPA national 6,344)")
     net_gap = (p.ghg_gross_mmt + p.ghg_lulucf_mmt - p.ghg_net_mmt).abs().max()
     sectors = [c for c in p.columns if c.startswith("ghg_") and c.endswith("_mmt")
-               and c not in ("ghg_gross_mmt", "ghg_net_mmt", "ghg_lulucf_mmt", "ghg_co2_mmt", "ghg_ch4_mmt", "ghg_n2o_mmt", "ghg_fgas_mmt")]
+               and c not in ("ghg_gross_mmt", "ghg_net_mmt", "ghg_lulucf_mmt", "ghg_co2_mmt", "ghg_ch4_mmt", "ghg_n2o_mmt", "ghg_fgas_mmt",
+                             "ghg_ippu_mmt", "ghg_iron_steel_mmt")]
     sec_gap = (p[sectors].sum(axis=1) - p.ghg_gross_mmt).abs().max()
     print(f"check: gross + LULUCF = net within {net_gap:.2e}; sectors sum to gross within {sec_gap:.2e} MMT")
     print(f"check: 50-state population 2022 = {p.loc[p.year == 2022, 'pop'].sum() / 1e6:,.1f} million")
+
+    print("\nEPA iron & steel breaks (MMT; log-point change in Y vs. Y without industrial processes):")
+    for b, (st, y0, y1) in BREAKS.items():
+        s = p[p.postal_code == st].set_index("year")
+        yrs = [y0 - 1, y0] if y1 == END else list(range(y0 - 1, y1 + 2))
+        iron = " -> ".join(f"{s.loc[y, 'ghg_iron_steel_mmt']:.2f}" for y in yrs)
+        dy = " / ".join(f"{s.loc[y, Y] - s.loc[y - 1, Y]:+.3f}" for y in yrs[1:])
+        dn = " / ".join(f"{s.loc[y, 'y_log_gross_noippu_pc'] - s.loc[y - 1, 'y_log_gross_noippu_pc']:+.3f}" for y in yrs[1:])
+        print(f"  {b}: {st} {y0}-{y1} ({int(s[b].sum())} yrs)  iron & steel {'/'.join(map(str, yrs))}: {iron}  "
+              f"dY {dy}  dY_noippu {dn}")
+    print(f"  y_break = 1 in {int(p.y_break.sum())} state-years; "
+          f"IPPU share of 50-state gross 2022: {p.loc[p.year == 2022, 'ghg_ippu_mmt'].sum() / epa22:.1%}")
 
     model = [Y] + CORPORATE + HOUSEHOLD + CONTROLS + ["D_corporate", "D_household"] + LAGS
     miss = p[model].isna().groupby(p.postal_code).sum()

@@ -5,6 +5,12 @@ ghg_gross_pc_t,gross GHG (excl. LULUCF) per person,t CO2e / person,derived (buil
 ghg_net_pc_t,net GHG (gross + LULUCF) per person,t CO2e / person,derived (build_panel.py),outcome (robustness)
 y_log_gross_pc,log gross GHG per person: PRIMARY Y,log t CO2e / person,derived (build_panel.py),outcome
 y_log_co2_energy_pc,log EIA energy-related CO2 per person,log t CO2 / person,derived (build_panel.py),outcome (robustness)
+ghg_gross_noippu_pc_t,"gross GHG excluding industrial processes and product use, per person",t CO2e / person,derived (build_panel.py),outcome (robustness)
+y_log_gross_noippu_pc,log gross GHG excl. industrial processes per person (iron & steel break robustness),log t CO2e / person,derived (build_panel.py),outcome (robustness)
+y_break,"1 in state-years after an EPA iron & steel allocation break (MN, MI 2010+; MD 2011-2012)",0/1,derived (build_panel.py),flag
+brk_mn_2010,step dummy: Minnesota 2010+ (EPA iron & steel allocation break),0/1,derived (build_panel.py),break dummy
+brk_mi_2010,step dummy: Michigan 2010+ (EPA iron & steel allocation break),0/1,derived (build_panel.py),break dummy
+brk_md_2011,step dummy: Maryland 2011-2012 (EPA iron & steel spike before Sparrows Point closure),0/1,derived (build_panel.py),break dummy
 d_industrial_share,"(mining + manufacturing) / all-industry GDP, current $",share,derived (build_panel.py),corporate driver
 d_fossil_prod_pc,log1p fossil fuel production per person (coal + crude + gas),log1p MMBtu / person,derived (build_panel.py),corporate driver
 d_grid_fossil_share,fossil share of electric power sector energy input,share,derived (build_panel.py),corporate driver
@@ -48,6 +54,15 @@ co2_industrial_mmt,as loaded,see name,shared/eia.csv,input
 co2_residential_mmt,as loaded,see name,shared/eia.csv,input
 co2_total_mmt,as loaded,see name,shared/eia.csv,input
 co2_total_per_capita_t,as loaded,see name,shared/eia.csv,input
+co2_trans_avgas_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_coal_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_distillate_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_gasoline_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_hgl_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_jetfuel_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_lubricants_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_natgas_mmt,as loaded,see name,shared/eia.csv,input
+co2_trans_residual_mmt,as loaded,see name,shared/eia.csv,input
 co2_transport_mmt,as loaded,see name,shared/eia.csv,input
 crushed_stone_t,as loaded,see name,corporate/usgs_minerals.csv,input
 elec_sales_com_bbtu,as loaded,see name,shared/eia.csv,input
@@ -74,6 +89,8 @@ ghg_electric_power_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_fgas_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_gross_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_industry_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_ippu_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_iron_steel_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_lulucf_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_n2o_mmt,as loaded,see name,outcome/epa.csv,input
 ghg_net_mmt,as loaded,see name,outcome/epa.csv,input

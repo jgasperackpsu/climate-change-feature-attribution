@@ -1,0 +1,41 @@
+spec,variable,vif
+"drivers + controls, pooled",d_industrial_share,1.869169299798046
+"drivers + controls, pooled",d_fossil_prod_pc,1.7957848611306204
+"drivers + controls, pooled",d_grid_fossil_share,1.6155999987538314
+"drivers + controls, pooled",d_sand_gravel_pc,2.697055226211366
+"drivers + controls, pooled",d_vmt_pc,2.325304364506635
+"drivers + controls, pooled",d_air_pax_pc,1.751694167983417
+"drivers + controls, pooled",d_pce_nonenergy_pc,2.6526762149068785
+"drivers + controls, pooled",d_res_elec_pc,2.148118951263171
+"drivers + controls, pooled",log_pop,3.246374517975967
+"drivers + controls, pooled",log_gdp_real_pc,2.64370430215515
+"drivers + controls, pooled",hdd_k,6.859987178868316
+"drivers + controls, pooled",cdd_k,6.1932916802959745
+"drivers + controls, within",d_industrial_share,1.2995423535054333
+"drivers + controls, within",d_fossil_prod_pc,1.1663402744535292
+"drivers + controls, within",d_grid_fossil_share,1.1441055706583976
+"drivers + controls, within",d_sand_gravel_pc,1.288724541145868
+"drivers + controls, within",d_vmt_pc,1.0888255691878106
+"drivers + controls, within",d_air_pax_pc,1.1556427840406753
+"drivers + controls, within",d_pce_nonenergy_pc,2.3134482307753887
+"drivers + controls, within",d_res_elec_pc,1.8680099829054035
+"drivers + controls, within",log_pop,1.235564323135937
+"drivers + controls, within",log_gdp_real_pc,2.115540807459451
+"drivers + controls, within",hdd_k,1.2309246260855211
+"drivers + controls, within",cdd_k,1.2998443898725243
+"model regressors, pooled",D_corporate,2.2930622949588804
+"model regressors, pooled",D_household,2.2452333739162826
+"model regressors, pooled",W_D_corporate,2.574019559334974
+"model regressors, pooled",W_D_household,2.1127856175541058
+"model regressors, pooled",log_pop,1.7916262202258748
+"model regressors, pooled",log_gdp_real_pc,1.4126157713006355
+"model regressors, pooled",hdd_k,6.288074650303628
+"model regressors, pooled",cdd_k,5.455261669507351
+"model regressors, within",D_corporate,1.2831995394646736
+"model regressors, within",D_household,1.3690771274657834
+"model regressors, within",W_D_corporate,1.0943645312392778
+"model regressors, within",W_D_household,1.3132102233231648
+"model regressors, within",log_pop,1.0615406550687374
+"model regressors, within",log_gdp_real_pc,1.358655842642013
+"model regressors, within",hdd_k,1.1175288522233895
+"model regressors, within",cdd_k,1.085071613137147

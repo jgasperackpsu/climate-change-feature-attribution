@@ -51,6 +51,23 @@ Every loader also reads data/state_crosswalk.csv (state name, postal code, FIPS 
 $$Y_{s,t} = \ln\left(\frac{\text{Gross GHG}_{s,t}}{\text{Population}_{s,t}}\right)$$
 
   Net emissions (gross plus forest and land sinks) are kept as a robustness check. They are not the primary response because heavily forested states can come out near zero or negative (Maine is −0.3 MMT in 2022), which would mostly measure forest cover.
+- **Iron and steel breaks: how they are handled (build_panel.py).** Y itself is not edited. Three breaks are large relative to the state's gross emissions and get a flag and a step dummy:
+
+  | Dummy | State-years | Iron and steel (MMT) | Change in Y |
+  |---|---|---|---|
+  | brk_mn_2010 | Minnesota 2010–2022 | 0.08 → 17.57 (2009→2010) | +0.113 log points |
+  | brk_mi_2010 | Michigan 2010–2022 | 2.01 → 12.00 (2009→2010) | +0.050 |
+  | brk_md_2011 | Maryland 2011–2012 | 0.17 → 4.67 → 0.00 (2010→2012) | −0.013, then −0.119 |
+
+  - y_break = 1 in any of those 28 state-years. The main model includes the three brk_ dummies as extra controls (3 parameters).
+  - Robustness Y: y_log_gross_noippu_pc = log((gross − ghg_ippu_mmt) / population), where ghg_ippu_mmt is EPA's whole IPCC sector "Industrial Processes and Product Use" (6.1% of 50-state gross in 2022, including ODS substitutes used by households and businesses). Without it, the 2010 change is −0.019 in Minnesota and −0.002 in Michigan, so the break is gone. Within the main sample it correlates 0.999 with Y.
+  - ghg_iron_steel_mmt (from load_epa.py) is kept in the panel so the break can be checked.
+  - Maryland's Sparrows Point mill closed in 2012, so the drop to zero is real. The 2011 spike is not.
+  - Indiana (12.7 → 19.8 MMT) and the KY/MO lime shifts are smaller relative to state gross and are not given dummies. The no-IPPU Y covers them.
+- **Known breaks in state allocation:** Phase 3 found category-level breaks in the state series that look like changes in how EPA allocates emissions to states rather than real activity. The 50-state totals are continuous; only the split across states shifts.
+  - *Iron and Steel Production, 2009→2010.* Emissions move from many states (OH 4.6→2.0, PA 4.3→1.8, AL 3.6→1.1, TN 2.6→0.2, TX, SC, WI, …) to a few (MN 0.08→17.6, MI 2.0→12.0, IN 12.7→19.8 MMT) and stay there. This is most likely the switch to facility-level GHGRP data from 2010 (not yet confirmed in EPA's methodology annex). Minnesota's gross emissions jump about 12% in 2010 (taconite pellet plants). Lime Production in KY (0.4→1.6) and MO (0.3→1.8) shows the same pattern. State and year fixed effects do not absorb a state-specific level shift.
+  - *Fluorochemical Production, 1999→2000.* West Virginia is a flat 17.1 MMT in 1997–1999, then 0.5. AL, AR and KS also fall to near zero by 2005, consistent with the national decline in HFC-23 by-product emissions, but the flat early values suggest an extrapolated estimate.
+  - Other one-year jumps over 10% (relative to the national median change) are real power-plant or oil-field events: for example, NV 2006 (Mohave plant closure), TN 2009, AR 2015, ND 2018 (Bakken petroleum systems), and DE 2009–2010 (Delaware City refinery idled late 2009, restarted 2011).
 - **Citation:**
   U.S. Environmental Protection Agency. Inventory of U.S. Greenhouse Gas Emissions and Sinks by State: 1990–2022. Consolidated All-State GHG Data (AllStateGHGData90-22_v082924). Retrieved on Nov 2, 2026 from https://www.epa.gov/ghgemissions/state-ghg-emissions-and-removals
 
@@ -98,7 +115,7 @@ No link currently available. The source is undergoing data migration and the met
 
 ### EIA: State Energy Data System (SEDS)
 
-- **Provides:** Annual state-level fossil fuel production (coal, crude oil, natural gas), the fossil fuel share of electric power sector energy input, population, real GDP, and energy-related CO₂ emissions by sector (robustness response).
+- **Provides:** Annual state-level fossil fuel production (coal, crude oil, natural gas), the fossil fuel share of electric power sector energy input, population, real GDP, and energy-related CO₂ emissions by sector (robustness response). Also transportation-sector CO₂ by fuel (co2_trans_<fuel>_mmt: motor gasoline, distillate, jet fuel, residual, aviation gasoline, HGL, lubricants, natural gas, coal), which sum to transport CO₂ within 0.003 MMT. These are used **only** to split transport emissions in the descriptive decomposition; they are fuel consumption and never enter a treatment.
 - **Citation:**
   U.S. Energy Information Administration. (2026). State Energy Data System. Consolidated data file, Consumption, price, expenditure, production, indicators, and CO2 emissions estimates. Retrieved on Oct 29, 2026 from https://www.eia.gov/state/seds/seds-data-complete.php#CompleteDataFile.
 
@@ -170,37 +187,6 @@ No link currently available. The source is undergoing data migration and the met
 
 ---
 
-## Analysis Panel: Main Sample and Indices
-
-build_panel.py writes data/processed/panel.csv (50 states × 1997–2022 = 1,300 rows). The **main sample** (in_main_sample = 1) is the contiguous 48 states, 1,248 rows. Naming: y_ = outcomes, d_ = treatment components, D_ = treatment indices, W_ = spatial lags; the controls (X in DML notation) are log_pop, log_gdp_real_pc, hdd_k and cdd_k.
-
-Each index is the standardized mean of standardized components. Means and SDs come from the main sample, so 1 SD means 1 SD across the 48 states used in estimation; AK and HI are scored on the same scale.
-
-| Index | Components | Role |
-|---|---|---|
-| D_corporate | d_industrial_share, d_fossil_prod_pc, d_grid_fossil_share, d_sand_gravel_pc | main |
-| D_household | d_vmt_pc, d_air_pax_pc, d_pce_nonenergy_pc, d_res_elec_pc | main |
-| D_household_lvstk | D_household components + d_cattle_pc | robustness: livestock on household side |
-| D_corporate_lvstk | D_corporate components + d_cattle_pc | robustness: livestock on corporate side |
-| D_household_noelec | D_household components − d_res_elec_pc | robustness: overlap with electric power emissions |
-| D_corporate_freight | D_corporate components + d_air_freight_pc (2003+) | robustness: air freight |
-
-On the main sample, D_corporate and D_household correlate 0.12 pooled and 0.18 within state and year. D_household with and without cattle correlate 0.99 within, confirming cattle adds almost nothing once fixed effects are in.
-
----
-
-## Data Fixes Applied in build_panel.py
-
-These are applied when the panel is built, not in the loaders, so the interim files hold the data as published.
-
-| Issue | Fix | Flag |
-|---|---|---|
-| Indiana 2022 VMT is a one-year +22% spike (95,684 million miles) that reverses in 2023 | Replaced total, rural and urban VMT with the mean of 2021 and 2023 (81,925 million miles); urban share recomputed | vmt_imputed = 1 |
-| Delaware had no scheduled air service in 1997–1999, so BTS has no rows | All air variables set to 0 | none |
-| BTS air freight before 2003 undercounts all-cargo carriers (FedEx in TN, UPS in KY, Anchorage in AK) | Air freight set to missing before 2003; it is used only in the 2003+ robustness index D_corporate_freight | none |
-
----
-
 ## Reproducing the Data
 
 1. Clone the repository. The cleaned data in data/interim/ and data/processed/ is already included, so **steps 2–5 are only needed to rebuild it from the original sources**.
@@ -222,4 +208,7 @@ These are applied when the panel is built, not in the loaders, so the interim fi
 
 4. Download tl_2022_us_state.zip (see Spatial Weights) into data/raw/shared/TIGER/ and build the neighbor matrix: `python3 code/data_preparation/build_spatial_weights.py data/raw/shared/TIGER/tl_2022_us_state.zip data/state_crosswalk.csv data/state_neighbors.csv`. The output is committed, so this step is only needed to rebuild it.
 5. Run build_panel.py (`python3 code/data_preparation/build_panel.py data/interim data/state_crosswalk.csv data/state_neighbors.csv data/processed`) to join every interim file into data/processed/panel.csv (one row per state-year, 50 states × 1997–2022 = 1,300 rows) and data/processed/data_dictionary.csv. It prints a report with coverage checks, missingness, and driver correlations.
-6. data/raw/ is git-ignored, so downloaded data will not be committed.
+6. Run the Phase 3 decomposition and EDA:
+   `python3 code/data_preparation/decompose_emissions.py data/processed/panel.csv data/processed/decomposition.csv`
+   `python3 code/analysis/eda.py data/processed/panel.csv data/processed/decomposition.csv visuals data/processed`
+7. data/raw/ is git-ignored, so downloaded data will not be committed.

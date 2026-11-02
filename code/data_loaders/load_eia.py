@@ -23,6 +23,17 @@ RAW = {
     "TEICE": "co2_industrial_mmt",
     "TEACE": "co2_transport_mmt",
     "TEEIE": "co2_elecpower_mmt",
+    # transportation sector CO2 by fuel, million metric tons (Phase 3 household/corporate transport split;
+    # descriptive only, never a treatment). The nine fuels sum to TEACE.
+    "MMACE": "co2_trans_gasoline_mmt",
+    "DMACE": "co2_trans_distillate_mmt",
+    "JFACE": "co2_trans_jetfuel_mmt",
+    "RFACE": "co2_trans_residual_mmt",
+    "AVACE": "co2_trans_avgas_mmt",
+    "HLACE": "co2_trans_hgl_mmt",
+    "LUACE": "co2_trans_lubricants_mmt",
+    "NNACE": "co2_trans_natgas_mmt",
+    "CLACE": "co2_trans_coal_mmt",
     # electricity sales by sector, billion Btu (used to allocate power-sector CO2)
     "ESRCB": "elec_sales_res_bbtu",
     "ESCCB": "elec_sales_com_bbtu",

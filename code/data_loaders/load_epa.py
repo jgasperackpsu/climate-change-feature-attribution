@@ -13,6 +13,11 @@ Variables written (state_fips, year, variable, value):
     ghg_<sector>_mmt              one per economic sector (residential, commercial, industry,
                                   transportation, electric_power, agriculture, lulucf)
     ghg_<gas>_mmt                 gross emissions by gas group: co2, ch4, n2o, fgas
+    ghg_ippu_mmt                  IPCC sector "Industrial Processes and Product Use", all economic
+                                  sectors (incl. ODS substitutes in residential/commercial/transport)
+                                  <- gross minus this is the robustness Y without industrial processes
+    ghg_iron_steel_mmt            IPPU iron and steel (incl. metallurgical coke) production; used to
+                                  document the 2010 state-allocation break (see data_sources.md)
 
 Rows for Territories, Federal Offshore ("FO") and "National" (not yet split to states) are dropped,
 so the 50 states will sum to less than the national total; that gap is EPA's, not a loading error.
@@ -66,7 +71,10 @@ def main(xlsx, crosswalk_path, out_dir, start=1997):
     d = d[d["GEO_REF"].isin(usps_to_fips)]
     d["sector"] = d["ECON_SECTOR"].map(slug)
     d["gas"] = d[gas_col].map(gas_group)
-    long = d.melt(id_vars=["GEO_REF", "sector", "gas"], value_vars=ycols, var_name="year", value_name="value")
+    d["ippu"] = d["SECTOR"].eq("Industrial Processes and Product Use")
+    d["iron_steel"] = d["ippu"] & d["CATEGORY"].str.contains("Iron and Steel", na=False)
+    long = d.melt(id_vars=["GEO_REF", "sector", "gas", "ippu", "iron_steel"], value_vars=ycols,
+                  var_name="year", value_name="value")
     long["year"] = long["year"].str[1:].astype(int)
     long["value"] = pd.to_numeric(long["value"], errors="coerce").fillna(0)
     long = long[long["year"] >= int(start)]
@@ -83,6 +91,9 @@ def main(xlsx, crosswalk_path, out_dir, start=1997):
     by_gas = gross.pivot_table(index=["state_fips", "year"], columns="gas", values="value", aggfunc="sum", fill_value=0)
     by_gas.columns = [f"ghg_{c}_mmt" for c in by_gas.columns]
     out = out.join(by_gas)
+    for flag in ["ippu", "iron_steel"]:
+        out[f"ghg_{flag}_mmt"] = gross[gross[flag]].groupby(["state_fips", "year"])["value"].sum()
+        out[f"ghg_{flag}_mmt"] = out[f"ghg_{flag}_mmt"].fillna(0)
 
     gap = (out[[c for c in by_gas.columns]].sum(axis=1) - out["ghg_gross_mmt"]).abs().max()
     print(f"check: gas groups sum to gross within {gap:.4f} MMT")
