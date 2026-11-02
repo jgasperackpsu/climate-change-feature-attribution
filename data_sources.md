@@ -21,6 +21,7 @@ All sources are U.S. federal agencies, so the data is in the public domain.
 | Citizen Behaviors | SEDS (residential electricity) | EIA | 1997–2022 | load_eia.py |
 | Citizen Behaviors | Personal Consumption Expenditures by State (SAPCE2) | BEA | 1997–2022 | load_bea.py |
 | Citizen Behaviors | Quick Stats (livestock inventory) | USDA NASS | 1997–2022 | load_usda.py |
+| Spatial weights | TIGER/Line state boundaries (queen contiguity) | Census Bureau | 2022 boundaries | build_spatial_weights.py |
 | Secondary analysis | nCLIMDIV temperature anomalies | NOAA NCEI | 1997–2022 | load_noaa.py |
 | Secondary analysis | MODIS MOD11A1 land surface temperature | NASA LP DAAC | 2001–2022 | not yet built |
 | Secondary analysis | NLCD land cover | MRLC | 2015–2024 | not yet built |
@@ -71,7 +72,7 @@ $$\text{Anomaly}_{s,t} = \bar{T}_{s,t} - \bar{T}_{s,\,1991\text{–}2020}$$
 
 - **Citation:**
   Vose, Russell S.; Applequist, Scott; Squires, Mike; Durre, Imke; Menne, Matthew J.; Williams, Claude N., Jr.; Fenimore, Chris; Gleason, Karin; Arndt, Derek (2014): NOAA Monthly U.S. Climate Divisional Database (NClimDiv). /data/nclimdiv-monthly/archive. NOAA National Climatic Data Center. doi:10.7289/V5M32STR. Oct 19, 2026.
-- **Notes:** **Hawaii is not in nCLIMDIV**, so the main model runs on 49 states.
+- **Notes:** **Hawaii is not in nCLIMDIV, and nCLIMDIV gives Alaska temperature and precipitation but no heating or cooling degree days.** Because HDD and CDD are controls, the main model runs on the **contiguous 48 states (1,248 state-years)**. Alaska and Hawaii stay in the panel with missing HDD/CDD (in_main_sample = 0). HDD and CDD enter the models as hdd_k and cdd_k (thousands of degree-days) so their coefficients are readable.
 
 No link currently available. The source is undergoing data migration and the metadata XML is unretrievable.
 
@@ -107,13 +108,13 @@ No link currently available. The source is undergoing data migration and the met
 - **Citation:**
   U.S. Bureau of Economic Analysis. Gross Domestic Product by State and Industry (SAGDP2), 1997–2025. Retrieved on Nov 2, 2026 from https://apps.bea.gov/regional/downloadzip.htm.
 
-### USGS: Construction Aggregates *(secondary analysis)*
+### USGS: Construction Aggregates
 
 - **Provides:** Annual state-level production of construction sand and gravel and crushed stone (metric tons), used as a measure of construction activity. Construction sand and gravel is the variable used, because USGS withholds crushed stone figures for Delaware and Louisiana in most years.
 - **Citation:**
   U.S. Geological Survey (USGS) National Minerals Information Center, Aggregates Time Series Data by State, Type, and End Use, 1971–2023. Retrieved on Oct 19, 2026 from https://www.usgs.gov/media/files/usgs-aggregates-time-series-data-state-type-and-end-use.
 
-### U.S. Forest Service: Forest Inventory and Analysis (FIA) *(secondary analysis)*
+### U.S. Forest Service: Forest Inventory and Analysis (FIA) *(robustness only)*
 
 - **Provides:** State-level forest area change, carbon density, and timber harvest.
 - **Citation:**
@@ -139,6 +140,7 @@ No link currently available. The source is undergoing data migration and the met
 ### EIA: State Energy Data System (Residential Electricity)
 
 - **Provides:** Residential electricity purchases per person, and electricity sales by sector, used to split electric power emissions between households and businesses in the descriptive analysis.
+- **Notes:** Residential electricity is household demand, not fuel combustion, but it comes close to the no-fuel-consumption rule. Electric power emissions are roughly electricity sold × the grid's fossil share, so this driver is tied to the outcome by arithmetic, especially with grid fossil share in the corporate index. It stays in the main household index; D_household_noelec drops it as a robustness check, and the overlap must be discussed in the writeup.
 - **Citation:**
   Same SEDS file as Feature Set A.
 
@@ -151,14 +153,57 @@ No link currently available. The source is undergoing data migration and the met
 ### USDA National Agricultural Statistics Service (NASS)
 
 - **Provides:** State annual livestock inventories from the NASS survey program (cattle and calves, milk cows, hogs, sheep), used to compute cattle per person. Livestock is the largest source of agricultural methane.
+- **Notes:** Cattle per person is **robustness only**, not part of the main household index. After state and year fixed effects only 6% of its variation is left, and its within-state correlation with Y is −0.16 even though the pooled correlation is +0.71 (driven by WY and the Dakotas). Whether livestock is household or corporate activity is a judgment call, so both placements are run as robustness checks (D_household_lvstk, D_corporate_lvstk). Hogs (1,281 of 1,300 rows) and sheep (848 of 1,300; no data for AR, DE, FL, GA, HI, MS, RI, SC) are loaded but not used.
 - **Citation:**
   U.S. Department of Agriculture. (2026). National Agriculture Statistics Service, Data & Statistics: Quick Stats Large Datasets. Retrieved on Oct 29, 2026 from https://www.nass.usda.gov/datasets/.
 
 ---
 
+## Spatial Weights
+
+### U.S. Census Bureau: TIGER/Line Shapefiles, States (2022)
+
+- **Provides:** State boundary polygons, used to build a queen-contiguity neighbor matrix for the 50 states (DC and territories dropped). Queen contiguity counts shared corners, so the Four Corners pairs (AZ–CO, UT–NM) are neighbors. The matrix is row-standardized and saved as an edge list in data/state_neighbors.csv (state_fips, neighbor_fips, weight): 110 neighbor pairs, 220 rows. build_panel.py uses it to add each index's neighbor average in the same year (W_D_corporate, W_D_household, and the robustness indices).
+- **Limitations:** Alaska and Hawaii have no neighbors, so their spatial lag is set to 0 (flag has_neighbors = 0). Neither is in the main sample (no degree days), so this matters only for a 50-state specification without HDD/CDD. TIGER/Line state polygons include Great Lakes and coastal water, so three links cross water only: IL–MI, MI–MN and NY–RI. They are kept.
+- **Citation:**
+  U.S. Census Bureau. (2022). TIGER/Line Shapefiles: States (tl_2022_us_state). Retrieved on Nov 2, 2026 from https://www2.census.gov/geo/tiger/TIGER2022/STATE/.
+
+---
+
+## Analysis Panel: Main Sample and Indices
+
+build_panel.py writes data/processed/panel.csv (50 states × 1997–2022 = 1,300 rows). The **main sample** (in_main_sample = 1) is the contiguous 48 states, 1,248 rows. Naming: y_ = outcomes, d_ = treatment components, D_ = treatment indices, W_ = spatial lags; the controls (X in DML notation) are log_pop, log_gdp_real_pc, hdd_k and cdd_k.
+
+Each index is the standardized mean of standardized components. Means and SDs come from the main sample, so 1 SD means 1 SD across the 48 states used in estimation; AK and HI are scored on the same scale.
+
+| Index | Components | Role |
+|---|---|---|
+| D_corporate | d_industrial_share, d_fossil_prod_pc, d_grid_fossil_share, d_sand_gravel_pc | main |
+| D_household | d_vmt_pc, d_air_pax_pc, d_pce_nonenergy_pc, d_res_elec_pc | main |
+| D_household_lvstk | D_household components + d_cattle_pc | robustness: livestock on household side |
+| D_corporate_lvstk | D_corporate components + d_cattle_pc | robustness: livestock on corporate side |
+| D_household_noelec | D_household components − d_res_elec_pc | robustness: overlap with electric power emissions |
+| D_corporate_freight | D_corporate components + d_air_freight_pc (2003+) | robustness: air freight |
+
+On the main sample, D_corporate and D_household correlate 0.12 pooled and 0.18 within state and year. D_household with and without cattle correlate 0.99 within, confirming cattle adds almost nothing once fixed effects are in.
+
+---
+
+## Data Fixes Applied in build_panel.py
+
+These are applied when the panel is built, not in the loaders, so the interim files hold the data as published.
+
+| Issue | Fix | Flag |
+|---|---|---|
+| Indiana 2022 VMT is a one-year +22% spike (95,684 million miles) that reverses in 2023 | Replaced total, rural and urban VMT with the mean of 2021 and 2023 (81,925 million miles); urban share recomputed | vmt_imputed = 1 |
+| Delaware had no scheduled air service in 1997–1999, so BTS has no rows | All air variables set to 0 | none |
+| BTS air freight before 2003 undercounts all-cargo carriers (FedEx in TN, UPS in KY, Anchorage in AK) | Air freight set to missing before 2003; it is used only in the 2003+ robustness index D_corporate_freight | none |
+
+---
+
 ## Reproducing the Data
 
-1. Clone the repository. The cleaned data in data/interim/ and data/processed/ is already included, so **steps 2–4 are only needed to rebuild it from the original sources**.
+1. Clone the repository. The cleaned data in data/interim/ and data/processed/ is already included, so **steps 2–5 are only needed to rebuild it from the original sources**.
 2. Download each source from the links above into the matching data/raw/ subfolder (data/raw/outcome/, data/raw/climate/, data/raw/corporate/, data/raw/citizen/). File names and retrieval dates are listed with each citation.
 3. Run each loader in code/data_loaders/. Each one takes the raw file or folder, data/state_crosswalk.csv, and an output folder, and writes one tidy file to data/interim/:
 
@@ -175,5 +220,6 @@ No link currently available. The source is undergoing data migration and the met
 
    Example: `python3 code/data_loaders/load_epa.py data/raw/outcome/allstateghgdata90-22_v082924/AllStateGHGData90-22_v082924.xlsx data/state_crosswalk.csv data/interim/outcome`
 
-4. Run build_panel.py (`python3 code/build_panel.py data/interim data/processed`) to join every interim file into data/processed/panel.csv (one row per state-year, 1997–2022) and data/processed/data_dictionary.csv.
-5. data/raw/ is git-ignored, so downloaded data will not be committed.
+4. Download tl_2022_us_state.zip (see Spatial Weights) into data/raw/shared/TIGER/ and build the neighbor matrix: `python3 code/data_preparation/build_spatial_weights.py data/raw/shared/TIGER/tl_2022_us_state.zip data/state_crosswalk.csv data/state_neighbors.csv`. The output is committed, so this step is only needed to rebuild it.
+5. Run build_panel.py (`python3 code/data_preparation/build_panel.py data/interim data/state_crosswalk.csv data/state_neighbors.csv data/processed`) to join every interim file into data/processed/panel.csv (one row per state-year, 50 states × 1997–2022 = 1,300 rows) and data/processed/data_dictionary.csv. It prints a report with coverage checks, missingness, and driver correlations.
+6. data/raw/ is git-ignored, so downloaded data will not be committed.

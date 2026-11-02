@@ -1,0 +1,103 @@
+variable,description,unit,source,role
+in_main_sample,1 if in the main model sample (contiguous 48 states; HDD/CDD available),0/1,derived (build_panel.py),flag
+pop,population,persons,derived (build_panel.py),control input
+ghg_gross_pc_t,gross GHG (excl. LULUCF) per person,t CO2e / person,derived (build_panel.py),outcome
+ghg_net_pc_t,net GHG (gross + LULUCF) per person,t CO2e / person,derived (build_panel.py),outcome (robustness)
+y_log_gross_pc,log gross GHG per person: PRIMARY Y,log t CO2e / person,derived (build_panel.py),outcome
+y_log_co2_energy_pc,log EIA energy-related CO2 per person,log t CO2 / person,derived (build_panel.py),outcome (robustness)
+d_industrial_share,"(mining + manufacturing) / all-industry GDP, current $",share,derived (build_panel.py),corporate driver
+d_fossil_prod_pc,log1p fossil fuel production per person (coal + crude + gas),log1p MMBtu / person,derived (build_panel.py),corporate driver
+d_grid_fossil_share,fossil share of electric power sector energy input,share,derived (build_panel.py),corporate driver
+d_sand_gravel_pc,log1p construction sand & gravel production per person,log1p t / person,derived (build_panel.py),corporate driver
+d_air_freight_pc,log1p domestic air freight ton-miles per person; missing before 2003,log1p ton-mi / person,derived (build_panel.py),corporate driver (robustness)
+d_vmt_pc,log vehicle-miles traveled per person,log mi / person,derived (build_panel.py),household driver
+d_air_pax_pc,log1p domestic air passenger-miles per person (departing state),log1p mi / person,derived (build_panel.py),household driver
+d_pce_nonenergy_pc,"log non-energy personal consumption expenditures per person, current $",log $ / person,derived (build_panel.py),household driver
+d_res_elec_pc,log residential electricity purchases per person; overlaps electric power emissions,log MMBtu / person,derived (build_panel.py),household driver
+d_cattle_pc,log1p cattle and calves per person; little within-state variation,log1p head / person,derived (build_panel.py),driver (robustness only)
+log_pop,log population (= log density given state FE),log persons,derived (build_panel.py),control
+log_gdp_real_pc,log real GDP per person,log 2017 $ / person,derived (build_panel.py),control
+hdd_k,"heating degree days / 1,000",thousand degree-days F,derived (build_panel.py),control
+cdd_k,"cooling degree days / 1,000",thousand degree-days F,derived (build_panel.py),control
+vmt_imputed,1 if VMT was imputed (Indiana 2022),0/1,derived (build_panel.py),flag
+D_corporate,corporate supply-side driver index,SD,derived (build_panel.py),treatment
+D_household,household demand-side driver index,SD,derived (build_panel.py),treatment
+D_household_lvstk,household index plus cattle (robustness),SD,derived (build_panel.py),treatment (robustness)
+D_corporate_lvstk,corporate index plus cattle (robustness),SD,derived (build_panel.py),treatment (robustness)
+D_household_noelec,household index without residential electricity (robustness),SD,derived (build_panel.py),treatment (robustness)
+D_corporate_freight,"corporate index plus air freight, 2003+ (robustness)",SD,derived (build_panel.py),treatment (robustness)
+has_neighbors,"1 if the state has queen-contiguity neighbors (0 for AK, HI)",0/1,derived (build_panel.py),flag
+W_D_corporate,"spatial lag: neighbor average of D_corporate (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+W_D_household,"spatial lag: neighbor average of D_household (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+W_D_household_lvstk,"spatial lag: neighbor average of D_household_lvstk (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+W_D_corporate_lvstk,"spatial lag: neighbor average of D_corporate_lvstk (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+W_D_household_noelec,"spatial lag: neighbor average of D_household_noelec (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+W_D_corporate_freight,"spatial lag: neighbor average of D_corporate_freight (0 for AK, HI)",SD,derived (build_panel.py),spatial control
+aggregates_t,as loaded,see name,corporate/usgs_minerals.csv,input
+air_departures,as loaded,see name,shared/bts.csv,input
+air_freight_tonmiles_millions,as loaded,see name,shared/bts.csv,input
+air_mail_tonmiles_millions,as loaded,see name,shared/bts.csv,input
+air_pax_miles_millions,as loaded,see name,shared/bts.csv,input
+cattle_head,as loaded,see name,corporate/usda.csv,input
+cdd,as loaded,see name,shared/noaa.csv,input
+co2_commercial_mmt,as loaded,see name,shared/eia.csv,input
+co2_corporate_mmt,as loaded,see name,shared/eia.csv,input
+co2_elecpower_mmt,as loaded,see name,shared/eia.csv,input
+co2_household_mmt,as loaded,see name,shared/eia.csv,input
+co2_industrial_mmt,as loaded,see name,shared/eia.csv,input
+co2_residential_mmt,as loaded,see name,shared/eia.csv,input
+co2_total_mmt,as loaded,see name,shared/eia.csv,input
+co2_total_per_capita_t,as loaded,see name,shared/eia.csv,input
+co2_transport_mmt,as loaded,see name,shared/eia.csv,input
+crushed_stone_t,as loaded,see name,corporate/usgs_minerals.csv,input
+elec_sales_com_bbtu,as loaded,see name,shared/eia.csv,input
+elec_sales_ind_bbtu,as loaded,see name,shared/eia.csv,input
+elec_sales_res_bbtu,as loaded,see name,shared/eia.csv,input
+elec_sales_total_bbtu,as loaded,see name,shared/eia.csv,input
+elec_sales_trans_bbtu,as loaded,see name,shared/eia.csv,input
+elecpower_coal_bbtu,as loaded,see name,shared/eia.csv,input
+elecpower_natgas_bbtu,as loaded,see name,shared/eia.csv,input
+elecpower_nuclear_bbtu,as loaded,see name,shared/eia.csv,input
+elecpower_petrol_bbtu,as loaded,see name,shared/eia.csv,input
+elecpower_total_bbtu,as loaded,see name,shared/eia.csv,input
+fossil_prod_per_capita_mmbtu,as loaded,see name,shared/eia.csv,input
+gdp_industrial_share,as loaded,see name,shared/bea.csv,input
+gdp_manufacturing_share,as loaded,see name,shared/bea.csv,input
+gdp_mining_share,as loaded,see name,shared/bea.csv,input
+gdp_real_musd2017,as loaded,see name,shared/eia.csv,input
+gdp_real_per_capita_usd2017,as loaded,see name,shared/eia.csv,input
+ghg_agriculture_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_ch4_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_co2_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_commercial_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_electric_power_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_fgas_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_gross_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_industry_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_lulucf_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_n2o_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_net_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_residential_mmt,as loaded,see name,outcome/epa.csv,input
+ghg_transportation_mmt,as loaded,see name,outcome/epa.csv,input
+grid_fossil_share,as loaded,see name,shared/eia.csv,input
+grid_nuclear_share,as loaded,see name,shared/eia.csv,input
+hdd,as loaded,see name,shared/noaa.csv,input
+hogs_head,as loaded,see name,corporate/usda.csv,input
+milk_cows_head,as loaded,see name,corporate/usda.csv,input
+pce_energy_goods_per_capita_usd,as loaded,see name,shared/bea.csv,input
+pce_nonenergy_per_capita_usd,as loaded,see name,shared/bea.csv,input
+pce_per_capita_usd,as loaded,see name,shared/bea.csv,input
+pop_thousands,as loaded,see name,shared/eia.csv,input
+precip_in,as loaded,see name,shared/noaa.csv,input
+prod_coal_bbtu,as loaded,see name,shared/eia.csv,input
+prod_crude_bbtu,as loaded,see name,shared/eia.csv,input
+prod_natgas_bbtu,as loaded,see name,shared/eia.csv,input
+res_elec_per_capita_mmbtu,as loaded,see name,shared/eia.csv,input
+sand_gravel_t,as loaded,see name,corporate/usgs_minerals.csv,input
+sheep_head,as loaded,see name,corporate/usda.csv,input
+temp_anomaly_f,as loaded,see name,shared/noaa.csv,input
+temp_mean_f,as loaded,see name,shared/noaa.csv,input
+urban_vmt_share,as loaded,see name,civilian/fhwa.csv,input
+vmt_rural_millions,as loaded,see name,civilian/fhwa.csv,input
+vmt_total_millions,as loaded,see name,civilian/fhwa.csv,input
+vmt_urban_millions,as loaded,see name,civilian/fhwa.csv,input
