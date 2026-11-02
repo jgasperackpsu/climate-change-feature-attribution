@@ -217,11 +217,14 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Ignore everything under data/raw
+# Ignore everything under data/raw except the crosswalk
 data/raw/**
+data/archive/**
+!data/raw/state_crosswalk.csv
 
 # but keep the folder structure visible to git
 !data/raw/**/
+!data/archive/**/
 
 # Also, keep the pull scripts
 !data/raw/**/*.py

@@ -1,0 +1,51 @@
+state_name,postal_code,fips_code,noaa_code
+Alabama,AL,01,001
+Alaska,AK,02,050
+Arizona,AZ,04,002
+Arkansas,AR,05,003
+California,CA,06,004
+Colorado,CO,08,005
+Connecticut,CT,09,006
+Delaware,DE,10,007
+Florida,FL,12,008
+Georgia,GA,13,009
+Hawaii,HI,15,
+Idaho,ID,16,010
+Illinois,IL,17,011
+Indiana,IN,18,012
+Iowa,IA,19,013
+Kansas,KS,20,014
+Kentucky,KY,21,015
+Louisiana,LA,22,016
+Maine,ME,23,017
+Maryland,MD,24,018
+Massachusetts,MA,25,019
+Michigan,MI,26,020
+Minnesota,MN,27,021
+Mississippi,MS,28,022
+Missouri,MO,29,023
+Montana,MT,30,024
+Nebraska,NE,31,025
+Nevada,NV,32,026
+New Hampshire,NH,33,027
+New Jersey,NJ,34,028
+New Mexico,NM,35,029
+New York,NY,36,030
+North Carolina,NC,37,031
+North Dakota,ND,38,032
+Ohio,OH,39,033
+Oklahoma,OK,40,034
+Oregon,OR,41,035
+Pennsylvania,PA,42,036
+Rhode Island,RI,44,037
+South Carolina,SC,45,038
+South Dakota,SD,46,039
+Tennessee,TN,47,040
+Texas,TX,48,041
+Utah,UT,49,042
+Vermont,VT,50,043
+Virginia,VA,51,044
+Washington,WA,53,045
+West Virginia,WV,54,046
+Wisconsin,WI,55,047
+Wyoming,WY,56,048
