@@ -1,0 +1,2 @@
+spec,outcome,n_obs,n_states,n_years,fixed_effects,cov,n_clusters,inference_df,dropped_states,r2_within,r2,rmse,wald_drivers_f,wald_drivers_df1,wald_drivers_df2,wald_drivers_p
+drivers,y_log_gross_pc,1248,48,26,state + year,clustered by state,48,47,,0.4889459999319269,0.4889459999319269,0.04936714275304391,11.405027991046207,10,47,1.3770950633362471e-09

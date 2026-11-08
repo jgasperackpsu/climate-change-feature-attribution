@@ -1,3 +1,29 @@
+---
+title: "Data Sources"
+subtitle: "State Greenhouse Gas Emissions Panel, 1997–2022"
+author: "Jackson Gasperack"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 2
+    number_sections: false
+    df_print: kable
+geometry: margin=1in
+fontsize: 11pt
+linkcolor: blue
+urlcolor: blue
+header-includes:
+  - \usepackage{xurl}
+  - \usepackage{newunicodechar}
+  - \newunicodechar{₂}{\textsubscript{2}}
+  - \newunicodechar{₄}{\textsubscript{4}}
+  - \newunicodechar{→}{\ensuremath{\rightarrow}}
+  - \newunicodechar{−}{\ensuremath{-}}
+  - \newunicodechar{×}{\ensuremath{\times}}
+---
+
 # Data Sources
 
 This document lists every dataset used in this project, what it provides, and how to obtain it. Raw data is **not** stored in this repository because several files exceed GitHub's size limits. The cleaned versions **are** stored: data/interim/ holds one tidy file per source (state_fips, year, variable, value) and data/processed/ holds the final state-year panel. To reproduce the data from scratch, download each source below into data/raw/ and run the loaders in code/data_loaders/.
@@ -157,7 +183,6 @@ No link currently available. The source is undergoing data migration and the met
 ### EIA: State Energy Data System (Residential Electricity)
 
 - **Provides:** Residential electricity purchases per person, and electricity sales by sector, used to split electric power emissions between households and businesses in the descriptive analysis.
-- **Notes:** Residential electricity is household demand, not fuel combustion, but it comes close to the no-fuel-consumption rule. Electric power emissions are roughly electricity sold × the grid's fossil share, so this driver is tied to the outcome by arithmetic, especially with grid fossil share in the corporate index. It stays in the main household index; D_household_noelec drops it as a robustness check, and the overlap must be discussed in the writeup.
 - **Citation:**
   Same SEDS file as Feature Set A.
 
@@ -170,7 +195,6 @@ No link currently available. The source is undergoing data migration and the met
 ### USDA National Agricultural Statistics Service (NASS)
 
 - **Provides:** State annual livestock inventories from the NASS survey program (cattle and calves, milk cows, hogs, sheep), used to compute cattle per person. Livestock is the largest source of agricultural methane.
-- **Notes:** Cattle per person is **robustness only**, not part of the main household index. After state and year fixed effects only 6% of its variation is left, and its within-state correlation with Y is −0.16 even though the pooled correlation is +0.71 (driven by WY and the Dakotas). Whether livestock is household or corporate activity is a judgment call, so both placements are run as robustness checks (D_household_lvstk, D_corporate_lvstk). Hogs (1,281 of 1,300 rows) and sheep (848 of 1,300; no data for AR, DE, FL, GA, HI, MS, RI, SC) are loaded but not used.
 - **Citation:**
   U.S. Department of Agriculture. (2026). National Agriculture Statistics Service, Data & Statistics: Quick Stats Large Datasets. Retrieved on Oct 29, 2026 from https://www.nass.usda.gov/datasets/.
 
@@ -211,4 +235,5 @@ No link currently available. The source is undergoing data migration and the met
 6. Run the Phase 3 decomposition and EDA:
    `python3 code/data_preparation/decompose_emissions.py data/processed/panel.csv data/processed/decomposition.csv`
    `python3 code/analysis/eda.py data/processed/panel.csv data/processed/decomposition.csv visuals data/processed`
-7. data/raw/ is git-ignored, so downloaded data will not be committed.
+7. Run the Phase 4 fixed-effects baseline: `python3 code/models/fe_baseline.py data/processed/panel.csv models findings/baseline`. Each specification (main, no_gdp, no_wy, no_ippu, pooled, no_lags, main_dk, drivers) gets its own folder under models/fe_baseline/ with the fitted model (model.pkl), coefficients.csv, metrics.csv and summary.txt. The combined comparison table is models/fe_baseline/table.md; the gap test (D_corporate − D_household), the normal vs. t(G − 1) comparison and the standard-error comparison (se_comparison.csv) go to findings/baseline/. Then run the ML baseline and SHAP comparison (needs the FE output): `python3 code/models/ml_baseline.py data/processed/panel.csv models findings/baseline visuals`. It writes models/ml_baseline/, findings/baseline/shap_vs_causal.csv and two figures; it takes about 2 minutes.
+8. data/raw/ is git-ignored, so downloaded data will not be committed.

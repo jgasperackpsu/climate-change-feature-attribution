@@ -1,0 +1,71 @@
+{
+  "outcome": "y_log_gross_pc",
+  "sample": "in_main_sample == 1",
+  "train_years": [
+    1997,
+    2016
+  ],
+  "test_years": [
+    2017,
+    2022
+  ],
+  "cv": "expanding window",
+  "val_blocks": [
+    [
+      2009,
+      2010
+    ],
+    [
+      2011,
+      2012
+    ],
+    [
+      2013,
+      2014
+    ],
+    [
+      2015,
+      2016
+    ]
+  ],
+  "n_iter": 60,
+  "seed": 340,
+  "features": [
+    "d_industrial_share",
+    "d_fossil_prod_pc",
+    "d_grid_fossil_share",
+    "d_sand_gravel_pc",
+    "d_vmt_pc",
+    "d_air_pax_pc",
+    "d_pce_nonenergy_pc",
+    "d_res_elec_pc",
+    "d_cattle_pc",
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k",
+    "W_D_corporate",
+    "W_D_household",
+    "brk_mn_2010",
+    "brk_mi_2010",
+    "brk_md_2011"
+  ],
+  "xgboost": {
+    "n_estimators": 1200,
+    "learning_rate": 0.1,
+    "max_depth": 2,
+    "min_child_weight": 3,
+    "subsample": 0.6,
+    "colsample_bytree": 0.5,
+    "reg_lambda": 10.0
+  },
+  "xgboost_state": {
+    "n_estimators": 1200,
+    "learning_rate": 0.1,
+    "max_depth": 2,
+    "min_child_weight": 3,
+    "subsample": 0.6,
+    "colsample_bytree": 0.5,
+    "reg_lambda": 10.0
+  }
+}

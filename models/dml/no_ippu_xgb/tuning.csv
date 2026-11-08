@@ -1,0 +1,17 @@
+treatment,nuisance,target,learner,params,cv_mse,cv_r2,used
+D_corporate,l,y_log_gross_noippu_pc,linear,{},0.0036777575504973866,0.2088314701246048,False
+D_corporate,l,y_log_gross_noippu_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.0040471375281634515,0.1293695127000476,True
+D_corporate,m,D_corporate,linear,{},0.03297757783967687,0.11904334056147658,False
+D_corporate,m,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.032609214182889805,0.12888373630307226,True
+D_household,l,y_log_gross_noippu_pc,linear,{},0.0034202395900512685,0.2642293867586447,False
+D_household,l,y_log_gross_noippu_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0036140631130234238,0.2225335790226478,True
+D_household,m,D_household,linear,{},0.04493892418531152,0.1675887189666736,False
+D_household,m,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.04630781667791617,0.14223249217612688,True
+W_D_corporate,l,y_log_gross_noippu_pc,linear,{},0.003383073661294882,0.2722246155935818,False
+W_D_corporate,l,y_log_gross_noippu_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0036043351157494753,0.22462629046329752,True
+W_D_corporate,m,W_D_corporate,linear,{},0.011696968169474119,-0.019227622334370364,False
+W_D_corporate,m,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.010976146893632221,0.04358189757367548,True
+W_D_household,l,y_log_gross_noippu_pc,linear,{},0.0034774190301443287,0.2519288006171231,False
+W_D_household,l,y_log_gross_noippu_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0037172935471677135,0.20032638627028965,True
+W_D_household,m,W_D_household,linear,{},0.016184997504395532,0.15853037242827017,False
+W_D_household,m,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.015557649425440202,0.1911466489654161,True

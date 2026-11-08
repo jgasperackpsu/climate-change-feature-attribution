@@ -1,0 +1,9 @@
+treatment,nuisance,target,learner,params,cv_mse,cv_r2,used
+lead_D_corporate,l,y_log_gross_pc,linear,{},0.0030337914236074764,0.2732289560928002,False
+lead_D_corporate,l,y_log_gross_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.003297701637295502,0.2100069758316302,True
+lead_D_corporate,m,lead_D_corporate,linear,{},0.010139802683959405,0.708516499065011,False
+lead_D_corporate,m,lead_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.011480225517494507,0.6699840786195823,True
+lead_D_household,l,y_log_gross_pc,linear,{},0.0030490981652887853,0.26956209338629455,False
+lead_D_household,l,y_log_gross_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.003313884152890747,0.20613031388951963,True
+lead_D_household,m,lead_D_household,linear,{},0.014567527904058393,0.7153211121489675,False
+lead_D_household,m,lead_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.01626991729137548,0.6820529886442366,True
