@@ -1,3 +1,0 @@
-reference:Lea C, Vidal R, Reiter A, et al. Temporal convolutional networks: A unified approach to action segmentation[C]//Computer vision–ECCV 2016 workshops: Amsterdam, the Netherlands, October 8-10 and 15-16, 2016, proceedings, part III 14. Springer International Publishing, 2016: 47-54.
-
-reference code link:https://github.com/locuslab/TCN
