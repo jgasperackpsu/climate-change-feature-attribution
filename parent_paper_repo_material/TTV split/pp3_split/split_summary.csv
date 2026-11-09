@@ -1,0 +1,4 @@
+split,rows,share,entities,first_year,last_year,file,method,seed
+train,306,0.68,18,2000,2016,/Users/jgasperack/Documents/GitHubClones/DS340W/climate-change-feature-attribution/parent_paper_repo_material/TTV split/pp3_split/train/pp3_panel_raw.csv,year,
+validation,72,0.16,18,2017,2020,/Users/jgasperack/Documents/GitHubClones/DS340W/climate-change-feature-attribution/parent_paper_repo_material/TTV split/pp3_split/validation/pp3_panel_raw.csv,year,
+test,72,0.16,18,2021,2024,/Users/jgasperack/Documents/GitHubClones/DS340W/climate-change-feature-attribution/parent_paper_repo_material/TTV split/pp3_split/test/pp3_panel_raw.csv,year,

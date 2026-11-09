@@ -1,10 +1,18 @@
 """Phase 4: two-way fixed-effects baseline, the benchmark the DML estimates are compared against.
 
 Usage:
-    python code/models/fe_baseline.py <path/to/panel.csv> <models_dir> <findings_dir>
-    e.g. python code/models/fe_baseline.py data/processed/panel.csv models findings/baseline
+    python code/models/fe_baseline.py <split_dir> <models_dir> <findings_dir>
+    e.g. python code/models/fe_baseline.py data/split_data models findings/baseline
+<split_dir> is the output of code/data_preparation/split_panel.py.
 
-Model (main sample: contiguous 48 states, 1997-2022):
+Split (70/15/15, whole-year blocks): every spec is estimated on the train years only (1997-2014), so all
+coefficients, standard errors and tests below come from train. Validation (2015-2018) and test (2019-2022)
+are used only to score out-of-sample prediction: Y_hat = X b + state effect + year effect of the last
+training year (year effects for unseen years cannot be estimated, so the latest one is carried forward);
+the pooled spec uses X b with its constant. z_ drivers in the validation and test years are standardized
+with the train mean and SD.
+
+Model (main sample: contiguous 48 states, train years):
     Y_st = b1 D_corporate + b2 D_household + g1 W_D_corporate + g2 W_D_household
            + controls + brk_mn_2010 + brk_mi_2010 + brk_md_2011 + state FE + year FE + e_st
 
@@ -43,7 +51,8 @@ state and year, and state clustering) goes to <findings_dir>/se_comparison.csv.
 Writes, under <models_dir>/fe_baseline/:
     <spec>/model.pkl          fitted PanelEffectsResults (linearmodels)
     <spec>/coefficients.csv   term, coef, se, t, df, p, ci_low, ci_high   (t with G - 1 df)
-    <spec>/metrics.csv        one row: fit statistics, Wald test on the drivers, gap test
+    <spec>/metrics.csv        one row: fit statistics, Wald test on the drivers, gap test, and
+                              out-of-sample val_/test_ r2, rmse, mae
     <spec>/summary.txt        linearmodels summary (its p-values use t(df_resid), see above)
     coefficients.csv, metrics.csv, table.md    all specs combined
 and under <findings_dir>/:
@@ -66,6 +75,7 @@ from scipy import stats
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "data_preparation"))
 from build_panel import CONTROLS, CORPORATE, HOUSEHOLD, LAGS, Y  # noqa: E402
+from split_panel import load  # noqa: E402
 
 TREATMENTS = ["D_corporate", "D_household"]
 BREAKS = ["brk_mn_2010", "brk_mi_2010", "brk_md_2011"]
@@ -99,12 +109,42 @@ COMPARISONS = {
 }
 
 
-def sample(p, drop=()):
-    """Main sample with standardized drivers (z_<driver>: pooled SD 1 over the 48 states) and a constant."""
+def sample(p, drop=(), ref=None):
+    """Main sample with standardized drivers (z_<driver>: pooled SD 1 over the main sample of `ref`, which
+    defaults to p itself; pass the train panel to standardize validation / test with train statistics)."""
     d = p[(p.in_main_sample == 1) & ~p.postal_code.isin(drop)].copy()
+    r = d if ref is None else ref[(ref.in_main_sample == 1) & ~ref.postal_code.isin(drop)]
     for c in CORPORATE + HOUSEHOLD:
-        d[f"z_{c}"] = (d[c] - d[c].mean()) / d[c].std()
+        d[f"z_{c}"] = (d[c] - r[c].mean()) / r[c].std()
     return d.assign(const=1.0).set_index(["postal_code", "year"])
+
+
+def split_effects(res):
+    """Split the combined two-way fixed effects into state and year parts (alternating means; exact in one
+    pass on a balanced panel). Returns (state effects, year effects)."""
+    e = res.estimated_effects.iloc[:, 0]
+    ent, tim = e.index.get_level_values(0), e.index.get_level_values(1)
+    a = pd.Series(0.0, index=ent.unique())
+    g = pd.Series(0.0, index=tim.unique())
+    for _ in range(50):
+        a = (e - g.reindex(tim).values).groupby(ent).mean()
+        g_new = (e - a.reindex(ent).values).groupby(tim).mean()
+        if np.allclose(g_new, g):
+            break
+        g = g_new
+    return a, g_new
+
+
+def predict_scores(res, s, train, part):
+    """Out-of-sample R2, RMSE, MAE of a train-fit spec on a later part of the split."""
+    d = sample(part, s["drop"], ref=train)
+    xb = d[s["regressors"]] @ res.params
+    if s["fe"]:
+        a, g = split_effects(res)
+        xb = xb + d.index.get_level_values(0).map(a).values + g.loc[g.index.max()]
+    y, e = d[s["outcome"]], d[s["outcome"]] - xb
+    return dict(r2=1 - (e ** 2).sum() / ((y - y.mean()) ** 2).sum(), rmse=np.sqrt((e ** 2).mean()),
+                mae=e.abs().mean())
 
 
 def fit(p, s, bandwidth=DK_BANDWIDTH):
@@ -159,8 +199,9 @@ def stars(pv):
     return "***" if pv < 0.01 else "**" if pv < 0.05 else "*" if pv < 0.1 else ""
 
 
-def main(panel_path, models_dir, findings_dir):
-    p = pd.read_csv(panel_path, dtype={"state_fips": str})
+def main(split_dir, models_dir, findings_dir):
+    parts = load(split_dir)
+    p = parts["train"]
     root = Path(models_dir) / "fe_baseline"
     coefs, metrics, gaps, comparison = [], [], [], []
 
@@ -183,8 +224,11 @@ def main(panel_path, models_dir, findings_dir):
                  if set(corp) | set(hh) <= set(regressors)}
         gaps += [dict(spec=spec, comparison=name, outcome=outcome, n_obs=int(res.nobs), n_clusters=g) | gt
                  for name, gt in tests.items()]
+        oos = {f"{k}_{stat}": v for k, part in [("val", parts["validation"]), ("test", parts["test"])]
+               for stat, v in predict_scores(res, sp, p, part).items()}
         m = dict(spec=spec, outcome=outcome, n_obs=int(res.nobs), n_states=g,
-                 n_years=int(res.time_info["total"]), fixed_effects="state + year" if sp["fe"] else "none",
+                 n_years=int(res.time_info["total"]),
+                 train_years=f"{p.year.min()}-{p.year.max()}", fixed_effects="state + year" if sp["fe"] else "none",
                  cov=f"Driscoll-Kraay (Bartlett, bw {DK_BANDWIDTH})" if sp["cov"] == "dk" else "clustered by state",
                  n_clusters=g if sp["cov"] == "clustered" else np.nan, inference_df=df,
                  dropped_states=",".join(drop),
@@ -198,7 +242,8 @@ def main(panel_path, models_dir, findings_dir):
                  **{f"{name}_{k}": gt[src] for name, gt in tests.items()
                     for k, src in [("corporate", "corporate"), ("household", "household"), ("gap", "gap"),
                                    ("gap_se", "gap_se"), ("gap_ci_low", "ci_low"), ("gap_ci_high", "ci_high"),
-                                   ("gap_p_two_sided", "p_two_sided"), ("gap_p_one_sided", "p_one_sided")]})
+                                   ("gap_p_two_sided", "p_two_sided"), ("gap_p_one_sided", "p_one_sided")]},
+                 **oos)
 
         out = root / spec
         out.mkdir(parents=True, exist_ok=True)
@@ -214,6 +259,7 @@ def main(panel_path, models_dir, findings_dir):
                   f"D_household {res.params['D_household']:+.4f}  t({df})  -> {out}")
         else:
             print(f"{spec:>8}: n={m['n_obs']:,}  joint F({k}, {df}) = {m['wald_drivers_f']:.2f}  -> {out}")
+        print(f"{'':>10}out of sample RMSE: val {m['val_rmse']:.4f}, test {m['test_rmse']:.4f}")
         for name, gt in tests.items():
             print(f"{'':>10}{name:>5} gap {gt['gap']:+.4f} [{gt['ci_low']:+.4f}, {gt['ci_high']:+.4f}] "
                   f"p={gt['p_two_sided']:.3f} (one-sided {gt['p_one_sided']:.3f})")
@@ -255,6 +301,8 @@ def table(coefs, metrics):
     terms = list(dict.fromkeys(coefs.term))
     terms = [t for t in terms if t != "const"] + (["const"] if "const" in terms else [])
     lines = ["# Phase 4: two-way fixed-effects baseline and comparison specifications", "",
+             f"Estimated on the train years ({metrics.train_years.iloc[0].replace('-', '–')}) of the 70/15/15 split "
+             "(data/split_data); validation and test RMSE are out-of-sample predictions.", "",
              "| | " + " | ".join(specs) + " |", "|---" * (len(specs) + 1) + "|"]
     for t in terms:
         cells = [f"{c.loc[(s, t), 'coef']:.4f}{stars(c.loc[(s, t), 'p'])}<br>({c.loc[(s, t), 'se']:.4f})"
@@ -282,7 +330,9 @@ def table(coefs, metrics):
              ("Inference df", lambda s: f"{m.loc[s, 'inference_df']}"),
              ("Within R² / model R²", lambda s: ("—" if pd.isna(m.loc[s, 'r2_within']) else f"{m.loc[s, 'r2_within']:.3f}")
                                               + f" / {m.loc[s, 'r2']:.3f}"),
-             ("RMSE", lambda s: f"{m.loc[s, 'rmse']:.4f}"),
+             ("RMSE (train)", lambda s: f"{m.loc[s, 'rmse']:.4f}"),
+             ("RMSE (validation / test, out of sample)", lambda s: f"{m.loc[s, 'val_rmse']:.4f} / "
+                                                                  f"{m.loc[s, 'test_rmse']:.4f}"),
              ("Joint F: driver terms = 0 (p)", lambda s: f"{m.loc[s, 'wald_drivers_f']:.2f} "
                                                         f"({m.loc[s, 'wald_drivers_p']:.2g})")]
     for name, f in rows:

@@ -1,0 +1,4 @@
+split,rows,share,main_sample_rows,states,years,first_year,last_year,file,method
+train,900,0.6923076923076923,864,50,18,1997,2014,data/split_data/train/panel.csv,year blocks
+validation,200,0.15384615384615385,192,50,4,2015,2018,data/split_data/validation/panel.csv,year blocks
+test,200,0.15384615384615385,192,50,4,2019,2022,data/split_data/test/panel.csv,year blocks

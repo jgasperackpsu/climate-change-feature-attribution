@@ -1,2 +1,2 @@
-spec,outcome,n_obs,n_states,n_years,fixed_effects,cov,n_clusters,inference_df,dropped_states,r2_within,r2,rmse,wald_drivers_f,wald_drivers_df1,wald_drivers_df2,wald_drivers_p
-drivers,y_log_gross_pc,1248,48,26,state + year,clustered by state,48,47,,0.4889459999319269,0.4889459999319269,0.04936714275304391,11.405027991046207,10,47,1.3770950633362471e-09
+spec,outcome,n_obs,n_states,n_years,train_years,fixed_effects,cov,n_clusters,inference_df,dropped_states,r2_within,r2,rmse,wald_drivers_f,wald_drivers_df1,wald_drivers_df2,wald_drivers_p,val_r2,val_rmse,val_mae,test_r2,test_rmse,test_mae
+drivers,y_log_gross_pc,864,48,18,1997-2014,state + year,clustered by state,48,47,,0.5367037962758614,0.5367037962758614,0.03920366970088615,16.01953802747777,10,47,5.146849383150676e-12,0.9881607841400353,0.06807303233543163,0.054965324044722104,0.9750671906638554,0.10021350935484474,0.08021177634182779
