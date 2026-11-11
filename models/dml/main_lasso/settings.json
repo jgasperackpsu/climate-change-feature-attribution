@@ -1,16 +1,7 @@
 {
-  "panel": "data/processed/panel.csv",
-  "out_dir": "models/dml",
+  "run": "main_lasso",
   "version": "main",
   "learner": "lasso",
-  "n_rep": 20,
-  "folds": 5,
-  "placebo": false,
-  "seed": 2026,
-  "run": "main_lasso",
-  "n_obs": 1248,
-  "n_clusters": 48,
-  "inference_df": 47,
   "outcome": "y_log_gross_pc",
   "treatments": [
     "D_corporate",
@@ -18,7 +9,7 @@
     "W_D_corporate",
     "W_D_household"
   ],
-  "controls": [
+  "x": [
     "log_pop",
     "log_gdp_real_pc",
     "hdd_k",
@@ -32,77 +23,92 @@
     "brk_md_2011"
   ],
   "dropped_states": [],
-  "tuning_seed": 2026,
-  "repetition_seeds": [
-    2027,
-    2028,
-    2029,
-    2030,
-    2031,
-    2032,
-    2033,
-    2034,
-    2035,
-    2036,
-    2037,
-    2038,
-    2039,
-    2040,
-    2041,
-    2042,
-    2043,
-    2044,
-    2045,
-    2046
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
   ],
   "nuisance_used": {
     "l:D_corporate": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.0019521055823547569
-      }
-    },
-    "m:D_corporate": {
-      "learner": "lasso",
-      "params": {
-        "alpha": 0.019376603993026167
-      }
+        "alpha": 0.0027290335882522907
+      },
+      "cv_mse": 0.0020560705024790064,
+      "cv_r2": 0.2925903596917371
     },
     "l:D_household": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.0016332378557634914
-      }
-    },
-    "m:D_household": {
-      "learner": "lasso",
-      "params": {
-        "alpha": 0.005665988679710648
-      }
+        "alpha": 0.0036179108450232213
+      },
+      "cv_mse": 0.002076554578299795,
+      "cv_r2": 0.2855426282589093
     },
     "l:W_D_corporate": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.001880502553131877
-      }
-    },
-    "m:W_D_corporate": {
-      "learner": "lasso",
-      "params": {
-        "alpha": 0.014248973982980383
-      }
+        "alpha": 0.0036179108450232213
+      },
+      "cv_mse": 0.0020481307255192224,
+      "cv_r2": 0.2953221117189544
     },
     "l:W_D_household": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.001880502553131877
-      }
+        "alpha": 0.0017878678362929653
+      },
+      "cv_mse": 0.0020463635561727145,
+      "cv_r2": 0.29593012230529836
+    },
+    "m:D_corporate": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.011753462946774469
+      },
+      "cv_mse": 0.028000405821871657,
+      "cv_r2": 0.25377714033446985
+    },
+    "m:D_household": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.005695345534561527
+      },
+      "cv_mse": 0.03697452316977956,
+      "cv_r2": 0.22579001353920758
+    },
+    "m:W_D_corporate": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.021620463549727603
+      },
+      "cv_mse": 0.011645399506330988,
+      "cv_r2": 0.08522083241981271
     },
     "m:W_D_household": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.00881310107717289
-      }
+        "alpha": 0.009223045649014864
+      },
+      "cv_mse": 0.012758279183063907,
+      "cv_r2": 0.2043707731835419
     }
   },
   "xgb_fixed": {
@@ -147,8 +153,14 @@
     "n_alphas": 50,
     "max_iter": 100000
   },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 12.4,
   "versions": {
     "python": "3.14.3",
+    "doubleml": "0.11.4",
     "numpy": "2.5.2",
     "pandas": "3.0.5",
     "scipy": "1.18.1",

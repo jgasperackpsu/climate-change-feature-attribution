@@ -187,7 +187,7 @@ Replacing the two indices with the 8 standardized drivers (per pooled SD, same l
 
 - Three drivers carry most of the effect: residential electricity on the household side, grid fossil share and fossil production on the corporate side. **Two of the three are about electricity.** VMT is also significant, but its effect is a quarter of the size.
 - Within R² rises from 0.409 (indices) to 0.537 (drivers), and the drivers model predicts the held-out years much better (test RMSE 0.100 vs 0.150). The equal-weight indices throw away information, since they average strong drivers with ones that have no detectable within-state effect. This supports the EDA concern about whether each index is one thing, and makes the Phase 5 one-driver-at-a-time DML necessary.
-- Keep in mind the overlap noted in data_sources.md: electric power emissions are roughly electricity sold × grid fossil share, so these two drivers are partly tied to Y by arithmetic. D_household_noelec exists for this reason and should be run in Phase 5.
+- Keep in mind the overlap noted in data_sources.md: electric power emissions are roughly electricity sold × grid fossil share, so these two drivers are partly tied to Y by arithmetic. D_household_noelec exists for this reason; it is run in Phase 5 (noelec_best in [dml_results.md](../dml/dml_results.md)).
 
 ## ML baseline: XGBoost on the 70/15/15 split (added 2026-11-08, re-run 2026-11-09)
 
@@ -240,7 +240,7 @@ Three more contrasts that matter for the writeup:
 - **Spillovers agree in direction.** SHAP gives W_D_corporate its third-largest importance (0.095) and W_D_household almost none (0.005). The FE model now ranks the lags the same way: the corporate lag is 0.061 (p = 0.031), and the household lag is not significant. SHAP's share is still much larger. Neighbors of energy-producing states are themselves high emitters, which a predictive model rewards.
 - **Break dummies get about zero SHAP.** The trees never split on them, which is expected and harmless.
 
-**Takeaway for the paper:** a prediction-based attribution would rank fossil production, cattle and neighbors' corporate activity as the top drivers, and put residential electricity near the bottom. Much of that ranking reflects *differences between states*. The within-state design puts residential electricity first, with fossil production and the grid's fossil share next. That contrast is the motivation for using DML rather than SHAP alone. Phase 5's one-driver-at-a-time DML will replace the FE column of this comparison.
+**Takeaway for the paper:** a prediction-based attribution would rank fossil production, cattle and neighbors' corporate activity as the top drivers, and put residential electricity near the bottom. Much of that ranking reflects *differences between states*. The within-state design puts residential electricity first, with fossil production and the grid's fossil share next. That contrast is the motivation for using DML rather than SHAP alone. Phase 5's one-driver-at-a-time DML replaces the FE column of this comparison with the same conclusion (SHAP vs DML ρ = +0.33; [dml_results.md](../dml/dml_results.md)).
 
 ## Files
 

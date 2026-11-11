@@ -12,5 +12,5 @@ libpysal>=4.10.0
 matplotlib>=3.8.0
 linearmodels>=7.0
 shap>=0.45
-doubleml>=0.9
+doubleml>=0.11
 statsmodels>=0.14

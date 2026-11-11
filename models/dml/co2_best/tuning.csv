@@ -1,0 +1,625 @@
+key,target,learner,params,cv_mse,cv_r2,used
+l:D_corporate,y_log_co2_energy_pc,linear,{},0.002724886688422162,0.16760371203611946,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.020197716508477542}",0.0032498212296717794,0.007247112469323969,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.017541946511418195}",0.0031698158193999345,0.031687103611074297,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.015235380062904572}",0.0031028962852443416,0.05212963139032767,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.013232100868057216}",0.00304629797654781,0.06941923916161696,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.011492230102532837}",0.002985676439411395,0.08793785965964429,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.009981132553817445}",0.002924267200563291,0.10669710667018617,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.008668727145910339}",0.002873750470494387,0.12212891848390173,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.007528888122170226}",0.002834031732385168,0.13426216802605706,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.006538924965806307}",0.002803640761592935,0.1435459783887264,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.005679130704909455}",0.002786359099668694,0.14882516716993577,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.004932389610234395}",0.0027769191098390047,0.15170888799621352,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0042838364762615745}",0.002771695636883323,0.15330455049369052,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0037205607029240947}",0.0027702304005559047,0.1537521497590526,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0032313492872219018}",0.002769783153226945,0.15388877452881256,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002806463608515549}",0.0027696824133254558,0.15391954847637002,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002437445564015016}",0.00275767268550961,0.1575882708844769,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002116949195246823}",0.0027473576978657484,0.1607392853694556,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0018385944537256374}",0.0027432467381558086,0.16199509817703484,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0015968401947768732}",0.0027439321017145644,0.1617857338446984,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0013868738712270387}",0.002745547394531176,0.16129229543853085,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0012045157311192513}",0.0027480300828310205,0.16053388572786553,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0010461356123394972}",0.0027484694097907442,0.16039968046640263,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0009085806778031886}",0.002753346627896272,0.1589097916340041,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0007891126526427818}",0.0027620268164625667,0.15625817431277378,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0006853533139913574}",0.0027717984061276114,0.15327315662405683,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005952371482396755}",0.002780472403927655,0.15062343045333515,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005169702333254778}",0.0027888954801835618,0.14805035560275737,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00044899452753406816}",0.002797073572470419,0.1455521182664563,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003899568539154532}",0.0027999008730216096,0.1446884366705321,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003386819628978656}",0.0028003880493061534,0.14453961443415753,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00029414913686123}",0.0028016721007015884,0.14414736340234158,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00025547187094312156}",0.0028043966448338528,0.14331507175816904,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00022188022558763864}",0.0028078310795225216,0.14226592329329923,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001927054995333803}",0.002811775498063906,0.14106098535368705,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00016736691812917667}",0.00281634333382304,0.13966560640230252,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001453600719849013}",0.0028221680144333294,0.13788628745330533,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001262468758082023}",0.0028277448888084605,0.1361826681622631,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00010964684753999812}",0.0028330053985009683,0.13457569171093142,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 9.522953418446883e-05}",0.002838162048504762,0.13300044223735719,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 8.270793355625452e-05}",0.0028419597141626503,0.13184033425562502,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 7.183278099307816e-05}",0.002844996765602728,0.13091257811962953,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 6.238758730067833e-05}",0.0028477429320047727,0.1300736813211293,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 5.418432915154465e-05}",0.0028502145370373757,0.12931865731840908,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 4.705970614720348e-05}",0.0028525535993613295,0.12860412236029573,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 4.087189003424264e-05}",0.0028548472948916374,0.12790344601538206,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 3.549770136145434e-05}",0.002856941954843308,0.12726357090581308,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 3.083015737445195e-05}",0.0028587617899511033,0.12670764907799126,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.677634233425564e-05}",0.0028603764955945363,0.1262143900410343,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.32555578647609e-05}",0.0028617834885981243,0.12578458290140015,False
+l:D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.0197716508477543e-05}",0.0028629872647393164,0.12541685429245453,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.0027387527601820468,0.1633679151089994,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.002776440235198982,0.15185517425261041,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.002801406275681207,0.14422856742493595,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.0027295715195811442,0.16617259342005242,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.0027312409513228697,0.1656626166967171,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.002742292183332678,0.16228669484958935,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.002794751279992006,0.1462615303850633,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.0028130246584440475,0.14067939280236397,False
+l:D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.002821854866674542,0.1379819475895988,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.0027707035893992297,0.15360760039545396,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.002779879565748124,0.15080453020405205,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.0027141569672369764,0.1708814190040403,True
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.002758918197987039,0.1572077926916663,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.0027725372245026646,0.15304746295558735,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.0027890107726665342,0.148015136143811,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.002853384986058951,0.12835015099190705,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.0028513897782484455,0.12895964553795114,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.002867749239546192,0.12396216989421405,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.0028410980579050863,0.13210355234588345,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.0029382236209938794,0.10243371010069002,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.002919368582542899,0.10819353273210386,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.002907318222978342,0.11187466729552886,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.0029083136415545365,0.11157058759514527,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.0029853100464737026,0.08804978509220163,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.002945343196114888,0.10025882777336692,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.0031218218398186945,0.04634826754782917,False
+l:D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.003092787219867357,0.05521774089973941,False
+m:D_corporate,D_corporate,linear,{},0.030203373614267146,0.21080571933864978,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.1138452823342219}",0.037582402347924176,0.017996553455039477,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.09887592255520568}",0.036768940734252555,0.0392517702147972,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.08587486332935403}",0.0362267294929041,0.053419393211069366,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.07458329552088691}",0.035878129850670064,0.06252807250647563,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.06477644045174862}",0.03559781998188049,0.06985238495206181,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.05625907528347087}",0.034931931098378374,0.08725162336586612,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.04886164676042805}",0.03354722902341597,0.12343297753962734,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0424368959516527}",0.03227741018068956,0.15661250844084829,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0368569268007131}",0.03129129382416775,0.1823790800355526,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.03201066012794038}",0.030527520825195848,0.20233596598512305,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.027801622402405156}",0.02999516297714693,0.21624612629737805,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.024146025265229278}",0.02961315560181963,0.22622772767836918,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.020971097573739148}",0.02933488711559107,0.2334987001407347,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.01821363676284185}",0.02909214272888639,0.23984145125511636,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.015818750685903913}",0.028904506165089685,0.24474427121431985,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.013738764889244557}",0.028770152937700324,0.24825483265021164,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.011932273567604644}",0.028700417448977528,0.2500769750890668,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.010363315308177256}",0.028678072410474036,0.2506608362435633,True
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.009000657214923454}",0.02873186100322424,0.2492553757044388,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.007817173162398196}",0.02891590684293704,0.24444637900308197,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.006789303802126658}",0.029151501188086532,0.23829045377026936,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.005896587572000307}",0.02938283651418386,0.23224581390312882,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.005121253372603142}",0.029641861011696097,0.22547767420461262,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.004447866801968299}",0.029938362054263406,0.21773029704096647,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0038630229064405244}",0.030233491885637568,0.21001874872362836,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.003355079331305604}",0.030595862965942855,0.20055023081214185,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.002913924559076998}",0.030870833952064577,0.1933654198580248,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.002530776621811769}",0.031113660857474485,0.18702051258416752,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0021980082804675476}",0.03126842559550999,0.1829766118045546,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0019089951911857167}",0.03142578973257131,0.1788647904386348,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0016579840359814335}",0.031584113815890644,0.17472788630857605,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0014399779927480475}",0.0317526310447237,0.1703246419926786,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0012506372646533211}",0.031926876346858576,0.16577172689010888,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0010861926887886903}",0.0321489839326022,0.15996820180715032,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0009433707042985402}",0.03237149303339004,0.1541541854002575,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0008193281863471065}",0.03260117209632,0.14815282259996565,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0007115958486775299}",0.03283023483342072,0.14216756398808883,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0006180290880906808}",0.03306089866141972,0.13614046992445494,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0005367652923159331}",0.03330739982302072,0.1296995567537489,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.0004661867614113576}",0.03355090287404531,0.12333698223984035,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.000404888504578072}",0.03377960268684929,0.11736120660105653,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00035165027132723223}",0.03398496209694701,0.1119953003285018,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00030541226023045044}",0.0341662769975522,0.10725766126924441,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00026525402169325394}",0.03433053049876282,0.1029658253508624,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00023037613477387917}",0.034478602804046334,0.0990967934358683,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00020008429329198863}",0.034611240194011274,0.09563106570296587,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00017377548443309347}",0.03472952814687929,0.09254027932039832,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00015092598470929286}",0.03483429487601354,0.08980279361789745,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00013108093431464364}",0.03492701152792919,0.08738016850494212,False
+m:D_corporate,D_corporate,lasso,"{""alpha"": 0.00011384528233422191}",0.03500996224074917,0.08521272095519594,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.03255146746249355,0.14945157197939485,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.033341439019548544,0.12881013494408144,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.036112621654701534,0.05640095594767569,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.03114998297567692,0.1860714395331582,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.031219009567248285,0.18426782011046106,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.032414764123562916,0.15302354028363774,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.030634918405756224,0.19952973786578876,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.03007647638076872,0.21412146055973647,False
+m:D_corporate,D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.030296506009797556,0.20837223111857328,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.03250019727563743,0.15079122822945612,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.03205117593187668,0.16252386051472723,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.03653016261082404,0.04549088547931912,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.034728502859816324,0.09256706939678061,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.03801993965147254,0.006563991584757289,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.035693127952401434,0.06736205038887111,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.037403013367052956,0.022683869498779652,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.03645826582098512,0.047369501294341476,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.04091354771775174,-0.06904408337890788,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.03840242064394959,-0.0034299851007471016,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.0418140671603775,-0.0925740639307786,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.03903952143128836,-0.020077009502521115,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.03958036403318131,-0.03420887085029789,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.03803895245481894,0.006067199542518997,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.04289232028162862,-0.12074810856778817,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.04016524807485632,-0.049491506043141786,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.04363401514957944,-0.14012810747976934,False
+m:D_corporate,D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.04126732556956543,-0.07828806588370107,False
+l:D_household,y_log_co2_energy_pc,linear,{},0.0027656395505813846,0.1551545590752368,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.020197716508477542}",0.00325358177080032,0.006098345260238558,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.017541946511418195}",0.0031747179221203637,0.030189613045671915,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.015235380062904572}",0.003100613692235989,0.05282691614538115,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.013232100868057216}",0.0030373740215554066,0.0721453220630438,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.011492230102532837}",0.002964530843615467,0.09439739998552377,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.009981132553817445}",0.002905250640837098,0.11250627069641317,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.008668727145910339}",0.002859836452224913,0.1263793620738619,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.007528888122170226}",0.0028268548864455157,0.1364545453989725,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.006538924965806307}",0.0028064817270859,0.14267812243690814,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.005679130704909455}",0.002796860763043552,0.14561712712635522,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.004932389610234395}",0.0027916656032920353,0.14720414052801922,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0042838364762615745}",0.0027903333321986695,0.14761112167603951,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0037205607029240947}",0.0027921856894896286,0.1470452649967403,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0032313492872219018}",0.002798253133507898,0.14519178686875223,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002806463608515549}",0.0027947976426497883,0.14624736755605383,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002437445564015016}",0.0027966810781938595,0.14567201711591804,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002116949195246823}",0.002800217945366287,0.14459157765476205,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0018385944537256374}",0.0028091592489511586,0.14186019511866288,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0015968401947768732}",0.002826887368344697,0.1364446228534152,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0013868738712270387}",0.002851230406162127,0.12900833040019521,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0012045157311192513}",0.00287474214051616,0.1218259838890372,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0010461356123394972}",0.0028975795644526525,0.11484962520514586,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0009085806778031886}",0.0029150177836120717,0.10952261144025188,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0007891126526427818}",0.0029199173000264613,0.10802591093762748,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0006853533139913574}",0.0029264007473585357,0.10604535243757729,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005952371482396755}",0.002936862847813911,0.1028493980441848,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005169702333254778}",0.0029496763645618772,0.09893513481184968,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00044899452753406816}",0.002960031726287639,0.09577178688341215,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003899568539154532}",0.0029692388694148495,0.09295919588856238,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003386819628978656}",0.0029784328757613268,0.09015061790737833,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00029414913686123}",0.0029875112436707446,0.08737736506692884,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00025547187094312156}",0.0029981569374092137,0.08412532673874673,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00022188022558763864}",0.0030084495244429538,0.08098115517490412,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001927054995333803}",0.0030186829860488133,0.07785504520125563,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00016736691812917667}",0.003028764534757859,0.07477534146238352,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001453600719849013}",0.0030382049894140764,0.07189147864125567,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001262468758082023}",0.003046827073268715,0.06925761110261308,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00010964684753999812}",0.0030546896320475772,0.06685576269943694,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 9.522953418446883e-05}",0.003061954730678243,0.06463642596240748,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 8.270793355625452e-05}",0.0030679653172788228,0.06280031659460661,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 7.183278099307816e-05}",0.003073227610845797,0.06119279520667609,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 6.238758730067833e-05}",0.0030785220432051888,0.059575456085178446,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 5.418432915154465e-05}",0.0030837850591654034,0.057967714021117,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 4.705970614720348e-05}",0.0030884922679893668,0.056529759493177845,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 4.087189003424264e-05}",0.0030927085356972743,0.05524177727944535,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 3.549770136145434e-05}",0.0030964456513969114,0.054100166052348464,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 3.083015737445195e-05}",0.0030997474164595204,0.05309154540271843,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.677634233425564e-05}",0.0031026622999911022,0.052201109025365566,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.32555578647609e-05}",0.003105228872951541,0.05141707429315623,False
+l:D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.0197716508477543e-05}",0.0031074891608107863,0.05072660329788159,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.002669322134575276,0.18457752917172265,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.0026797589872629736,0.1813892874469646,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.002696841589411279,0.176170907292872,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.0026631662650373924,0.18645801945937246,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.0026644161311542586,0.18607621132013796,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.0026628973525998395,0.18654016662378758,True
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.0027603289345935695,0.15677684195908714,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.002766017401904294,0.155039133343984,False
+l:D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.0027721413024766133,0.1531684089113251,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.0027240779468494618,0.16785076578917935,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.0027244341921664823,0.16774194024397326,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.002684622439681693,0.17990360374597547,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.0027091265913831496,0.17241809434748845,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.0027651095565998543,0.15531646122872578,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.0027416400950128032,0.16248589428756766,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0028522164598771883,0.1287071114703816,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.002807775028119186,0.1422830458328419,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.002882258056551513,0.11953002764430298,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.00284154096863494,0.13196825231707998,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.003017674911771842,0.07816299095537016,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.0029121005364937114,0.11041376984427442,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.002941152731023531,0.10153892782365825,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.00289197381584655,0.11656206497403776,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.003037048487180438,0.0722447660533132,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.0029850889870158084,0.08811731416522772,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.0031956238063761823,0.023803299616535267,False
+l:D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.003080716734048252,0.058905023615910435,False
+m:D_household,D_household,linear,{},0.04019118536764953,0.15890652503847902,False
+m:D_household,D_household,lasso,"{""alpha"": 0.1092769029862194}",0.04787493909024455,-0.0018937862777415049,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0949082331318547}",0.04712965957534836,0.01370291064143525,False
+m:D_household,D_household,lasso,"{""alpha"": 0.08242887993766075}",0.04603629300275699,0.03658413401256433,False
+m:D_household,D_household,lasso,"{""alpha"": 0.07159041975144304}",0.04473366162621596,0.06384470722199975,False
+m:D_household,D_household,lasso,"{""alpha"": 0.062177093805761786}",0.043594011306755845,0.08769452500337005,False
+m:D_household,D_household,lasso,"{""alpha"": 0.05400151315710888}",0.042660652008996665,0.10722722621530811,False
+m:D_household,D_household,lasso,"{""alpha"": 0.04690092837673237}",0.04191942952341489,0.12273902041631735,False
+m:D_household,D_household,lasso,"{""alpha"": 0.04073398973468964}",0.041456357766304526,0.13242986754564823,False
+m:D_household,D_household,lasso,"{""alpha"": 0.035377933382848795}",0.04120615057499589,0.13766603149734735,False
+m:D_household,D_household,lasso,"{""alpha"": 0.03072613752282184}",0.041141270237799066,0.13902380255511448,False
+m:D_household,D_household,lasso,"{""alpha"": 0.026685999910018986}",0.04101012873498259,0.14176824169784186,False
+m:D_household,D_household,lasso,"{""alpha"": 0.02317709444177906}",0.040661121438154126,0.14907202628123106,False
+m:D_household,D_household,lasso,"{""alpha"": 0.020129570133194365}",0.04031175377907168,0.15638335227793465,False
+m:D_household,D_household,lasso,"{""alpha"": 0.017482760609404843}",0.04012108910108032,0.16037345147747828,False
+m:D_household,D_household,lasso,"{""alpha"": 0.015183976433840233}",0.03998763143077949,0.16316636177974442,False
+m:D_household,D_household,lasso,"{""alpha"": 0.013187456231562743}",0.03981761449480623,0.1667243592404305,False
+m:D_household,D_household,lasso,"{""alpha"": 0.011453455727960398}",0.03971057180273448,0.16896447505239987,False
+m:D_household,D_household,lasso,"{""alpha"": 0.009947456568491178}",0.039056313265580844,0.18265634757379934,False
+m:D_household,D_household,lasso,"{""alpha"": 0.008639479169632192}",0.0385822353673653,0.1925775236517142,False
+m:D_household,D_household,lasso,"{""alpha"": 0.007503485922113452}",0.03813888371515603,0.20185568199353754,False
+m:D_household,D_household,lasso,"{""alpha"": 0.006516862866138685}",0.03782795666070809,0.20836254946442512,False
+m:D_household,D_household,lasso,"{""alpha"": 0.005659969520419289}",0.03777866412382281,0.2093941097620191,True
+m:D_household,D_household,lasso,"{""alpha"": 0.004915747903570143}",0.03785092187988437,0.2078819491580759,False
+m:D_household,D_household,lasso,"{""alpha"": 0.004269382964745033}",0.0380276716726031,0.204183051103773,False
+m:D_household,D_household,lasso,"{""alpha"": 0.003708007663781333}",0.03820510861436546,0.20046977286705847,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0032204468299512705}",0.03840709304684082,0.19624278163391173,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0027969947003741646}",0.03863605149318158,0.19145129679730022,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0024292217095972196}",0.03888083477473164,0.18632864069726018,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0021098066841488913}",0.039127058121076565,0.18117584791198937,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0018323911015999386}",0.03939263786853189,0.17561797768190646,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0015914525129003176}",0.03969550344283056,0.1692798153211087,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0013821946082390975}",0.039988272529623975,0.1631529453042171,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0012004517379934506}",0.04025846018151951,0.1574986440203483,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0010426059880868908}",0.040518286899915705,0.15206116922420532,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0009055151589947314}",0.04075616680836222,0.14708298216680504,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0007864502146911889}",0.04096602751603015,0.14269116166547735,False
+m:D_household,D_household,lasso,"{""alpha"": 0.000683040956348491}",0.04114979147517282,0.1388454759621538,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0005932288393266651}",0.04132309364338318,0.1352187274215213,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0005152259941925226}",0.041472349925094215,0.13209519464945185,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0004474796360085544}",0.04160624880480878,0.12929305102013677,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00038864115339554454}",0.04173535781388463,0.1265911465080134,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0003375392620318747}",0.04185087953559504,0.12417358739752349,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0002931566881623214}",0.04195341773185008,0.12202773857481475,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00025460991796025446}",0.04204275956059109,0.12015805425205073,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00022113160961837987}",0.04212104238988621,0.11851980506085746,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00019205531804950698}",0.04219050272482655,0.11706618696145243,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00016680222811543016}",0.042251805582542615,0.11578328293287454,False
+m:D_household,D_household,lasso,"{""alpha"": 0.0001448696322853188}",0.042305639916210336,0.11465667503707289,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00012582092335097558}",0.04235324481524777,0.11366043246322688,False
+m:D_household,D_household,lasso,"{""alpha"": 0.00010927690298621941}",0.04239550441984666,0.11277605253371159,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.038303402439321135,0.1984127473266829,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.03869014584543306,0.1903192474114761,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.03996897747105977,0.16355673901442735,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.03820456143923435,0.20048122377173405,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.0381521559860703,0.2015779290394557,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.03890882904838603,0.1857427957988923,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.040636214492672525,0.14959326169974796,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.04053179702184765,0.15177843868767227,False
+m:D_household,D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.04170083211464965,0.1273136765871684,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.039533751468384226,0.17266484935343307,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.03916801942348755,0.18031863795740233,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.03899579422397214,0.18392284843816498,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.038887573378975096,0.18618761982395993,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.03891573841012458,0.18559820143021966,False
+m:D_household,D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.0394933032443791,0.1735113219561515,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0405724901315085,0.15092684128643752,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.040210016267207764,0.15851244492859418,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.04185884730834531,0.12400684333140732,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.0412245782096769,0.13728039063735797,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.04262204215934406,0.10803522658441866,False
+m:D_household,D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.04231350042869591,0.11449217563997893,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.042562522737185464,0.1092808081006924,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.04148656380571411,0.13179773633529868,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.044411782306843894,0.0705807761578221,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.04323122285107587,0.09528671219746576,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.04538737294794414,0.050164286448528106,False
+m:D_household,D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.04514772771598308,0.0551794169818598,False
+l:W_D_corporate,y_log_co2_energy_pc,linear,{},0.0028980152793204573,0.11471652336274174,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.020197716508477542}",0.0032498212296717794,0.007247112469323969,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.017541946511418195}",0.00316981581043684,0.031687106349113536,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.015235380062904572}",0.0030993371193569104,0.0532168826457774,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.013232100868057216}",0.003038048629809902,0.07193924325277345,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.011492230102532837}",0.0029772030171884446,0.09052631415747836,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.009981132553817445}",0.002924430814817612,0.10664712591372649,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.008668727145910339}",0.0028840903188782777,0.11897030955919674,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.007528888122170226}",0.002858698731522307,0.12672691211827758,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.006538924965806307}",0.0028444211876969116,0.13108840521521903,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.005679130704909455}",0.0028387074335690468,0.1328338384277563,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.004932389610234395}",0.002838666241420981,0.13284642177343775,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0042838364762615745}",0.0028435971221724204,0.13134014011727568,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0037205607029240947}",0.0028523854161410993,0.1286554988409444,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0032313492872219018}",0.002862157743402985,0.1256702558317122,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002806463608515549}",0.002871353291110449,0.12286120699676051,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002437445564015016}",0.0028749078069481913,0.12177537623491008,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002116949195246823}",0.0028758722027378944,0.12148077335146268,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0018385944537256374}",0.0028777784484250355,0.12089845488638096,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0015968401947768732}",0.00288317970040527,0.1192484845893379,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0013868738712270387}",0.0028925016960028352,0.11640080855025747,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0012045157311192513}",0.0029038213876857785,0.1129428778488405,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0010461356123394972}",0.0029151616197529645,0.10947867248665688,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0009085806778031886}",0.0029255886478756765,0.10629343196244767,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0007891126526427818}",0.002937056141350259,0.1027903508834983,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0006853533139913574}",0.0029433512212805675,0.10086733471233467,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005952371482396755}",0.0029463634257285982,0.09994716881634247,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005169702333254778}",0.0029611390668988213,0.09543351732593797,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00044899452753406816}",0.0029845525455891113,0.088281185879303,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003899568539154532}",0.003015682669431094,0.07877157961199555,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003386819628978656}",0.003049802338380401,0.06834872940665171,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00029414913686123}",0.003084747919889253,0.05767358006840473,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00025547187094312156}",0.0031197206527354355,0.04699013656053119,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00022188022558763864}",0.00315420622279535,0.036455511165589316,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001927054995333803}",0.0031926135237434444,0.024722878437871243,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00016736691812917667}",0.003230155325302016,0.013254637797403768,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001453600719849013}",0.0032643198183297567,0.0028180947670856105,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001262468758082023}",0.003296661553106581,-0.007061633475900386,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00010964684753999812}",0.0033262189094366355,-0.016090791934379123,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 9.522953418446883e-05}",0.0033530144247490494,-0.02427626532485161,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 8.270793355625452e-05}",0.0033774656836456497,-0.0317456170700281,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 7.183278099307816e-05}",0.0034007522173952758,-0.038859169473911104,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 6.238758730067833e-05}",0.003421479003242007,-0.045190772058909534,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 5.418432915154465e-05}",0.0034398603432647195,-0.050805889659108594,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 4.705970614720348e-05}",0.0034561749018177258,-0.05578964844694845,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 4.087189003424264e-05}",0.0034704695014689813,-0.060156351744444114,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 3.549770136145434e-05}",0.003483038952266001,-0.0639960578979657,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 3.083015737445195e-05}",0.003494081706212984,-0.06736938987298813,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.677634233425564e-05}",0.003503759698295882,-0.07032581544436223,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.32555578647609e-05}",0.0035122487943083235,-0.07291905795934439,False
+l:W_D_corporate,y_log_co2_energy_pc,lasso,"{""alpha"": 2.0197716508477543e-05}",0.0035196682358196035,-0.07518554324073068,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.0026749383739747994,0.1828618846833322,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.002687125487616496,0.17913897458969585,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.0027127289695736225,0.17131764263097027,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.002660922871372857,0.18714332962905234,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.00265744035606633,0.18820716572405305,True
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.0026772836548155125,0.18214545009750627,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.00272637852853418,0.16714798586711732,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.002717129085096887,0.1699734987281284,False
+l:W_D_corporate,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.002720396556292537,0.16897535414257758,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.0026871368406352074,0.17913550647827947,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.0026885101504605497,0.1787159888500066,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.0027122023440260784,0.17147851579783824,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.0027141514894447306,0.17088309235579868,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.0027745642096063208,0.15242826110649377,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.0027663226085031236,0.1549458990671213,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.00283314131883844,0.13453417087087194,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.0027822338556245728,0.15008534354492475,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.0029181966766362553,0.1085515256463333,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.0028778411453161783,0.12087930228833865,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.0030198806180313366,0.07748919350517047,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.003003523585735965,0.08248592713913183,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.002922569495844405,0.10721572020082004,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.0028605470526855813,0.12616228839215649,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.003082690430899865,0.05830210022102977,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.0030336348530630836,0.07328756037567008,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.0031948663815839105,0.02403467715901353,False
+l:W_D_corporate,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.0032028968122312907,0.021581547386670175,False
+m:W_D_corporate,W_D_corporate,linear,{},0.013858418547036256,-0.08414515667130296,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.04388658275443759}",0.012584167272613196,0.015539619254550052,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.038115996277309015}",0.012280491085909225,0.03929623086893441,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.033104176288707106}",0.01200155921868117,0.061117092453552124,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.02875135362541196}",0.011809885078841106,0.07611177526396451,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.02497087763441747}",0.011714923845205416,0.0835405999287876,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.02168749123804485}",0.011709849971727667,0.08393752944407074,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.018835832808374753}",0.01175711048307316,0.08024033597981473,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.016359135028152352}",0.011823398697100484,0.07505460386051155,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.014208094836684478}",0.011918498505907534,0.06761493844929622,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.012339891964998333}",0.012047811772110348,0.05749875161518525,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.01071733652246398}",0.01221604784709679,0.04433763043423011,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.009308128666080738}",0.012381608572265213,0.031385802076821956,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00808421561483213}",0.012382662738739489,0.031303334551863515,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.007021233209339985}",0.012389299217990602,0.030784162265861004,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0060980209000724905}",0.012469178525198077,0.024535197874050008,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.005296200509086415}",0.012608519015133724,0.013634580550419995,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.004599810379809257}",0.012779221483657966,0.0002805132119090281,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.003994987631963867}",0.01298363941295214,-0.015711117234874505,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.003469692196356606}",0.013211583196145607,-0.033543177054959905,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0030134671359520215}",0.013448588806052894,-0.05208414428096875,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0026172304820002426}",0.013698293636248752,-0.07161857249407588,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0022730944413459487}",0.01391693270654405,-0.08872272390321734,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0019742083759199318}",0.014129876968132973,-0.10538136998603109,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0017146224286416457}",0.014328268730344413,-0.1209015729150309,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0014891690809644383}",0.014487150695088576,-0.13333092132698532,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0012933602842564627}",0.01461844981651371,-0.14360246176900038,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0011232981172350197}",0.014725553116965998,-0.15198116126164152,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0009755971909320953}",0.014793549216282852,-0.15730050137946994,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.000847317256524395}",0.014831863523601949,-0.16029783260959785,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.000735904674467229}",0.014864408654515389,-0.162843840722521,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0006391415797715753}",0.014907602229928343,-0.16622287747367226,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0005551017314690208}",0.014949185265625057,-0.1694759215780388,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0004821121673699134}",0.014992180889870118,-0.1728394725939888,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0004187199007846861}",0.015033800774275633,-0.17609539937569996,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00036366299624753754}",0.015079610292529059,-0.17967908153794188,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00031584544845348163}",0.015127502577564577,-0.18342569870691783,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00027431536432944575}",0.015171562164868537,-0.1868724836354001,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00023824601391486956}",0.01521100017047393,-0.18995772186952786,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.0002069193728359871}",0.015249107753461373,-0.19293888103917367,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00017971182875755172}",0.015283664548224652,-0.19564226177093147,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00015608176727358898}",0.015314578744540468,-0.19806068174391944,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00013555879011232358}",0.015341956625056342,-0.2002024554578874,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00011773435102452559}",0.015365633009794162,-0.20205466087035018,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 0.00010225362294603463}",0.015387535685063599,-0.20376810885367602,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 8.880843453591331e-05}",0.015407760789027544,-0.20535032030379652,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 7.713113547949324e-05}",0.015425559387654157,-0.20674270605337441,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 6.698926843429632e-05}",0.01544124936929211,-0.20797013453255575,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 5.8180941554468786e-05}",0.015455042288609137,-0.20904915567938875,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 5.053080947561891e-05}",0.015467107466715932,-0.2099930154974814,False
+m:W_D_corporate,W_D_corporate,lasso,"{""alpha"": 4.388658275443759e-05}",0.015477773107574712,-0.2108273894082271,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.01061525386332908,0.16956786781232347,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.010910299325723726,0.1464864384293577,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.011724309390003643,0.08280636803203956,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.010430049697506513,0.18405640405405976,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.010428804444032198,0.1841538203298364,True
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.010785436688730369,0.15625445219558254,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.010612160116185706,0.1698098918910501,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.010497575004556482,0.17877389405174615,False
+m:W_D_corporate,W_D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.010662282070798909,0.1658888474982595,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.010726727624532827,0.16084726683647688,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.010601091700007113,0.1706757749462714,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.011089627204753306,0.1324576045587258,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.010891306821892717,0.14797222347557804,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.011223693928199918,0.12196955439613921,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.0109516345286982,0.14325278229805372,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.011118018013455666,0.1302365893942482,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.011004518589479526,0.13911565812572546,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.011768246275598195,0.07936918206779098,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.011646563145539595,0.08888846276016471,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.012255097659807866,0.041282760560301446,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.011872914496640638,0.0711809790260497,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.011626875803564918,0.0904286050481996,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.011516237989478036,0.09908380981632547,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.012535813514503395,0.01932233749788148,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.012044692328277132,0.05774278594794913,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.013273090582878335,-0.03835490468459324,False
+m:W_D_corporate,W_D_corporate,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.012447039384518578,0.02626714456472612,False
+l:W_D_household,y_log_co2_energy_pc,linear,{},0.0028008219143307415,0.14440707768043515,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.020197716508477542}",0.0032498212296717794,0.007247112469323969,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.017541946511418195}",0.00316981581043684,0.031687106349113536,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.015235380062904572}",0.003099330830698343,0.05321880370035559,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.013232100868057216}",0.0030369474040193127,0.07227564485956006,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.011492230102532837}",0.0029772998255831124,0.0904967412035983,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.009981132553817445}",0.0029248120001044565,0.10653068172573721,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.008668727145910339}",0.002882695494849516,0.11939639932976853,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.007528888122170226}",0.0028522633621986125,0.12869278378533822,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.006538924965806307}",0.0028350944697473324,0.13393752383475732,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.005679130704909455}",0.002827170416608644,0.1363581574876349,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.004932389610234395}",0.002825558668240808,0.13685051313831897,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0042838364762615745}",0.002824415482378049,0.13719973267565122,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0037205607029240947}",0.0028159131512442157,0.13979701824532775,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0032313492872219018}",0.002811324760167305,0.141198676419363,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002806463608515549}",0.0028107955035472417,0.14136035332423869,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002437445564015016}",0.002811449003343625,0.14116072270950308,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.002116949195246823}",0.002810870450420019,0.1413374586112367,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0018385944537256374}",0.002813975864260645,0.14038881918174706,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0015968401947768732}",0.002821396781329385,0.13812188314820362,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0013868738712270387}",0.0028381583052365347,0.13300158572805365,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0012045157311192513}",0.002847073639075565,0.1302781364099227,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0010461356123394972}",0.0028572165656276403,0.12717968301481042,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0009085806778031886}",0.0028693117566926836,0.12348485335912818,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0007891126526427818}",0.0028836631297865264,0.1191008069540952,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0006853533139913574}",0.0028930896444503812,0.11622120251110324,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005952371482396755}",0.0029035355563175992,0.11303019339515907,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0005169702333254778}",0.0029200462425988814,0.10798652165986444,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00044899452753406816}",0.0029382684747025333,0.10242000822429875,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003899568539154532}",0.002956478421052995,0.09685724783116012,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0003386819628978656}",0.002975340144733424,0.09109538300100051,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00029414913686123}",0.0029933709167383775,0.08558735664899941,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00025547187094312156}",0.0030101499632789936,0.08046170642826689,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00022188022558763864}",0.003024742996061466,0.07600383800758082,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001927054995333803}",0.0030380362847026916,0.07194301442662077,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00016736691812917667}",0.0030496281426916462,0.06840194257155674,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001453600719849013}",0.0030599277613121926,0.06525562300398946,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.0001262468758082023}",0.0030693805809550554,0.06236798293625978,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 0.00010964684753999812}",0.0030777736395275683,0.059804077864497485,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 9.522953418446883e-05}",0.0030855692034515657,0.05742269499801278,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 8.270793355625452e-05}",0.003093765755230967,0.05491881867013959,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 7.183278099307816e-05}",0.003101194242406327,0.052649570126253264,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 6.238758730067833e-05}",0.003107945718412681,0.05058713443311247,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 5.418432915154465e-05}",0.003114644273864175,0.048540864870332046,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 4.705970614720348e-05}",0.003121532114269551,0.04643677268555102,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 4.087189003424264e-05}",0.0031284165322392078,0.044333725983799144,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 3.549770136145434e-05}",0.0031341191815920243,0.042591685049395034,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 3.083015737445195e-05}",0.0031392421427108926,0.04102672683045405,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.677634233425564e-05}",0.003143831519957044,0.03962476740219811,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.32555578647609e-05}",0.003148065058810787,0.03833150921213113,False
+l:W_D_household,y_log_co2_energy_pc,lasso,"{""alpha"": 2.0197716508477543e-05}",0.003151952269143774,0.03714404719198128,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.002666187422236304,0.18553511868393302,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.002697250802405849,0.17604590122230268,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.0027613723045530844,0.1564581141070398,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.002635729572449708,0.19483935919031703,True
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.0026561924928616815,0.18858836201520512,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.002683987400715755,0.18009759496043776,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.002714101685260096,0.17089830649978166,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.002702486161223525,0.17444660784085342,False
+l:W_D_household,y_log_co2_energy_pc,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.002722077581033452,0.16846183599877418,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.0026758560512425734,0.18258155333799975,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.0026777086265535373,0.18201563005811738,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.0026678341484057287,0.18503207804134558,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.0026813372695803526,0.18090715497961196,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.002731296226995043,0.16564573112693282,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.002743128060688076,0.16203135167852,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.0027703785890206495,0.1537068812609177,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.002747135933179876,0.16080702987498152,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.002866356834700456,0.12438752065461756,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.002885538275998545,0.11852798873273351,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.0029953687553264502,0.08497705845504933,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.0030094968573048087,0.08066121673850057,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.0028547416995355307,0.12793570320347836,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.0028369855979040537,0.13335982346123088,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.0030643010587341844,0.06391967147407984,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.0030498592567527903,0.06833134202606994,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.0032106490846753053,0.01921338916816495,False
+l:W_D_household,y_log_co2_energy_pc,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.003214362739143089,0.0180789448601143,False
+m:W_D_household,W_D_household,linear,{},0.01437637889780818,0.15634599431110097,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.05689208282625909}",0.016855559574632712,0.010859378822105192,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.04941142101101001}",0.016310557403731954,0.04284192935572195,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.04291438114127877}",0.015739513793354833,0.07635267867182116,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.037271628118701154}",0.015324460832443185,0.10070937485625009,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.03237083293932268}",0.014943040843312064,0.12309237574734,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.028114436585606684}",0.014644925138679342,0.1405868025539756,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.024417707941210547}",0.014404099298391766,0.1547192684743739,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.02120705706788008}",0.01423530724561934,0.16462455077544214,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.01841857026724787}",0.014127221299616806,0.17096739565675045,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.01599673776534326}",0.014081020702109637,0.17367860126904033,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.013893348692118416}",0.014046153616684,0.17572471847944027,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.012066531358598328}",0.013967269567362642,0.18035389837710358,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.010479919726670008}",0.013886411578271186,0.18509891566371361,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.009101929478614067}",0.013856425099582816,0.1868586225441301,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00790512927525904}",0.013900670699907393,0.1842621427063853,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.006865694686537258}",0.014002716396566943,0.17827375986240857,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.005962933923961839}",0.01426139929069976,0.16309338228682724,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.005178875933888637}",0.014648389113943668,0.14038352489775008,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.004497912651829445}",0.015075214685575485,0.11533597253443995,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0039064882962539784}",0.015462496446295777,0.09260898327765732,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0033928295167231213}",0.015620116690260536,0.0833593000894377,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0029467110244733403}",0.015714791242137954,0.07780348067928278,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0025592520399135947}",0.01582171697420229,0.07152872103302377,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.002222739504961306}",0.015889472895239395,0.06755257692897487,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0019304745409453481}",0.015860684354782044,0.06924198478664367,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.001676639095548455}",0.015984055838749622,0.062002133404255644,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.001456180124160013}",0.01624322304031719,0.046793335048294304,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0012647090000636287}",0.01651736986198761,0.030705482474765455,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.001098414151040962}",0.016783552555869594,0.015084991561519212,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.000953985183268511}",0.017021703497186905,0.001109497660787162,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0008285469820589707}",0.01724213167203151,-0.011825965017001394,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0007196024776055742}",0.017447291653640735,-0.023865439040468672,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0006249829363800939}",0.01762529504126501,-0.03431127328446659,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0005428047886466302}",0.01779765361280596,-0.04442585083761563,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00047143213266629715}",0.017959685521012455,-0.05393442524147107,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0004094441691725354}",0.01810978078862017,-0.06274251764445471,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0003556069178425204}",0.0182434455790413,-0.07058641468277949,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0003088486527308916}",0.018340691710047867,-0.07629314295869771,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00026823856766456094}",0.01841780193584995,-0.08081822895844293,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00023296824689544328}",0.01848335178344397,-0.08466491329307901,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0002023355721516056}",0.01853721012066885,-0.08782550068872963,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0001757307457281568}",0.018584967542038408,-0.09062806593316308,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00015262415138271132}",0.01862025112224113,-0.0926986244503436,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.0001325558113850329}",0.018650162944446626,-0.0944539502386037,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 0.00011512622984474005}",0.018676569987349192,-0.0960036038531551,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 9.99884400372693e-05}",0.018699854805789316,-0.09737003489176277,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 8.684109741602344e-05}",0.018720272617429284,-0.09856822038060553,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 7.542248081486551e-05}",0.018738107813996336,-0.09961484937758724,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 6.550528242425398e-05}",0.01875375657160513,-0.10053317082240731,False
+m:W_D_household,W_D_household,lasso,"{""alpha"": 5.689208282625909e-05}",0.018767486765910866,-0.10133890455461203,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.33}",0.01299288547434974,0.23753401647173789,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.013152256133182005,0.22818161308359275,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.013350640847152075,0.21653973442986485,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.013303566491968942,0.21930221506548075,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.5}",0.013136160933446864,0.22912613324582798,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 20, ""max_features"": 1.0}",0.012968645027915997,0.2389565269577847,True
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.01407654336543245,0.17394134636287628,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.5}",0.013922114249192739,0.18300376350120684,False
+m:W_D_household,W_D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.01373197617448897,0.1941617017760714,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 10}",0.013452929556460434,0.21053709079072835,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.013468456552058215,0.20962591474803383,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.013473676478606953,0.20931959199641825,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 30}",0.013367322460444166,0.21556080155843282,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.01354505169424067,0.20513105557814992,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 30}",0.013641254448097946,0.1994855561636647,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.01345393403857537,0.21047814442002322,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 30}",0.013608323559442513,0.2014180508706097,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 10}",0.01392316087345248,0.18294234408847032,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 2, ""min_child_weight"": 30}",0.014133471275017283,0.17060062619278804,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 10}",0.013995168195009315,0.1787167135801081,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 3, ""min_child_weight"": 30}",0.014276671386795583,0.1621971645995992,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 10}",0.013811465704190102,0.1894969902642657,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 1, ""min_child_weight"": 30}",0.014069662804539666,0.17434512069296648,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 10}",0.014472440241041017,0.15070879334510578,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 2, ""min_child_weight"": 30}",0.01454916426244903,0.14620637111113843,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.014725804474351432,0.13584053257860518,False
+m:W_D_household,W_D_household,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 30}",0.014896003820972215,0.12585266556682595,False

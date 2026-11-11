@@ -1,0 +1,9 @@
+key,target,learner,params,cv_mse,cv_r2,used
+l:D_corporate,y_log_gross_pc,linear,{},0.0020597714388653756,0.2913170190768464,True
+m:D_corporate,D_corporate,linear,{},0.029523946034546982,0.21317413830833642,True
+l:D_household,y_log_gross_pc,linear,{},0.0020744853088024476,0.286254579132702,True
+m:D_household,D_household,linear,{},0.03901593413505223,0.1830448847236873,True
+l:W_D_corporate,y_log_gross_pc,linear,{},0.002104389072694026,0.2759659188786402,True
+m:W_D_corporate,W_D_corporate,linear,{},0.013637029270161687,-0.07122733550216376,True
+l:W_D_household,y_log_gross_pc,linear,{},0.0020442898789470895,0.29664358969784455,True
+m:W_D_household,W_D_household,linear,{},0.013365119547532764,0.16652711707165047,True

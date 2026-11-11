@@ -1,0 +1,5 @@
+treatment,nuisance,target,learner,params,cv_r2,crossfit_r2_median,crossfit_r2_min,crossfit_r2_max,val_r2,test_r2
+lead_D_corporate,l,y_log_gross_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.2548518967179917,0.236954065733832,0.1922333659835075,0.2606607568674003,0.02754321792006853,0.11232520282357294
+lead_D_corporate,m,lead_D_corporate,xgb,"{""n_estimators"": 100, ""max_depth"": 2, ""min_child_weight"": 10}",0.5256586691974267,0.6294466276921257,0.5256586691974267,0.6427346789286228,-0.9821604443619385,-0.2645476622814793
+lead_D_household,l,y_log_gross_pc,xgb,"{""n_estimators"": 100, ""max_depth"": 1, ""min_child_weight"": 30}",0.2538156025887307,0.23661475761180528,0.19500310449266378,0.2602090830928707,0.005082717638603906,0.13371535552856162
+lead_D_household,m,lead_D_household,xgb,"{""n_estimators"": 300, ""max_depth"": 1, ""min_child_weight"": 10}",0.6157705942784675,0.6146747655824237,0.5938568170156688,0.6237538178591701,-1.253206641058679,-1.2417043580368854

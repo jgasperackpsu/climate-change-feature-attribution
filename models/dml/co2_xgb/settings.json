@@ -1,0 +1,183 @@
+{
+  "run": "co2_xgb",
+  "version": "co2",
+  "learner": "xgb",
+  "outcome": "y_log_co2_energy_pc",
+  "treatments": [
+    "D_corporate",
+    "D_household",
+    "W_D_corporate",
+    "W_D_household"
+  ],
+  "x": [
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "absorbed": [
+    "state FE",
+    "year FE"
+  ],
+  "dropped_states": [],
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
+  ],
+  "nuisance_used": {
+    "l:D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.0027141569672369764,
+      "cv_r2": 0.1708814190040403
+    },
+    "l:D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.002684622439681693,
+      "cv_r2": 0.17990360374597547
+    },
+    "l:W_D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.0026871368406352074,
+      "cv_r2": 0.17913550647827947
+    },
+    "l:W_D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.0026678341484057287,
+      "cv_r2": 0.18503207804134558
+    },
+    "m:D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.03205117593187668,
+      "cv_r2": 0.16252386051472723
+    },
+    "m:D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.038887573378975096,
+      "cv_r2": 0.18618761982395993
+    },
+    "m:W_D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.010601091700007113,
+      "cv_r2": 0.1706757749462714
+    },
+    "m:W_D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.013367322460444166,
+      "cv_r2": 0.21556080155843282
+    }
+  },
+  "xgb_fixed": {
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0
+  },
+  "xgb_grid": {
+    "n_estimators": [
+      100,
+      300,
+      600
+    ],
+    "max_depth": [
+      1,
+      2,
+      3
+    ],
+    "min_child_weight": [
+      10,
+      30
+    ]
+  },
+  "rf_fixed": {
+    "n_estimators": 500
+  },
+  "rf_grid": {
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "max_features": [
+      0.33,
+      0.5,
+      1.0
+    ]
+  },
+  "lasso": {
+    "features": "degree-2 polynomial (no bias) -> standardize",
+    "n_alphas": 50,
+    "max_iter": 100000
+  },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 18.4,
+  "versions": {
+    "python": "3.14.3",
+    "doubleml": "0.11.4",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "run": "lvstk_xgb",
+  "version": "lvstk",
+  "learner": "xgb",
+  "outcome": "y_log_gross_pc",
+  "treatments": [
+    "D_corporate_lvstk",
+    "D_household",
+    "W_D_corporate_lvstk",
+    "W_D_household"
+  ],
+  "x": [
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "absorbed": [
+    "state FE",
+    "year FE",
+    "brk_mn_2010",
+    "brk_mi_2010",
+    "brk_md_2011"
+  ],
+  "dropped_states": [],
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
+  ],
+  "nuisance_used": {
+    "l:D_corporate_lvstk": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.00213484829299823,
+      "cv_r2": 0.26548614882528476
+    },
+    "l:D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.0021138208423189244,
+      "cv_r2": 0.27272083328951513
+    },
+    "l:W_D_corporate_lvstk": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.002051228950237813,
+      "cv_r2": 0.2942561395010126
+    },
+    "l:W_D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 300,
+        "max_depth": 1,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.0020334831587653828,
+      "cv_r2": 0.3003617394536219
+    },
+    "m:D_corporate_lvstk": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.019660317768055387,
+      "cv_r2": 0.14225786862379752
+    },
+    "m:D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.03722784296526846,
+      "cv_r2": 0.2204857472871411
+    },
+    "m:W_D_corporate_lvstk": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 1,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.006452494719288414,
+      "cv_r2": 0.12320131871618178
+    },
+    "m:W_D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.012446411470700445,
+      "cv_r2": 0.2238194044053875
+    }
+  },
+  "xgb_fixed": {
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0
+  },
+  "xgb_grid": {
+    "n_estimators": [
+      100,
+      300,
+      600
+    ],
+    "max_depth": [
+      1,
+      2,
+      3
+    ],
+    "min_child_weight": [
+      10,
+      30
+    ]
+  },
+  "rf_fixed": {
+    "n_estimators": 500
+  },
+  "rf_grid": {
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "max_features": [
+      0.33,
+      0.5,
+      1.0
+    ]
+  },
+  "lasso": {
+    "features": "degree-2 polynomial (no bias) -> standardize",
+    "n_alphas": 50,
+    "max_iter": 100000
+  },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 18.8,
+  "versions": {
+    "python": "3.14.3",
+    "doubleml": "0.11.4",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

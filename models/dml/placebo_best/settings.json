@@ -1,0 +1,140 @@
+{
+  "run": "placebo_best",
+  "version": "placebo",
+  "learner": "best",
+  "outcome": "y_log_gross_pc",
+  "treatments": [
+    "lead_D_corporate",
+    "lead_D_household"
+  ],
+  "x": [
+    "D_corporate",
+    "D_household",
+    "W_D_corporate",
+    "W_D_household",
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "absorbed": [
+    "state FE",
+    "year FE",
+    "brk_mn_2010",
+    "brk_mi_2010",
+    "brk_md_2011"
+  ],
+  "dropped_states": [],
+  "placebo_leads": true,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 816,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2013
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2017
+  ],
+  "test_years": [
+    2019,
+    2021
+  ],
+  "nuisance_used": {
+    "l:lead_D_corporate": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 1.0
+      },
+      "cv_mse": 0.0019577375036060113,
+      "cv_r2": 0.2797757914924076
+    },
+    "l:lead_D_household": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 1.0
+      },
+      "cv_mse": 0.0019604784812458555,
+      "cv_r2": 0.2787674242074383
+    },
+    "m:lead_D_corporate": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.010390853637456616,
+      "cv_r2": 0.7016365967527343
+    },
+    "m:lead_D_household": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.006134328047882587
+      },
+      "cv_mse": 0.01213641768705427,
+      "cv_r2": 0.7311960138568177
+    }
+  },
+  "xgb_fixed": {
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0
+  },
+  "xgb_grid": {
+    "n_estimators": [
+      100,
+      300,
+      600
+    ],
+    "max_depth": [
+      1,
+      2,
+      3
+    ],
+    "min_child_weight": [
+      10,
+      30
+    ]
+  },
+  "rf_fixed": {
+    "n_estimators": 500
+  },
+  "rf_grid": {
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "max_features": [
+      0.33,
+      0.5,
+      1.0
+    ]
+  },
+  "lasso": {
+    "features": "degree-2 polynomial (no bias) -> standardize",
+    "n_alphas": 50,
+    "max_iter": 100000
+  },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 74.2,
+  "versions": {
+    "python": "3.14.3",
+    "doubleml": "0.11.4",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

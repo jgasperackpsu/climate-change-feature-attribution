@@ -1,5 +1,0 @@
-treatment,nuisance,target,r2_median,r2_min,r2_max,negative
-lead_D_corporate,l,y_log_gross_pc,0.3054681432601608,0.2663560693005912,0.3306629894933716,False
-lead_D_corporate,m,lead_D_corporate,0.7172282549992969,0.7123416575070765,0.7183100368630653,False
-lead_D_household,l,y_log_gross_pc,0.3068228267111996,0.2679546286266,0.3309070995214649,False
-lead_D_household,m,lead_D_household,0.7137216033827866,0.7061074213536415,0.7196357719695801,False

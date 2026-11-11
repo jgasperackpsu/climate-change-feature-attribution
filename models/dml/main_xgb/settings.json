@@ -1,16 +1,7 @@
 {
-  "panel": "data/processed/panel.csv",
-  "out_dir": "models/dml",
+  "run": "main_xgb",
   "version": "main",
   "learner": "xgb",
-  "n_rep": 20,
-  "folds": 5,
-  "placebo": false,
-  "seed": 2026,
-  "run": "main_xgb",
-  "n_obs": 1248,
-  "n_clusters": 48,
-  "inference_df": 47,
   "outcome": "y_log_gross_pc",
   "treatments": [
     "D_corporate",
@@ -18,7 +9,7 @@
     "W_D_corporate",
     "W_D_household"
   ],
-  "controls": [
+  "x": [
     "log_pop",
     "log_gdp_real_pc",
     "hdd_k",
@@ -32,69 +23,88 @@
     "brk_md_2011"
   ],
   "dropped_states": [],
-  "tuning_seed": 2026,
-  "repetition_seeds": [
-    2027,
-    2028,
-    2029,
-    2030,
-    2031,
-    2032,
-    2033,
-    2034,
-    2035,
-    2036,
-    2037,
-    2038,
-    2039,
-    2040,
-    2041,
-    2042,
-    2043,
-    2044,
-    2045,
-    2046
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
   ],
   "nuisance_used": {
     "l:D_corporate": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
+        "max_depth": 3,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.002119906675909335,
+      "cv_r2": 0.2706269472355216
+    },
+    "l:D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
         "max_depth": 2,
         "min_child_weight": 10
-      }
+      },
+      "cv_mse": 0.002109802237409523,
+      "cv_r2": 0.27410347063102314
+    },
+    "l:W_D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.002038997159090793,
+      "cv_r2": 0.2984645978030048
+    },
+    "l:W_D_household": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
+      },
+      "cv_mse": 0.0020230381277155612,
+      "cv_r2": 0.30395544679442277
     },
     "m:D_corporate": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
         "max_depth": 1,
-        "min_child_weight": 10
-      }
-    },
-    "l:D_household": {
-      "learner": "xgb",
-      "params": {
-        "n_estimators": 300,
-        "max_depth": 1,
-        "min_child_weight": 10
-      }
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.03139859651463871,
+      "cv_r2": 0.16321389662374297
     },
     "m:D_household": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
-        "max_depth": 3,
+        "max_depth": 2,
         "min_child_weight": 10
-      }
-    },
-    "l:W_D_corporate": {
-      "learner": "xgb",
-      "params": {
-        "n_estimators": 300,
-        "max_depth": 1,
-        "min_child_weight": 30
-      }
+      },
+      "cv_mse": 0.03819136272377669,
+      "cv_r2": 0.2003105954463984
     },
     "m:W_D_corporate": {
       "learner": "xgb",
@@ -102,15 +112,9 @@
         "n_estimators": 100,
         "max_depth": 1,
         "min_child_weight": 30
-      }
-    },
-    "l:W_D_household": {
-      "learner": "xgb",
-      "params": {
-        "n_estimators": 300,
-        "max_depth": 1,
-        "min_child_weight": 30
-      }
+      },
+      "cv_mse": 0.010521875895067041,
+      "cv_r2": 0.1734767993628078
     },
     "m:W_D_household": {
       "learner": "xgb",
@@ -118,7 +122,9 @@
         "n_estimators": 100,
         "max_depth": 2,
         "min_child_weight": 10
-      }
+      },
+      "cv_mse": 0.0123432237781486,
+      "cv_r2": 0.2302543744247756
     }
   },
   "xgb_fixed": {
@@ -163,8 +169,14 @@
     "n_alphas": 50,
     "max_iter": 100000
   },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 18.9,
   "versions": {
     "python": "3.14.3",
+    "doubleml": "0.11.4",
     "numpy": "2.5.2",
     "pandas": "3.0.5",
     "scipy": "1.18.1",

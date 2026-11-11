@@ -1,0 +1,167 @@
+{
+  "run": "noelec_best",
+  "version": "noelec",
+  "learner": "best",
+  "outcome": "y_log_gross_pc",
+  "treatments": [
+    "D_corporate",
+    "D_household_noelec",
+    "W_D_corporate",
+    "W_D_household_noelec"
+  ],
+  "x": [
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "absorbed": [
+    "state FE",
+    "year FE",
+    "brk_mn_2010",
+    "brk_mi_2010",
+    "brk_md_2011"
+  ],
+  "dropped_states": [],
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
+  ],
+  "nuisance_used": {
+    "l:D_corporate": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0021100392115452056,
+      "cv_r2": 0.27402193753773507
+    },
+    "l:D_household_noelec": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0020856825087478227,
+      "cv_r2": 0.28240208128485733
+    },
+    "l:W_D_corporate": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 0.5
+      },
+      "cv_mse": 0.0021130946803244485,
+      "cv_r2": 0.27297067588717816
+    },
+    "l:W_D_household_noelec": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0020649477283893334,
+      "cv_r2": 0.28953606987989067
+    },
+    "m:D_corporate": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.011753462946774469
+      },
+      "cv_mse": 0.028034751083347978,
+      "cv_r2": 0.2528618243423423
+    },
+    "m:D_household_noelec": {
+      "learner": "lasso",
+      "params": {
+        "alpha": 0.006730760425702326
+      },
+      "cv_mse": 0.04663956592981406,
+      "cv_r2": 0.1442094584712249
+    },
+    "m:W_D_corporate": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 0.33
+      },
+      "cv_mse": 0.010389014080671269,
+      "cv_r2": 0.18391347179384676
+    },
+    "m:W_D_household_noelec": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 5,
+        "max_features": 0.33
+      },
+      "cv_mse": 0.012924664925614233,
+      "cv_r2": 0.1650446407132493
+    }
+  },
+  "xgb_fixed": {
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0
+  },
+  "xgb_grid": {
+    "n_estimators": [
+      100,
+      300,
+      600
+    ],
+    "max_depth": [
+      1,
+      2,
+      3
+    ],
+    "min_child_weight": [
+      10,
+      30
+    ]
+  },
+  "rf_fixed": {
+    "n_estimators": 500
+  },
+  "rf_grid": {
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "max_features": [
+      0.33,
+      0.5,
+      1.0
+    ]
+  },
+  "lasso": {
+    "features": "degree-2 polynomial (no bias) -> standardize",
+    "n_alphas": 50,
+    "max_iter": 100000
+  },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 117.8,
+  "versions": {
+    "python": "3.14.3",
+    "doubleml": "0.11.4",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

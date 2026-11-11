@@ -1,16 +1,7 @@
 {
-  "panel": "data/processed/panel.csv",
-  "out_dir": "models/dml",
+  "run": "no_gdp_best",
   "version": "no_gdp",
   "learner": "best",
-  "n_rep": 20,
-  "folds": 5,
-  "placebo": false,
-  "seed": 2026,
-  "run": "no_gdp_best",
-  "n_obs": 1248,
-  "n_clusters": 48,
-  "inference_df": 47,
   "outcome": "y_log_gross_pc",
   "treatments": [
     "D_corporate",
@@ -18,7 +9,7 @@
     "W_D_corporate",
     "W_D_household"
   ],
-  "controls": [
+  "x": [
     "log_pop",
     "hdd_k",
     "cdd_k"
@@ -31,75 +22,94 @@
     "brk_md_2011"
   ],
   "dropped_states": [],
-  "tuning_seed": 2026,
-  "repetition_seeds": [
-    2027,
-    2028,
-    2029,
-    2030,
-    2031,
-    2032,
-    2033,
-    2034,
-    2035,
-    2036,
-    2037,
-    2038,
-    2039,
-    2040,
-    2041,
-    2042,
-    2043,
-    2044,
-    2045,
-    2046
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
   ],
   "nuisance_used": {
     "l:D_corporate": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 1.0
+      },
+      "cv_mse": 0.0022394023304678984,
+      "cv_r2": 0.22951338721520465
+    },
+    "l:D_household": {
       "learner": "linear",
-      "params": {}
+      "params": {},
+      "cv_mse": 0.0021865666246340186,
+      "cv_r2": 0.24769198936640202
+    },
+    "l:W_D_corporate": {
+      "learner": "rf",
+      "params": {
+        "min_samples_leaf": 20,
+        "max_features": 0.5
+      },
+      "cv_mse": 0.002089326145079819,
+      "cv_r2": 0.28114845527158394
+    },
+    "l:W_D_household": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.002074170474658967,
+      "cv_r2": 0.28636290066541603
     },
     "m:D_corporate": {
       "learner": "rf",
       "params": {
         "min_samples_leaf": 50,
         "max_features": 0.5
-      }
-    },
-    "l:D_household": {
-      "learner": "linear",
-      "params": {}
+      },
+      "cv_mse": 0.03191946196374584,
+      "cv_r2": 0.1493326083521962
     },
     "m:D_household": {
-      "learner": "xgb",
+      "learner": "rf",
       "params": {
-        "n_estimators": 100,
-        "max_depth": 2,
-        "min_child_weight": 10
-      }
-    },
-    "l:W_D_corporate": {
-      "learner": "linear",
-      "params": {}
+        "min_samples_leaf": 20,
+        "max_features": 0.5
+      },
+      "cv_mse": 0.03771808409893279,
+      "cv_r2": 0.21022058227841411
     },
     "m:W_D_corporate": {
       "learner": "rf",
       "params": {
-        "min_samples_leaf": 50,
-        "max_features": 0.5
-      }
-    },
-    "l:W_D_household": {
-      "learner": "linear",
-      "params": {}
+        "min_samples_leaf": 5,
+        "max_features": 0.33
+      },
+      "cv_mse": 0.010276912500297,
+      "cv_r2": 0.19271936894863717
     },
     "m:W_D_household": {
-      "learner": "xgb",
+      "learner": "rf",
       "params": {
-        "n_estimators": 100,
-        "max_depth": 2,
-        "min_child_weight": 10
-      }
+        "min_samples_leaf": 5,
+        "max_features": 0.33
+      },
+      "cv_mse": 0.012193558442288711,
+      "cv_r2": 0.23958777383882035
     }
   },
   "xgb_fixed": {
@@ -144,8 +154,14 @@
     "n_alphas": 50,
     "max_iter": 100000
   },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 132.7,
   "versions": {
     "python": "3.14.3",
+    "doubleml": "0.11.4",
     "numpy": "2.5.2",
     "pandas": "3.0.5",
     "scipy": "1.18.1",

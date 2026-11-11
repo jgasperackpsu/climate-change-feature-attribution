@@ -1,0 +1,208 @@
+{
+  "run": "drivers_linear",
+  "version": "drivers",
+  "learner": "linear",
+  "outcome": "y_log_gross_pc",
+  "treatments": [
+    "z_d_industrial_share",
+    "z_d_fossil_prod_pc",
+    "z_d_grid_fossil_share",
+    "z_d_sand_gravel_pc",
+    "z_d_vmt_pc",
+    "z_d_air_pax_pc",
+    "z_d_pce_nonenergy_pc",
+    "z_d_res_elec_pc"
+  ],
+  "x": [
+    "W_D_corporate",
+    "W_D_household",
+    "log_pop",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "absorbed": [
+    "state FE",
+    "year FE",
+    "brk_mn_2010",
+    "brk_mi_2010",
+    "brk_md_2011"
+  ],
+  "dropped_states": [],
+  "placebo_leads": false,
+  "sample": "in_main_sample == 1, train years",
+  "n_obs": 864,
+  "n_clusters": 48,
+  "years": [
+    1997,
+    2014
+  ],
+  "inference_df": 47,
+  "n_folds": 5,
+  "n_rep": 20,
+  "seed": 2026,
+  "cluster": "postal_code (DoubleMLData cluster_cols)",
+  "selection": "5-fold state-grouped CV MSE on the train years",
+  "validation_years": [
+    2015,
+    2018
+  ],
+  "test_years": [
+    2019,
+    2022
+  ],
+  "nuisance_used": {
+    "l:z_d_air_pax_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.001720330214479945,
+      "cv_r2": 0.4081048403887986
+    },
+    "l:z_d_fossil_prod_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0016696419841934526,
+      "cv_r2": 0.42554458416781626
+    },
+    "l:z_d_grid_fossil_share": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0019687903030297187,
+      "cv_r2": 0.32261990120016815
+    },
+    "l:z_d_industrial_share": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0017046802389433086,
+      "cv_r2": 0.41348935592552594
+    },
+    "l:z_d_pce_nonenergy_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0017381574307255851,
+      "cv_r2": 0.40197122550700304
+    },
+    "l:z_d_res_elec_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0018647741406047835,
+      "cv_r2": 0.3584076020394883
+    },
+    "l:z_d_sand_gravel_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.001687384293878173,
+      "cv_r2": 0.41944018215573886
+    },
+    "l:z_d_vmt_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.001729968687167298,
+      "cv_r2": 0.4047886367427366
+    },
+    "m:z_d_air_pax_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.037469855263165035,
+      "cv_r2": -0.010686786815235605
+    },
+    "m:z_d_fossil_prod_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.009396329054446765,
+      "cv_r2": -0.04452812298278208
+    },
+    "m:z_d_grid_fossil_share": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.03480741119139855,
+      "cv_r2": -0.010244569064896902
+    },
+    "m:z_d_industrial_share": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.10252768325184414,
+      "cv_r2": 0.09246626573868744
+    },
+    "m:z_d_pce_nonenergy_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.0049149651989552545,
+      "cv_r2": 0.6108616280818322
+    },
+    "m:z_d_res_elec_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.009224315659356653,
+      "cv_r2": 0.38438286039037195
+    },
+    "m:z_d_sand_gravel_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.03542792001227063,
+      "cv_r2": 0.2656215663770981
+    },
+    "m:z_d_vmt_pc": {
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.04533426673224355,
+      "cv_r2": -0.03658576886505749
+    }
+  },
+  "xgb_fixed": {
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0
+  },
+  "xgb_grid": {
+    "n_estimators": [
+      100,
+      300,
+      600
+    ],
+    "max_depth": [
+      1,
+      2,
+      3
+    ],
+    "min_child_weight": [
+      10,
+      30
+    ]
+  },
+  "rf_fixed": {
+    "n_estimators": 500
+  },
+  "rf_grid": {
+    "min_samples_leaf": [
+      5,
+      20,
+      50
+    ],
+    "max_features": [
+      0.33,
+      0.5,
+      1.0
+    ]
+  },
+  "lasso": {
+    "features": "degree-2 polynomial (no bias) -> standardize",
+    "n_alphas": 50,
+    "max_iter": 100000
+  },
+  "sensitivity": {
+    "cf_y": 0.03,
+    "cf_d": 0.03
+  },
+  "seconds": 14.9,
+  "versions": {
+    "python": "3.14.3",
+    "doubleml": "0.11.4",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.0",
+    "xgboost": "3.4.1"
+  }
+}

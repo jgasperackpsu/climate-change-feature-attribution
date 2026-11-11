@@ -1,0 +1,17 @@
+key,target,learner,params,cv_mse,cv_r2,used
+l:z_d_industrial_share,y_log_gross_pc,linear,{},0.0017046802389433086,0.41348935592552594,True
+m:z_d_industrial_share,z_d_industrial_share,linear,{},0.10252768325184414,0.09246626573868744,True
+l:z_d_fossil_prod_pc,y_log_gross_pc,linear,{},0.0016696419841934526,0.42554458416781626,True
+m:z_d_fossil_prod_pc,z_d_fossil_prod_pc,linear,{},0.009396329054446765,-0.04452812298278208,True
+l:z_d_grid_fossil_share,y_log_gross_pc,linear,{},0.0019687903030297187,0.32261990120016815,True
+m:z_d_grid_fossil_share,z_d_grid_fossil_share,linear,{},0.03480741119139855,-0.010244569064896902,True
+l:z_d_sand_gravel_pc,y_log_gross_pc,linear,{},0.001687384293878173,0.41944018215573886,True
+m:z_d_sand_gravel_pc,z_d_sand_gravel_pc,linear,{},0.03542792001227063,0.2656215663770981,True
+l:z_d_vmt_pc,y_log_gross_pc,linear,{},0.001729968687167298,0.4047886367427366,True
+m:z_d_vmt_pc,z_d_vmt_pc,linear,{},0.04533426673224355,-0.03658576886505749,True
+l:z_d_air_pax_pc,y_log_gross_pc,linear,{},0.001720330214479945,0.4081048403887986,True
+m:z_d_air_pax_pc,z_d_air_pax_pc,linear,{},0.037469855263165035,-0.010686786815235605,True
+l:z_d_pce_nonenergy_pc,y_log_gross_pc,linear,{},0.0017381574307255851,0.40197122550700304,True
+m:z_d_pce_nonenergy_pc,z_d_pce_nonenergy_pc,linear,{},0.0049149651989552545,0.6108616280818322,True
+l:z_d_res_elec_pc,y_log_gross_pc,linear,{},0.0018647741406047835,0.3584076020394883,True
+m:z_d_res_elec_pc,z_d_res_elec_pc,linear,{},0.009224315659356653,0.38438286039037195,True
