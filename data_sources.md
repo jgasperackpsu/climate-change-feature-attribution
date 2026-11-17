@@ -141,7 +141,7 @@ No link currently available. The source is undergoing data migration and the met
 
 ### EIA: State Energy Data System (SEDS)
 
-- **Provides:** Annual state-level fossil fuel production (coal, crude oil, natural gas), the fossil fuel share of electric power sector energy input, population, real GDP, and energy-related CO₂ emissions by sector (robustness response). Also transportation-sector CO₂ by fuel (co2_trans_<fuel>_mmt: motor gasoline, distillate, jet fuel, residual, aviation gasoline, HGL, lubricants, natural gas, coal), which sum to transport CO₂ within 0.003 MMT. These are used **only** to split transport emissions in the descriptive decomposition; they are fuel consumption and never enter a treatment.
+- **Provides:** Annual state-level fossil fuel production (coal, crude oil, natural gas), the fossil fuel share of electric power sector energy input, population, real GDP, and energy-related CO₂ emissions by sector (robustness response). U.S. nominal and real GDP (GDPRV / GDPRX) give the national implicit GDP price deflator (gdp_deflator_2017, 2017 = 1), used to deflate consumer spending. Also transportation-sector CO₂ by fuel (co2_trans_<fuel>_mmt: motor gasoline, distillate, jet fuel, residual, aviation gasoline, HGL, lubricants, natural gas, coal), which sum to transport CO₂ within 0.003 MMT. These are used **only** to split transport emissions in the descriptive decomposition; they are fuel consumption and never enter a treatment.
 - **Citation:**
   U.S. Energy Information Administration. (2026). State Energy Data System. Consolidated data file, Consumption, price, expenditure, production, indicators, and CO2 emissions estimates. Retrieved on Oct 29, 2026 from https://www.eia.gov/state/seds/seds-data-complete.php#CompleteDataFile.
 
@@ -188,7 +188,7 @@ No link currently available. The source is undergoing data migration and the met
 
 ### BEA: Personal Consumption Expenditures by State (SAPCE2)
 
-- **Provides:** Personal consumption expenditures per person by type of product, used as a proxy for consumer demand. Spending on gasoline and other energy goods is subtracted, because that spending is fuel use.
+- **Provides:** Personal consumption expenditures per person by type of product, used as a proxy for consumer demand. Spending on gasoline and other energy goods is subtracted, because that spending is fuel use. BEA publishes this table in current dollars only, so build_panel.py deflates non-energy spending to 2017 dollars with the national implicit GDP price deflator from SEDS. With year fixed effects any national deflator is absorbed, but it still sets the scale of the standardized driver and matters for models without year effects (pooled OLS, XGBoost).
 - **Citation:**
   U.S. Bureau of Economic Analysis. Per Capita Personal Consumption Expenditures by State (SAPCE2), 1997–2025. Retrieved on Nov 2, 2026 from https://apps.bea.gov/regional/downloadzip.htm.
 
@@ -204,7 +204,7 @@ No link currently available. The source is undergoing data migration and the met
 
 ### U.S. Census Bureau: TIGER/Line Shapefiles, States (2022)
 
-- **Provides:** State boundary polygons, used to build a queen-contiguity neighbor matrix for the 50 states (DC and territories dropped). Queen contiguity counts shared corners, so the Four Corners pairs (AZ–CO, UT–NM) are neighbors. The matrix is row-standardized and saved as an edge list in data/state_neighbors.csv (state_fips, neighbor_fips, weight): 110 neighbor pairs, 220 rows. build_panel.py uses it to add each index's neighbor average in the same year (W_D_corporate, W_D_household, and the robustness indices).
+- **Provides:** State boundary polygons, used to build a queen-contiguity neighbor matrix for the 50 states (DC and territories dropped). Queen contiguity counts shared corners, so the Four Corners pairs (AZ–CO, UT–NM) are neighbors. The matrix is row-standardized and saved as an edge list in data/state_neighbors.csv (state_fips, neighbor_fips, weight): 110 neighbor pairs, 220 rows. build_panel.py uses it to add each index's neighbor average in the same year (W_D_corporate, W_D_household, and the robustness indices). The same file gives each state's land area (ALAND, load_tiger.py → data/interim/shared/tiger.csv), used for population per square mile (log_pop_density, the size control).
 - **Limitations:** Alaska and Hawaii have no neighbors, so their spatial lag is set to 0 (flag has_neighbors = 0). Neither is in the main sample (no degree days), so this matters only for a 50-state specification without HDD/CDD. TIGER/Line state polygons include Great Lakes and coastal water, so three links cross water only: IL–MI, MI–MN and NY–RI. They are kept.
 - **Citation:**
   U.S. Census Bureau. (2022). TIGER/Line Shapefiles: States (tl_2022_us_state). Retrieved on Nov 2, 2026 from https://www2.census.gov/geo/tiger/TIGER2022/STATE/.
@@ -224,6 +224,7 @@ No link currently available. The source is undergoing data migration and the met
 | load_bts.py | data/interim/shared/bts.csv |
 | load_bea.py | data/interim/shared/bea.csv |
 | load_noaa.py | data/interim/shared/noaa.csv |
+| load_tiger.py | data/interim/shared/tiger.csv (land area) |
 | load_fhwa.py | data/interim/civilian/fhwa.csv |
 | load_usda.py | data/interim/corporate/usda.csv |
 | load_usgs_minerals.py | data/interim/corporate/usgs_minerals.csv |
@@ -231,9 +232,10 @@ No link currently available. The source is undergoing data migration and the met
    Example: `python3 code/data_loaders/load_epa.py data/raw/outcome/allstateghgdata90-22_v082924/AllStateGHGData90-22_v082924.xlsx data/state_crosswalk.csv data/interim/outcome`
 
 4. Download tl_2022_us_state.zip (see Spatial Weights) into data/raw/shared/TIGER/ and build the neighbor matrix: `python3 code/data_preparation/build_spatial_weights.py data/raw/shared/TIGER/tl_2022_us_state.zip data/state_crosswalk.csv data/state_neighbors.csv`. The output is committed, so this step is only needed to rebuild it.
-5. Run build_panel.py (`python3 code/data_preparation/build_panel.py data/interim data/state_crosswalk.csv data/state_neighbors.csv data/processed`) to join every interim file into data/processed/panel.csv (one row per state-year, 50 states × 1997–2022 = 1,300 rows) and data/processed/data_dictionary.csv. It prints a report with coverage checks, missingness, and driver correlations.
+5. Run build_panel.py (`python3 code/data_preparation/build_panel.py data/interim data/state_crosswalk.csv data/state_neighbors.csv data/processed`) to join every interim file into data/processed/panel.parquet and panel.csv (the same table; one row per state-year, 50 states × 1997–2022 = 1,300 rows) and data/processed/data_dictionary.csv. It prints a report with coverage checks, missingness, and driver correlations.
 6. Run the Phase 3 decomposition and EDA:
    `python3 code/data_preparation/decompose_emissions.py data/processed/panel.csv data/processed/decomposition.csv`
    `python3 code/analysis/eda.py data/processed/panel.csv data/processed/decomposition.csv visuals data/processed`
-7. Run the Phase 4 fixed-effects baseline: `python3 code/models/fe_baseline.py data/processed/panel.csv models findings/baseline`. Each specification (main, no_gdp, no_wy, no_ippu, pooled, no_lags, main_dk, drivers) gets its own folder under models/fe_baseline/ with the fitted model (model.pkl), coefficients.csv, metrics.csv and summary.txt. The combined comparison table is models/fe_baseline/table.md; the gap test (D_corporate − D_household), the normal vs. t(G − 1) comparison and the standard-error comparison (se_comparison.csv) go to findings/baseline/. Then run the ML baseline and SHAP comparison (needs the FE output): `python3 code/models/ml_baseline.py data/processed/panel.csv models findings/baseline visuals`. It writes models/ml_baseline/, findings/baseline/shap_vs_causal.csv and two figures; it takes about 2 minutes.
+   The EDA also writes missingness.csv and outliers.csv (one-year jumps) to data/processed/.
+7. Split the panel 70/15/15 by whole years (train 1997–2014, validation 2015–2018, test 2019–2022): `python3 code/data_preparation/split_panel.py data/processed/panel.csv data/split_data`. Then run the Phase 4 fixed-effects baseline: `python3 code/models/fe_baseline.py data/split_data models findings/baseline`. Each specification (main, no_gdp, no_wy, no_ippu, pooled, no_lags, main_dk, drivers) gets its own folder under models/fe_baseline/ with the fitted model (model.pkl), coefficients.csv, metrics.csv and summary.txt. The combined comparison table is models/fe_baseline/table.md; the gap test (D_corporate − D_household), the normal vs. t(G − 1) comparison and the standard-error comparison (se_comparison.csv) go to findings/baseline/. Then run the ML baseline and SHAP comparison (needs the FE output): `python3 code/models/ml_baseline.py data/split_data models findings/baseline visuals`. It writes models/ml_baseline/, findings/baseline/shap_vs_causal.csv and two figures; it takes about 2 minutes. Phase 5: `python3 code/models/dml.py data/split_data models findings/dml visuals` (about 25 minutes).
 8. data/raw/ is git-ignored, so downloaded data will not be committed.

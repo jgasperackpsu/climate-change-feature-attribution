@@ -1,7 +1,7 @@
 """Step 7: turn USGS construction aggregates statistics into data/interim/usgs_minerals.csv.
 
 Usage:
-    python src/load/load_usgs_minerals.py <path/to/usgs_mineral_ext_1971_2023.xlsx> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_usgs_minerals.py <path/to/usgs_mineral_ext_1971_2023.xlsx> <path/to/state_crosswalk.csv> <out_dir>
 
 The workbook (sheet Data_1971_2023) covers construction aggregates only: crushed stone and
 construction sand and gravel. It does not contain cement or metal mining. Rows used are the

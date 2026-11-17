@@ -1,7 +1,7 @@
 """Step 4: turn BEA regional tables into data/interim/bea.csv.
 
 Usage:
-    python src/load/load_bea.py <folder containing the BEA CSVs> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_bea.py <folder containing the BEA CSVs> <path/to/state_crosswalk.csv> <out_dir>
 
 Files it looks for (anywhere under the folder):
     SAPCE2__ALL_AREAS_*.csv   per capita personal consumption expenditures by type, dollars

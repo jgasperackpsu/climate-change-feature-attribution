@@ -12,7 +12,7 @@
     "D_household",
     "W_D_corporate",
     "W_D_household",
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -52,21 +52,21 @@
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
-        "max_depth": 1,
+        "max_depth": 2,
         "min_child_weight": 30
       },
-      "cv_mse": 0.0020254864669974433,
-      "cv_r2": 0.2548518967179917
+      "cv_mse": 0.0020152346699302674,
+      "cv_r2": 0.2586233892775852
     },
     "l:lead_D_household": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
-        "max_depth": 1,
+        "max_depth": 2,
         "min_child_weight": 30
       },
-      "cv_mse": 0.002028303356318374,
-      "cv_r2": 0.2538156025887307
+      "cv_mse": 0.0020067083148892673,
+      "cv_r2": 0.26176011588140613
     },
     "m:lead_D_corporate": {
       "learner": "xgb",
@@ -75,8 +75,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.01651949028909966,
-      "cv_r2": 0.5256586691974267
+      "cv_mse": 0.016639388874264752,
+      "cv_r2": 0.5222158962393479
     },
     "m:lead_D_household": {
       "learner": "xgb",
@@ -85,8 +85,8 @@
         "max_depth": 1,
         "min_child_weight": 10
       },
-      "cv_mse": 0.017347840046543266,
-      "cv_r2": 0.6157705942784675
+      "cv_mse": 0.02354995352178755,
+      "cv_r2": 0.6461497996900221
     }
   },
   "xgb_fixed": {
@@ -135,7 +135,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 10.8,
+  "seconds": 11.4,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

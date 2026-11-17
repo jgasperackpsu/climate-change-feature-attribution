@@ -1,7 +1,7 @@
 """Outcome: turn EPA's All-State GHG Inventory workbook into data/interim/outcome/epa.csv.
 
 Usage:
-    python src/load/load_epa.py <path/to/AllStateGHGData...xlsx> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_epa.py <path/to/AllStateGHGData...xlsx> <path/to/state_crosswalk.csv> <out_dir>
 
 Source: Inventory of U.S. Greenhouse Gas Emissions and Sinks by State, 1990-2022 (EPA-430-R-24-006).
 Reads the "Data by Econ Sect" tab. Units: Tg CO2e = million metric tons CO2e (AR5 100-yr GWPs).

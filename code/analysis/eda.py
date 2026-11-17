@@ -1,10 +1,19 @@
-"""Phase 3: descriptive EDA - emission shares over time, driver correlations, VIF, index correlation.
+"""Phase 3: descriptive EDA - emission shares over time, missingness, outliers, driver correlations, VIF,
+index correlation.
 
 Usage:
     python code/analysis/eda.py <path/to/panel.csv> <path/to/decomposition.csv> <visuals_dir> <tables_dir>
     e.g. python code/analysis/eda.py data/processed/panel.csv data/processed/decomposition.csv visuals data/processed
 
-Writes PNG figures to <visuals_dir> and vif.csv / correlations.csv to <tables_dir>.
+Writes PNG figures to <visuals_dir> and vif.csv, correlations.csv, missingness.csv, outliers.csv to <tables_dir>.
+
+Missingness: for every model input and robustness variable, missing state-years in the 50-state panel and
+in the main sample, with the states and years affected.
+Outliers: one-year jumps. For Y, the robustness outcomes, every driver and log(1 + MMT) of each EPA sector
+and of IPPU and iron and steel, the year-over-year change within a state is scored with a robust z (median and
+1.4826 x MAD of all changes of that variable); |z| > OUTLIER_Z is flagged, with whether the jump reverses the
+next year (a one-off spike) or persists (a level shift). The EPA iron and steel allocation breaks (MN, MI 2010;
+MD 2011-12) show up in the sector series: they are too small a share of total gross GHG to stand out in Y.
 Correlations and VIFs use the main sample (in_main_sample = 1: contiguous 48 states, 1,248 rows).
 "Within" = two-way (state and year) demeaned, i.e. the variation left for a fixed-effects model.
 """
@@ -31,8 +40,8 @@ LABELS = {
     "d_industrial_share": "Industrial GDP share", "d_fossil_prod_pc": "Fossil production / person",
     "d_grid_fossil_share": "Grid fossil share", "d_sand_gravel_pc": "Sand & gravel / person",
     "d_vmt_pc": "VMT / person", "d_air_pax_pc": "Air passenger-miles / person",
-    "d_pce_nonenergy_pc": "Non-energy PCE / person", "d_res_elec_pc": "Residential electricity / person",
-    "d_cattle_pc": "Cattle / person", "log_pop": "log population", "log_gdp_real_pc": "log real GDP / person",
+    "d_pce_nonenergy_pc": "Real non-energy PCE / person", "d_res_elec_pc": "Residential electricity / person",
+    "d_cattle_pc": "Cattle / person", "log_pop_density": "log population density", "log_gdp_real_pc": "log real GDP / person",
     "hdd_k": "HDD (thousands)", "cdd_k": "CDD (thousands)", "D_corporate": "D corporate", "D_household": "D household",
     "W_D_corporate": "W · D corporate", "W_D_household": "W · D household",
 }
@@ -57,6 +66,13 @@ def style():
     })
 
 
+OUTLIER_Z = 5
+SCANNED = [Y, "y_log_co2_energy_pc", "y_log_gross_noippu_pc"] + CORPORATE + HOUSEHOLD + ["d_cattle_pc"]
+SECTORS = ["ghg_residential_mmt", "ghg_commercial_mmt", "ghg_industry_mmt", "ghg_transportation_mmt",
+           "ghg_electric_power_mmt", "ghg_agriculture_mmt", "ghg_ippu_mmt", "ghg_iron_steel_mmt"]
+CHECKED = SCANNED + ["d_air_freight_pc"] + CONTROLS + LAGS + ["D_corporate", "D_household"]
+
+
 def save(fig, out, name):
     fig.savefig(out / name)
     plt.close(fig)
@@ -72,18 +88,18 @@ def fig_national_share(dec, out):
     nat = dec.groupby("year")[["ghg_household_mmt", "ghg_corporate_mmt"]].sum()
     share = nat.ghg_household_mmt / nat.sum(axis=1)
     q = dec.groupby("year").household_share.quantile([0.1, 0.9]).unstack()
-    fig, ax = plt.subplots(figsize=(7, 3.6))
-    ax.fill_between(q.index, q[0.1] * 100, q[0.9] * 100, color=HH, alpha=0.15, linewidth=0)
-    ax.plot(share.index, share * 100, color=HH)
-    ax.text(2022.4, share.iloc[-1] * 100, f"50-state total\n{share.iloc[-1]:.0%}", va="center", color=INK, fontsize=8.5)
-    ax.text(2022.4, q[0.9].iloc[-1] * 100, "90th pct state", va="center", color=INK2, fontsize=8)
-    ax.text(2022.4, q[0.1].iloc[-1] * 100, "10th pct state", va="center", color=INK2, fontsize=8)
-    ax.set_ylim(0, 70)
+    fig, ax = plt.subplots(figsize=(7, 3.8))
+    for side, s, color in [("Household", share, HH), ("Corporate", 1 - share, CORP)]:
+        lo, hi = (q[0.1], q[0.9]) if side == "Household" else (1 - q[0.9], 1 - q[0.1])
+        ax.fill_between(q.index, lo * 100, hi * 100, color=color, alpha=0.15, linewidth=0)
+        ax.plot(s.index, s * 100, color=color)
+        ax.text(2022.4, s.iloc[-1] * 100, f"{side}\n{s.iloc[-1]:.0%}", va="center", color=INK, fontsize=8.5)
+    ax.set_ylim(0, 100)
     ax.set_xlim(1997, 2022)
-    ax.set_ylabel("household share of gross GHG (%)")
-    ax.set_title("Household share of gross GHG emissions, 1997–2022")
-    ax.annotate("Band: 10th–90th percentile across the 50 states. Electricity split by sales shares; "
-                "transport by SEDS fuel (gasoline + passenger jet fuel).",
+    ax.set_ylabel("share of gross GHG (%)")
+    ax.set_title("Household and corporate shares of gross GHG emissions, 1997–2022")
+    ax.annotate("Lines: 50-state totals. Bands: 10th–90th percentile across the 50 states. Electricity split by "
+                "sales shares; transport by SEDS fuel (gasoline + passenger jet fuel).",
                 (0, -0.16), xycoords="axes fraction", fontsize=7.5, color=MUTED)
     save(fig, out, "decomp_household_share_national.png")
     return share
@@ -132,6 +148,42 @@ def fig_state_heatmap(dec, out):
     cb.outline.set_visible(False)
     ax.set_title("Household share by state (sorted by 2022)")
     save(fig, out, "decomp_household_share_states.png")
+
+
+def missingness(p):
+    """Missing state-years per variable: 50-state panel and main sample, with the states and years affected."""
+    rows = []
+    for c in CHECKED:
+        miss = p[c].isna()
+        main = miss & (p.in_main_sample == 1)
+        rows.append(dict(variable=c, n=len(p), missing=int(miss.sum()), missing_share=miss.mean(),
+                         missing_main_sample=int(main.sum()),
+                         states=",".join(sorted(p.loc[miss, "postal_code"].unique())),
+                         years=(f"{p.loc[miss, 'year'].min()}-{p.loc[miss, 'year'].max()}" if miss.any() else "")))
+    return pd.DataFrame(rows)
+
+
+def outliers(p, z_cut=OUTLIER_Z):
+    """One-year jumps scored by a robust z over all within-state year-over-year changes of each variable."""
+    rows = []
+    q = p.sort_values(["postal_code", "year"]).copy()
+    for c in SECTORS:
+        q[f"log1p_{c}"] = np.log1p(q[c].clip(lower=0))
+    for c in SCANNED + [f"log1p_{c}" for c in SECTORS]:
+        dx = q.groupby("postal_code")[c].diff()
+        nxt = q.groupby("postal_code")[c].diff().groupby(q.postal_code).shift(-1)
+        med = dx.median()
+        mad = 1.4826 * (dx - med).abs().median()
+        z = (dx - med) / mad
+        hit = z.abs() > z_cut
+        for i in q.index[hit]:
+            reverses = pd.notna(nxt[i]) and np.sign(nxt[i]) == -np.sign(dx[i]) and abs(nxt[i]) > 0.5 * abs(dx[i])
+            rows.append(dict(variable=c, postal_code=q.at[i, "postal_code"], year=int(q.at[i, "year"]),
+                             change=dx[i], robust_z=z[i], next_change=nxt[i],
+                             pattern="spike (reverses)" if reverses else "level shift",
+                             in_main_sample=int(q.at[i, "in_main_sample"])))
+    return pd.DataFrame(rows).sort_values(["variable", "robust_z"], key=lambda s: s.abs() if s.name == "robust_z" else s,
+                                          ascending=[True, False])
 
 
 def fig_corr(pooled, within_c, out):
@@ -219,6 +271,11 @@ def main(panel_path, decomp_path, visuals_dir, tables_dir):
     fig_components(dec, out)
     fig_state_heatmap(dec, out)
 
+    miss, outl = missingness(p), outliers(p)
+    miss.to_csv(tab / "missingness.csv", index=False)
+    outl.to_csv(tab / "outliers.csv", index=False)
+    print(f"  wrote {tab / 'missingness.csv'} and {tab / 'outliers.csv'}")
+
     m = p[p.in_main_sample == 1].reset_index(drop=True)
     if len(m) != 1248 or m.state_fips.nunique() != 48:
         raise ValueError(f"main sample is {len(m)} rows / {m.state_fips.nunique()} states, expected 1,248 / 48")
@@ -249,6 +306,15 @@ def main(panel_path, decomp_path, visuals_dir, tables_dir):
     # --- report ---
     print("\n================ REPORT ================")
     print(f"main sample: {len(m):,} rows, {m.state_fips.nunique()} states")
+    print("\nmissing state-years (50-state panel / main sample):")
+    print(miss[miss.missing > 0][["variable", "missing", "missing_main_sample", "states", "years"]].to_string(index=False))
+    print(f"\none-year jumps with |robust z| > {OUTLIER_Z}, outcomes:")
+    print(outl[outl.variable.str.startswith("y_")].round(3).to_string(index=False))
+    print("EPA iron & steel and IPPU series, 10 largest (all in outliers.csv):")
+    print(outl[outl.variable.str.contains("iron_steel|ippu_mmt") & (outl.in_main_sample == 1)]
+          .head(10).round(3).to_string(index=False))
+    print(f"jumps per driver: " + ", ".join(f"{k} {v}" for k, v in outl[outl.variable.str.startswith("d_")]
+                                              .variable.value_counts().items()))
     print("\nVIF (rule of thumb: > 5 worth a look, > 10 a problem):")
     print(v.pivot(index="variable", columns="spec", values="vif").round(2).to_string())
     pairs = within_c.where(np.triu(np.ones(within_c.shape, bool), 1)).stack()

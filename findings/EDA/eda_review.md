@@ -1,12 +1,14 @@
 # Phase 3 EDA Review
 
-Review of the six Phase 3 figures in [visuals/](../../visuals/) and the three tables in data/processed/ (correlations.csv, vif.csv, decomposition.csv).
+Review of the six Phase 3 figures in [visuals/](../../visuals/) and the tables in data/processed/ (correlations.csv, vif.csv, decomposition.csv, missingness.csv, outliers.csv).
+
+**Updated 2026-11-17.** An audit against the implementation plan found two Phase 2 steps that had been missed. Non-energy consumer spending is now deflated to real 2017 dollars (national GDP price deflator), and the size control is population per square mile (log_pop_density). Also, eda.py now saves the missingness check (missingness.csv) and the one-year-jump scan (outliers.csv); before, both had only been printed or run by hand. The national-share figure now shows both shares. The numbers below are from the re-run; the decomposition is unaffected.
 
 Everything reconciles: the decomposition matches EPA's gross total and every sector exactly. But checking the jumps in the household-share heatmap turned up a real data problem in EPA's figures that needs fixing before the models, so this review starts there.
 
 ## Most important finding: three breaks in EPA's iron and steel data
 
-A scan of EPA's raw workbook for one-year jumps that are both large and out of line with each state's normal year-to-year changes found:
+A scan for one-year jumps that are both large and out of line with each state's normal year-to-year changes (now in eda.py: robust z > 5 on within-state year-over-year changes of Y, every driver and each EPA sector series; every hit is in [outliers.csv](../../data/processed/outliers.csv)) found:
 
 | State | Year | Change | Share of state gross |
 |---|---|---|---|
@@ -39,9 +41,9 @@ The other breaks the scan found are real events and should stay in:
 
 **What it means:**
 
-- Overlap between variables isn't a problem. Every within-state VIF is at most 2.3, and every model regressor is at most 1.4, far under the usual cutoff of 5.
-- The highest within-state values are non-energy spending (2.3), log GDP per person (2.1) and residential electricity (1.9). Spending and GDP move together within states (r = 0.64).
-- vif.csv also has pooled versions, without fixed effects. There, only HDD (6.9) and CDD (6.2) exceed 5, because cold states have few hot days (pooled r = −0.87). Once fixed effects are in, that drops to 1.2–1.3, so it can be ignored.
+- Overlap between variables isn't a problem. Every within-state VIF is at most 2.3, and every model regressor is at most 1.5, far under the usual cutoff of 5.
+- The highest within-state values are real non-energy spending (2.3), log GDP per person (2.1) and residential electricity (1.9). Spending and GDP move together within states (r = 0.64).
+- vif.csv also has pooled versions, without fixed effects. There, HDD (7.0) and CDD (6.1) exceed 5, because cold states have few hot days (pooled r = −0.87), and real spending (5.05) and population density (5.03) are just over 5. Once fixed effects are in, all of them drop to 1.2–2.3, so it can be ignored.
 
 **Recommendation:** no change needed for overlap. The GDP–spending link does raise a design question: GDP per person may be partly a result of industrial activity (a mediator), not just a confounder. Holding it fixed could absorb some of the effect being measured. Run one robustness model without the GDP control, and say in the writeup which way you lean.
 
@@ -53,7 +55,7 @@ The other breaks the scan found are real events and should stay in:
 
 **What it means:**
 
-- Raw correlation 0.12, within-state correlation 0.18. The two indices move mostly independently, which is what DML needs to separate their effects.
+- Raw correlation 0.08, within-state correlation 0.21. The two indices move mostly independently, which is what DML needs to separate their effects.
 - On the left, Wyoming sits apart from the other states (corporate index 2.2–4.3 SD). Overlap is otherwise good: across most of the corporate range, there are states at both high and low household values.
 - On the right, Wyoming also has the largest within-state swings (from −1.0 to +1.2 on corporate). So it doesn't just stand out in raw levels; it will also pull hard on the fixed-effects and DML estimates.
 - There's also a small cluster of points in the lower left (around −0.8, −0.9), plus a few in the upper right, that are worth identifying.
@@ -70,7 +72,7 @@ The other breaks the scan found are real events and should stay in:
 
 **What it means:**
 
-- Raw correlations mostly reflect differences between states: spending vs. GDP (0.71), HDD vs. CDD (−0.87), sand and gravel vs. population (−0.57, since rural states quarry more per person), VMT vs. residential electricity (0.52), and fossil production vs. grid fossil share (0.52).
+- Raw correlations mostly reflect differences between states: spending vs. GDP (0.82), HDD vs. CDD (−0.87), sand and gravel vs. population density (−0.75, since rural states quarry more per person), VMT vs. residential electricity (0.52), and fossil production vs. grid fossil share (0.52).
 - After fixed effects, everything weakens. The largest remaining are spending vs. GDP (0.64), industrial share vs. GDP (0.42), spending vs. sand and gravel (0.41), and spending vs. residential electricity (0.37).
 - Importantly, the drivers within each index barely move together once fixed effects are removed. Fossil production vs. grid fossil share is 0.05, and industrial share vs. grid fossil share is −0.10. Each index therefore averages drivers that change independently within a state. That's acceptable for a summary index, but a reviewer could ask whether "corporate activity" is really one thing.
 
@@ -125,17 +127,21 @@ The other breaks the scan found are real events and should stay in:
 
 ![National household share](../../visuals/decomp_household_share_national.png)
 
-**What it shows:** the 50-state household share over time, with a shaded band from the 10th to the 90th percentile state.
+**What it shows:** the 50-state household and corporate shares over time (the corporate share is 1 minus the household share), each with a shaded band from the 10th to the 90th percentile state.
 
 **What it means:** the national share is very stable (33–36%, 34% in 2022, with a COVID dip in 2020). The band is wide, about 19% to 53%, and the bottom edge has drifted down (from about 21% to 18.5%), meaning energy-producing states are diverging from the rest.
 
 **Recommendation:** this is a good opening figure. It also explains why the causal design depends on within-state changes in drivers, not on changes in the national share: there's very little national movement to work with.
 
-## The three CSVs
+## The CSVs
 
 **correlations.csv:** 66 pairs (every pair of the 12 variables) × 2 versions (raw and within), matching Figure 3. It doesn't include Y or the two indices. Add them, since each driver's within-state correlation with Y is the most useful row in the table.
 
 **vif.csv:** 4 versions (drivers or model regressors, raw or within), 40 rows. The only values above 5 are HDD and CDD in the raw versions, as described above.
+
+**missingness.csv:** missing state-years per model variable, in the 50-state panel and the main sample. The only gaps are by design: degree days for AK and HI (no NOAA data, so both are out of the main sample) and air freight before 2003 (all-cargo undercount; robustness only). Every main-sample input is complete.
+
+**outliers.csv:** every one-year jump with |robust z| > 5. In Y: Delaware 2009 (refinery), Nevada 2006 (Mohave), and New Jersey, Montana and Hawaii in 2020 (COVID). In the IPPU series the three iron and steel breaks are among the four largest jumps (MN 2010 z = 41, MI 2010 z = 19, MD 2011 z = 17 followed by the reversal in 2012). Many driver jumps are in air passenger-miles and fossil production, which are volatile in small states and producing states.
 
 **decomposition.csv:** 19,500 rows (50 states × 26 years × 15 variables). Checks passed:
 
@@ -149,7 +155,7 @@ Three things to document:
 - The lowest jet passenger shares are Alaska 0.05, Kentucky 0.07 and Tennessee 0.14. That makes sense, because those states host the Anchorage, UPS and FedEx cargo hubs.
 - Delaware's share jumps around (1.0 in four years, 0.48 in 2011) because it has so little air traffic. It barely affects the totals, but it's noise.
 
-## What to do next, in order
+## What to do next (original list; items 1, 3 and 4 are done, see Phases 4 and 5), in order
 
 1. Fix the EPA iron and steel breaks: add flags and step dummies, and add the robustness version of Y without industrial processes. Then rebuild the panel and rerun these figures.
 2. Add Y and the indices to correlations.csv, and calculate how consistent each index's parts are.

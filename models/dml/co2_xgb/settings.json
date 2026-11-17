@@ -10,7 +10,7 @@
     "W_D_household"
   ],
   "x": [
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -50,8 +50,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.0027141569672369764,
-      "cv_r2": 0.1708814190040403
+      "cv_mse": 0.0027347450953899917,
+      "cv_r2": 0.16459217346457966
     },
     "l:D_household": {
       "learner": "xgb",
@@ -60,18 +60,18 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.002684622439681693,
-      "cv_r2": 0.17990360374597547
+      "cv_mse": 0.0026780505193088945,
+      "cv_r2": 0.18191118892239955
     },
     "l:W_D_corporate": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
         "max_depth": 1,
-        "min_child_weight": 10
+        "min_child_weight": 30
       },
-      "cv_mse": 0.0026871368406352074,
-      "cv_r2": 0.17913550647827947
+      "cv_mse": 0.002690899741699324,
+      "cv_r2": 0.17798601835789096
     },
     "l:W_D_household": {
       "learner": "xgb",
@@ -80,8 +80,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.0026678341484057287,
-      "cv_r2": 0.18503207804134558
+      "cv_mse": 0.0026656371837899488,
+      "cv_r2": 0.18570320510095262
     },
     "m:D_corporate": {
       "learner": "xgb",
@@ -90,18 +90,18 @@
         "max_depth": 1,
         "min_child_weight": 30
       },
-      "cv_mse": 0.03205117593187668,
-      "cv_r2": 0.16252386051472723
+      "cv_mse": 0.03200777723115203,
+      "cv_r2": 0.1636578400111055
     },
     "m:D_household": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
         "max_depth": 2,
-        "min_child_weight": 30
+        "min_child_weight": 10
       },
-      "cv_mse": 0.038887573378975096,
-      "cv_r2": 0.18618761982395993
+      "cv_mse": 0.05352788725051364,
+      "cv_r2": 0.24134811284385083
     },
     "m:W_D_corporate": {
       "learner": "xgb",
@@ -110,18 +110,18 @@
         "max_depth": 1,
         "min_child_weight": 30
       },
-      "cv_mse": 0.010601091700007113,
-      "cv_r2": 0.1706757749462714
+      "cv_mse": 0.010560142332183749,
+      "cv_r2": 0.17387924716380998
     },
     "m:W_D_household": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
-        "max_depth": 2,
-        "min_child_weight": 30
+        "max_depth": 1,
+        "min_child_weight": 10
       },
-      "cv_mse": 0.013367322460444166,
-      "cv_r2": 0.21556080155843282
+      "cv_mse": 0.019952530455542825,
+      "cv_r2": 0.24132186405725764
     }
   },
   "xgb_fixed": {
@@ -170,7 +170,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 18.4,
+  "seconds": 26.4,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

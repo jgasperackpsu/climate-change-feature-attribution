@@ -12,7 +12,7 @@
     "D_household",
     "W_D_corporate",
     "W_D_household",
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -54,8 +54,8 @@
         "min_samples_leaf": 20,
         "max_features": 1.0
       },
-      "cv_mse": 0.0019577375036060113,
-      "cv_r2": 0.2797757914924076
+      "cv_mse": 0.00197021001502214,
+      "cv_r2": 0.2751873292260225
     },
     "l:lead_D_household": {
       "learner": "rf",
@@ -63,22 +63,22 @@
         "min_samples_leaf": 20,
         "max_features": 1.0
       },
-      "cv_mse": 0.0019604784812458555,
-      "cv_r2": 0.2787674242074383
+      "cv_mse": 0.0019655248657292268,
+      "cv_r2": 0.2769109300330832
     },
     "m:lead_D_corporate": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.010390853637456616,
-      "cv_r2": 0.7016365967527343
+      "cv_mse": 0.010374774218354218,
+      "cv_r2": 0.7020983018611902
     },
     "m:lead_D_household": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.006134328047882587
+        "alpha": 0.0066294685286361595
       },
-      "cv_mse": 0.01213641768705427,
-      "cv_r2": 0.7311960138568177
+      "cv_mse": 0.015473201578566752,
+      "cv_r2": 0.7675071641671367
     }
   },
   "xgb_fixed": {
@@ -127,7 +127,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 74.2,
+  "seconds": 78.5,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

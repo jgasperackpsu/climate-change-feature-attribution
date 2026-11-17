@@ -1,8 +1,11 @@
 """Step 3: turn BTS T-100 Segment (All Carriers) files into data/interim/bts.csv.
 
 Usage:
-    python src/load/load_bts.py <folder with bts_YYYY.csv> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_bts.py <folder with bts_YYYY.csv> <path/to/state_crosswalk.csv> <out_dir>
 
+Each segment is assigned to the state of its origin airport, using T-100's ORIGIN_STATE_FIPS field (BTS's
+own airport-to-state mapping, so no separate airport lookup is needed). Each segment row is split into
+passenger-miles and freight ton-miles.
 For each state and year (by ORIGIN state, i.e. flights departing the state):
     air_pax_miles_millions      passengers x segment miles               -> household side
     air_freight_tonmiles_millions  freight (lb) / 2000 x segment miles    -> corporate side

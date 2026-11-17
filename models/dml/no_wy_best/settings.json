@@ -10,7 +10,7 @@
     "W_D_household"
   ],
   "x": [
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -51,34 +51,32 @@
     "l:D_corporate": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.0020047855410759287,
-      "cv_r2": 0.3111059571370429
+      "cv_mse": 0.002019047457750097,
+      "cv_r2": 0.3062052087849926
     },
     "l:D_household": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.0019624533562835494,
-      "cv_r2": 0.3256523459289299
+      "cv_mse": 0.0019740737751387273,
+      "cv_r2": 0.32165928175279457
     },
     "l:W_D_corporate": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.002012519702261283,
-      "cv_r2": 0.30844830749923036
+      "cv_mse": 0.0020245010289269088,
+      "cv_r2": 0.30433122644670285
     },
     "l:W_D_household": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.0019767896585009583,
-      "cv_r2": 0.32072603685900536
+      "cv_mse": 0.0019807541426688,
+      "cv_r2": 0.3193637417554678
     },
     "m:D_corporate": {
-      "learner": "lasso",
-      "params": {
-        "alpha": 0.009899551567965539
-      },
-      "cv_mse": 0.019845975512384054,
-      "cv_r2": 0.28845525846209397
+      "learner": "linear",
+      "params": {},
+      "cv_mse": 0.019799536253733062,
+      "cv_r2": 0.2901202615390862
     },
     "m:D_household": {
       "learner": "xgb",
@@ -87,8 +85,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.0386693722163846,
-      "cv_r2": 0.18288676651748703
+      "cv_mse": 0.05145490136224782,
+      "cv_r2": 0.26133850388623636
     },
     "m:W_D_corporate": {
       "learner": "rf",
@@ -96,18 +94,17 @@
         "min_samples_leaf": 20,
         "max_features": 0.5
       },
-      "cv_mse": 0.010542721457750336,
-      "cv_r2": 0.1782071429280564
+      "cv_mse": 0.010535289430078565,
+      "cv_r2": 0.17878646082796468
     },
     "m:W_D_household": {
-      "learner": "xgb",
+      "learner": "rf",
       "params": {
-        "n_estimators": 100,
-        "max_depth": 2,
-        "min_child_weight": 10
+        "min_samples_leaf": 5,
+        "max_features": 0.33
       },
-      "cv_mse": 0.012053676071112856,
-      "cv_r2": 0.2612831270399867
+      "cv_mse": 0.01806852418166102,
+      "cv_r2": 0.28220109767079027
     }
   },
   "xgb_fixed": {
@@ -156,7 +153,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 69.3,
+  "seconds": 98.9,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

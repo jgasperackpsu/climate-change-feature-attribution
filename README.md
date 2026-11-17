@@ -16,13 +16,13 @@ Each index also enters as a spatial lag (the neighbor average) to capture spillo
 
 ## Current findings (Phase 5)
 
-All models are fit on the train years (1997–2014) of a 70/15/15 split by whole years ([data/split_data/](data/split_data/)).
+All models are fit on the train years (1997–2014) of a 70/15/15 split by whole years ([data/split_data/](data/split_data/)). Consumer spending is in real 2017 dollars and the size control is population per square mile (corrected and re-run 2026-11-17).
 
-- **The corporate index has a positive within-state effect.** Per SD of the index, emissions per person rise by 0.053 log points (about 5.5%; p = 0.023) in the main DML result. That holds with every nuisance learner and in all but one robustness version.
-- **The household effect is smaller and borderline** (0.035, p = 0.080), and it is mostly residential electricity.
-- **"Corporate > household" is not supported.** The gap is 0.019 (p = 0.56; one-sided 0.28), and it is not significant with any learner or in any version. Counting spillovers does not change that.
-- **Placebo and sensitivity checks:** the placebo passes (next year's index has no effect). An omitted confounder would need a partial R² of 0.17 to remove the corporate effect.
-- **Drivers:** the within-state effect is carried by residential electricity, fossil production and grid fossil share. SHAP instead ranks drivers by how well they separate states (fossil production first, residential electricity sixth).
+- **The corporate index has a positive within-state effect.** Per SD of the index, emissions per person rise by 0.052 log points (about 5.4%; p = 0.027) in the main DML result. That holds with every nuisance learner and in all but one robustness version.
+- **The household index has a positive effect of similar size** (0.042, p = 0.032). It is less robust: it is not significant without Wyoming or North Dakota, and it is mostly residential electricity.
+- **"Corporate > household" is not supported.** The gap is 0.012 (p = 0.71; one-sided 0.36), and the own-effect gap is not significant with any learner or in any version. Counting spillovers does not change that.
+- **Placebo and sensitivity checks:** the placebo passes (next year's index has no effect). An omitted confounder would need a partial R² of 0.17–0.18 to remove either effect.
+- **Drivers:** the within-state effect is carried by residential electricity, fossil production and grid fossil share. SHAP instead ranks drivers by how well they separate states (fossil production first, residential electricity fifth).
 
 Details: [findings/dml/dml_results.md](findings/dml/dml_results.md) (Phase 5) and [findings/baseline/baseline_results.md](findings/baseline/baseline_results.md) (Phase 4).
 
@@ -40,7 +40,7 @@ Details: [findings/dml/dml_results.md](findings/dml/dml_results.md) (Phase 5) an
 | Path | Contents |
 |---|---|
 | `code/data_loaders/` | One loader per source → tidy files in `data/interim/` |
-| `code/data_preparation/` | `build_spatial_weights.py`, `build_panel.py` (→ `data/processed/panel.csv`), `decompose_emissions.py`, `split_panel.py` (→ `data/split_data/`) |
+| `code/data_preparation/` | `build_spatial_weights.py`, `build_panel.py` (→ `data/processed/panel.parquet` and `panel.csv`), `decompose_emissions.py`, `split_panel.py` (→ `data/split_data/`) |
 | `code/analysis/eda.py` | Phase 3 figures and tables; also the shared chart style |
 | `code/models/` | `fe_baseline.py`, `ml_baseline.py` (Phase 4), `dml.py` (Phase 5) |
 | `data/` | `interim/` and `processed/` panel files, `split_data/` (train / validation / test), state crosswalk and neighbor list. Raw data is not stored; see [data_sources.md](data_sources.md) |
@@ -54,7 +54,8 @@ Details: [findings/dml/dml_results.md](findings/dml/dml_results.md) (Phase 5) an
 From the repository root, with the project environment (`pip install -r requirements.txt`; DoubleML ≥ 0.11):
 
 ```
-# panel (after the loaders have filled data/interim/)
+# panel (after the loaders have filled data/interim/; load_tiger.py adds land area)
+python code/data_loaders/load_tiger.py data/raw/shared/TIGER/tl_2022_us_state.zip data/state_crosswalk.csv data/interim/shared
 python code/data_preparation/build_panel.py data/interim data/state_crosswalk.csv data/state_neighbors.csv data/processed
 python code/data_preparation/decompose_emissions.py data/processed/panel.csv data/processed/decomposition.csv
 python code/analysis/eda.py data/processed/panel.csv data/processed/decomposition.csv visuals data/processed

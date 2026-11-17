@@ -6,7 +6,7 @@ Reads one file per year from a folder, named vm2_YYYY.<ext>:
                    which carries the same rural and urban annual VMT columns
 
 Usage:
-    python src/load/load_fhwa.py <folder> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_fhwa.py <folder> <path/to/state_crosswalk.csv> <out_dir>
 
 Output is tidy: state_fips, year, variable, value. Units: millions of vehicle-miles.
 Needs: pandas, xlrd (old .xls), openpyxl (.xlsx), pdfplumber (.pdf).

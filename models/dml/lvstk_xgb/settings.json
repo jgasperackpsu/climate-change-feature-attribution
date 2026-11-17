@@ -10,7 +10,7 @@
     "W_D_household"
   ],
   "x": [
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -53,8 +53,8 @@
         "max_depth": 2,
         "min_child_weight": 30
       },
-      "cv_mse": 0.00213484829299823,
-      "cv_r2": 0.26548614882528476
+      "cv_mse": 0.0021483792471077698,
+      "cv_r2": 0.26083070176346645
     },
     "l:D_household": {
       "learner": "xgb",
@@ -63,28 +63,28 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.0021138208423189244,
-      "cv_r2": 0.27272083328951513
+      "cv_mse": 0.0021229535078682933,
+      "cv_r2": 0.2695786571610481
     },
     "l:W_D_corporate_lvstk": {
       "learner": "xgb",
       "params": {
         "n_estimators": 100,
-        "max_depth": 1,
-        "min_child_weight": 10
+        "max_depth": 2,
+        "min_child_weight": 30
       },
-      "cv_mse": 0.002051228950237813,
-      "cv_r2": 0.2942561395010126
+      "cv_mse": 0.002056173272598947,
+      "cv_r2": 0.29255500070307694
     },
     "l:W_D_household": {
       "learner": "xgb",
       "params": {
-        "n_estimators": 300,
-        "max_depth": 1,
-        "min_child_weight": 30
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
       },
-      "cv_mse": 0.0020334831587653828,
-      "cv_r2": 0.3003617394536219
+      "cv_mse": 0.002021622578767906,
+      "cv_r2": 0.30444247920439715
     },
     "m:D_corporate_lvstk": {
       "learner": "xgb",
@@ -93,8 +93,8 @@
         "max_depth": 1,
         "min_child_weight": 30
       },
-      "cv_mse": 0.019660317768055387,
-      "cv_r2": 0.14225786862379752
+      "cv_mse": 0.019687580936793948,
+      "cv_r2": 0.14106842861892233
     },
     "m:D_household": {
       "learner": "xgb",
@@ -103,8 +103,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.03722784296526846,
-      "cv_r2": 0.2204857472871411
+      "cv_mse": 0.051159549886690754,
+      "cv_r2": 0.2742008622356472
     },
     "m:W_D_corporate_lvstk": {
       "learner": "xgb",
@@ -113,8 +113,8 @@
         "max_depth": 1,
         "min_child_weight": 30
       },
-      "cv_mse": 0.006452494719288414,
-      "cv_r2": 0.12320131871618178
+      "cv_mse": 0.006442594268786434,
+      "cv_r2": 0.12454664363652646
     },
     "m:W_D_household": {
       "learner": "xgb",
@@ -123,8 +123,8 @@
         "max_depth": 2,
         "min_child_weight": 10
       },
-      "cv_mse": 0.012446411470700445,
-      "cv_r2": 0.2238194044053875
+      "cv_mse": 0.018465166435116538,
+      "cv_r2": 0.2534757607631455
     }
   },
   "xgb_fixed": {
@@ -173,7 +173,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 18.8,
+  "seconds": 14.3,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

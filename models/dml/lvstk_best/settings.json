@@ -10,7 +10,7 @@
     "W_D_household"
   ],
   "x": [
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -51,50 +51,52 @@
       "params": {
         "alpha": 0.0027290335882522907
       },
-      "cv_mse": 0.002075334257700817,
-      "cv_r2": 0.2859624905909368
+      "cv_mse": 0.002091104574025804,
+      "cv_r2": 0.2805365707182691
     },
     "l:D_household": {
       "learner": "lasso",
       "params": {
         "alpha": 0.0036179108450232213
       },
-      "cv_mse": 0.0020853022704838495,
-      "cv_r2": 0.2825329056963861
+      "cv_mse": 0.0020992677234912284,
+      "cv_r2": 0.2777279653615191
     },
     "l:W_D_corporate_lvstk": {
-      "learner": "lasso",
+      "learner": "xgb",
       "params": {
-        "alpha": 0.0036179108450232213
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 30
       },
-      "cv_mse": 0.002044832047898789,
-      "cv_r2": 0.29645705156958213
+      "cv_mse": 0.002056173272598947,
+      "cv_r2": 0.29255500070307694
     },
     "l:W_D_household": {
       "learner": "xgb",
       "params": {
-        "n_estimators": 300,
-        "max_depth": 1,
-        "min_child_weight": 30
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 10
       },
-      "cv_mse": 0.0020334831587653828,
-      "cv_r2": 0.3003617394536219
+      "cv_mse": 0.002021622578767906,
+      "cv_r2": 0.30444247920439715
     },
     "m:D_corporate_lvstk": {
       "learner": "lasso",
       "params": {
         "alpha": 0.009155656336233959
       },
-      "cv_mse": 0.017558194593665973,
-      "cv_r2": 0.2339694896305432
+      "cv_mse": 0.017556445572462182,
+      "cv_r2": 0.23404579608666765
     },
     "m:D_household": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.00494647237421066
+        "alpha": 0.0057616509305177645
       },
-      "cv_mse": 0.036556577420033154,
-      "cv_r2": 0.23454138463239804
+      "cv_mse": 0.048704631293252816,
+      "cv_r2": 0.30902872530999503
     },
     "m:W_D_corporate_lvstk": {
       "learner": "rf",
@@ -102,8 +104,8 @@
         "min_samples_leaf": 20,
         "max_features": 0.33
       },
-      "cv_mse": 0.006324060302260635,
-      "cv_r2": 0.14065365806405972
+      "cv_mse": 0.006286873994219019,
+      "cv_r2": 0.14570672781012828
     },
     "m:W_D_household": {
       "learner": "rf",
@@ -111,8 +113,8 @@
         "min_samples_leaf": 20,
         "max_features": 1.0
       },
-      "cv_mse": 0.012103158387334383,
-      "cv_r2": 0.24522528378788588
+      "cv_mse": 0.017834518730796303,
+      "cv_r2": 0.2789720810561914
     }
   },
   "xgb_fixed": {
@@ -161,7 +163,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 89.5,
+  "seconds": 65.8,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

@@ -10,7 +10,7 @@
     "W_D_household_noelec"
   ],
   "x": [
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k"
@@ -49,45 +49,49 @@
     "l:D_corporate": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.0021100392115452056,
-      "cv_r2": 0.27402193753773507
+      "cv_mse": 0.0021193439393061447,
+      "cv_r2": 0.27082056185018155
     },
     "l:D_household_noelec": {
-      "learner": "linear",
-      "params": {},
-      "cv_mse": 0.0020856825087478227,
-      "cv_r2": 0.28240208128485733
-    },
-    "l:W_D_corporate": {
       "learner": "rf",
       "params": {
-        "min_samples_leaf": 20,
+        "min_samples_leaf": 5,
         "max_features": 0.5
       },
-      "cv_mse": 0.0021130946803244485,
-      "cv_r2": 0.27297067588717816
+      "cv_mse": 0.002090602010971737,
+      "cv_r2": 0.28070948207947066
+    },
+    "l:W_D_corporate": {
+      "learner": "xgb",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "min_child_weight": 30
+      },
+      "cv_mse": 0.0021050041290763613,
+      "cv_r2": 0.27575430317106964
     },
     "l:W_D_household_noelec": {
       "learner": "linear",
       "params": {},
-      "cv_mse": 0.0020649477283893334,
-      "cv_r2": 0.28953606987989067
+      "cv_mse": 0.0020690456454467176,
+      "cv_r2": 0.288126144477001
     },
     "m:D_corporate": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.011753462946774469
+        "alpha": 0.010208016250238714
       },
-      "cv_mse": 0.028034751083347978,
-      "cv_r2": 0.2528618243423423
+      "cv_mse": 0.027937373105512094,
+      "cv_r2": 0.25545698933928596
     },
     "m:D_household_noelec": {
       "learner": "lasso",
       "params": {
-        "alpha": 0.006730760425702326
+        "alpha": 0.006762836121715512
       },
-      "cv_mse": 0.04663956592981406,
-      "cv_r2": 0.1442094584712249
+      "cv_mse": 0.05681692670138963,
+      "cv_r2": 0.24375019814026222
     },
     "m:W_D_corporate": {
       "learner": "rf",
@@ -95,8 +99,8 @@
         "min_samples_leaf": 20,
         "max_features": 0.33
       },
-      "cv_mse": 0.010389014080671269,
-      "cv_r2": 0.18391347179384676
+      "cv_mse": 0.010313529113816298,
+      "cv_r2": 0.18984303008052184
     },
     "m:W_D_household_noelec": {
       "learner": "rf",
@@ -104,8 +108,8 @@
         "min_samples_leaf": 5,
         "max_features": 0.33
       },
-      "cv_mse": 0.012924664925614233,
-      "cv_r2": 0.1650446407132493
+      "cv_mse": 0.01861292457276736,
+      "cv_r2": 0.19959820181160626
     }
   },
   "xgb_fixed": {
@@ -154,7 +158,7 @@
     "cf_y": 0.03,
     "cf_d": 0.03
   },
-  "seconds": 117.8,
+  "seconds": 77.9,
   "versions": {
     "python": "3.14.3",
     "doubleml": "0.11.4",

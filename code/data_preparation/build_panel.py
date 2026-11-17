@@ -10,7 +10,8 @@ Reads every CSV under <interim_dir> (recursively). Each must have exactly the co
 state_fips, year, variable, value; a variable name that appears in two files is an error.
 
 Writes:
-    <out_dir>/panel.csv             one row per state-year, 50 states x 1997-2022 (1,300 rows)
+    <out_dir>/panel.parquet         one row per state-year, 50 states x 1997-2022 (1,300 rows)
+    <out_dir>/panel.csv             the same table as CSV (what split_panel.py and the models read)
     <out_dir>/data_dictionary.csv   variable, description, unit, source, role
 
 Data fixes applied here (documented in data_sources.md):
@@ -21,17 +22,27 @@ Data fixes applied here (documented in data_sources.md):
                        flag y_break plus one step dummy per break (brk_*) for the model; robustness
                        Y y_log_gross_noippu_pc drops all industrial process emissions
 
+Scaling (per person, per square mile, real dollars):
+    per person        emissions, real GDP and every driver except the two shares (BEA reports PCE per person)
+    per square mile   population density, log_pop_density = log(population / land area), the size control.
+                      Land area is constant within a state, so with state fixed effects it is equivalent to
+                      log population; it differs only in models without state effects (pooled OLS, XGBoost)
+    real dollars      GDP is SEDS chained 2017 dollars. Non-energy PCE, which BEA reports only in current
+                      dollars, is deflated with the national implicit GDP price deflator (gdp_deflator_2017,
+                      load_eia.py) to 2017 dollars. Industrial GDP share is a ratio of current-dollar
+                      series and needs no deflator (chained dollars do not add across industries)
+
 Main sample (in_main_sample = 1): the contiguous 48 states, 1997-2022 (1,248 rows). nClimDiv has
 no Hawaii and no Alaska degree days, so HDD/CDD are missing there.
 
 Naming: y_ = outcomes, d_ = treatment components, D_ = treatment indices, W_ = spatial lags of
-the indices, brk_ = EPA break step dummies (extra controls); the controls (X in DML notation) are log_pop, log_gdp_real_pc, hdd_k, cdd_k.
+the indices, brk_ = EPA break step dummies (extra controls); the controls (X in DML notation) are log_pop_density, log_gdp_real_pc, hdd_k, cdd_k.
 
 Indices (z = standardized with the mean and SD of the main sample; AK and HI are scored on the same scale):
     D_corporate = z(mean of z(industrial GDP share), z(log1p fossil production per person),
                     z(grid fossil share), z(log1p sand & gravel per person))
     D_household = z(mean of z(log VMT per person), z(log1p air passenger-miles per person),
-                    z(log non-energy PCE per person), z(log residential electricity per person))
+                    z(log real non-energy PCE per person), z(log residential electricity per person))
 Robustness variants:
     D_household_lvstk   household index plus cattle per person (livestock on the household side)
     D_corporate_lvstk   corporate index plus cattle per person (livestock on the corporate side)
@@ -53,7 +64,7 @@ COLS = ["state_fips", "year", "variable", "value"]
 
 CORPORATE = ["d_industrial_share", "d_fossil_prod_pc", "d_grid_fossil_share", "d_sand_gravel_pc"]
 HOUSEHOLD = ["d_vmt_pc", "d_air_pax_pc", "d_pce_nonenergy_pc", "d_res_elec_pc"]
-CONTROLS = ["log_pop", "log_gdp_real_pc", "hdd_k", "cdd_k"]
+CONTROLS = ["log_pop_density", "log_gdp_real_pc", "hdd_k", "cdd_k"]
 Y = "y_log_gross_pc"
 
 # EPA iron and steel breaks (Phase 3 review): dummy -> (postal code, first year, last year)
@@ -84,10 +95,11 @@ DERIVED = {
     "d_air_freight_pc": ("log1p domestic air freight ton-miles per person; missing before 2003", "log1p ton-mi / person", "corporate driver (robustness)"),
     "d_vmt_pc": ("log vehicle-miles traveled per person", "log mi / person", "household driver"),
     "d_air_pax_pc": ("log1p domestic air passenger-miles per person (departing state)", "log1p mi / person", "household driver"),
-    "d_pce_nonenergy_pc": ("log non-energy personal consumption expenditures per person, current $", "log $ / person", "household driver"),
+    "d_pce_nonenergy_pc": ("log real non-energy personal consumption expenditures per person (deflated by the national GDP price deflator)", "log 2017 $ / person", "household driver"),
     "d_res_elec_pc": ("log residential electricity purchases per person; overlaps electric power emissions", "log MMBtu / person", "household driver"),
     "d_cattle_pc": ("log1p cattle and calves per person; little within-state variation", "log1p head / person", "driver (robustness only)"),
-    "log_pop": ("log population (= log density given state FE)", "log persons", "control"),
+    "pop_density_sqmi": ("population per square mile of land (TIGER/Line land area)", "persons / sq mi", "control input"),
+    "log_pop_density": ("log population per square mile (= log population up to a state constant, so equivalent under state FE)", "log persons / sq mi", "control"),
     "log_gdp_real_pc": ("log real GDP per person", "log 2017 $ / person", "control"),
     "hdd_k": ("heating degree days / 1,000", "thousand degree-days F", "control"),
     "cdd_k": ("cooling degree days / 1,000", "thousand degree-days F", "control"),
@@ -213,11 +225,12 @@ def main(interim_dir, crosswalk_path, neighbors_path, out_dir):
     p["d_air_freight_pc"] = np.log1p(p["air_freight_tonmiles_millions"] * 1e6 / p["pop"])
     p["d_vmt_pc"] = np.log(p["vmt_total_millions"] * 1e6 / p["pop"])
     p["d_air_pax_pc"] = np.log1p(p["air_pax_miles_millions"] * 1e6 / p["pop"])
-    p["d_pce_nonenergy_pc"] = np.log(p["pce_nonenergy_per_capita_usd"])
+    p["d_pce_nonenergy_pc"] = np.log(p["pce_nonenergy_per_capita_usd"] / p["gdp_deflator_2017"])
     p["d_res_elec_pc"] = np.log(p["res_elec_per_capita_mmbtu"])
     p["d_cattle_pc"] = np.log1p(p["cattle_head"] / p["pop"])
 
-    p["log_pop"] = np.log(p["pop"])
+    p["pop_density_sqmi"] = p["pop"] / p["land_area_sqmi"]
+    p["log_pop_density"] = np.log(p["pop_density_sqmi"])
     p["log_gdp_real_pc"] = np.log(p["gdp_real_per_capita_usd2017"])
     p["hdd_k"] = p["hdd"] / 1e3
     p["cdd_k"] = p["cdd"] / 1e3
@@ -247,12 +260,13 @@ def main(interim_dir, crosswalk_path, neighbors_path, out_dir):
 
     o = Path(out_dir)
     o.mkdir(parents=True, exist_ok=True)
+    p.to_parquet(o / "panel.parquet", index=False)
     p.to_csv(o / "panel.csv", index=False)
     dd = [dict(variable=k, description=v[0], unit=v[1], source="derived (build_panel.py)", role=v[2]) for k, v in DERIVED.items()]
     dd += [dict(variable=c, description="as loaded", unit="see name", source=str(Path(owner[c]).relative_to(interim_dir)), role="input")
            for c in raw]
     pd.DataFrame(dd).to_csv(o / "data_dictionary.csv", index=False)
-    print(f"wrote {o / 'panel.csv'} ({len(p):,} rows x {p.shape[1]} cols) and {o / 'data_dictionary.csv'}")
+    print(f"wrote {o / 'panel.parquet'}, {o / 'panel.csv'} ({len(p):,} rows x {p.shape[1]} cols) and {o / 'data_dictionary.csv'}")
 
     report(p)
 

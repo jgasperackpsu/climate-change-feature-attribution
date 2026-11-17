@@ -18,10 +18,11 @@ d_sand_gravel_pc,log1p construction sand & gravel production per person,log1p t 
 d_air_freight_pc,log1p domestic air freight ton-miles per person; missing before 2003,log1p ton-mi / person,derived (build_panel.py),corporate driver (robustness)
 d_vmt_pc,log vehicle-miles traveled per person,log mi / person,derived (build_panel.py),household driver
 d_air_pax_pc,log1p domestic air passenger-miles per person (departing state),log1p mi / person,derived (build_panel.py),household driver
-d_pce_nonenergy_pc,"log non-energy personal consumption expenditures per person, current $",log $ / person,derived (build_panel.py),household driver
+d_pce_nonenergy_pc,log real non-energy personal consumption expenditures per person (deflated by the national GDP price deflator),log 2017 $ / person,derived (build_panel.py),household driver
 d_res_elec_pc,log residential electricity purchases per person; overlaps electric power emissions,log MMBtu / person,derived (build_panel.py),household driver
 d_cattle_pc,log1p cattle and calves per person; little within-state variation,log1p head / person,derived (build_panel.py),driver (robustness only)
-log_pop,log population (= log density given state FE),log persons,derived (build_panel.py),control
+pop_density_sqmi,population per square mile of land (TIGER/Line land area),persons / sq mi,derived (build_panel.py),control input
+log_pop_density,"log population per square mile (= log population up to a state constant, so equivalent under state FE)",log persons / sq mi,derived (build_panel.py),control
 log_gdp_real_pc,log real GDP per person,log 2017 $ / person,derived (build_panel.py),control
 hdd_k,"heating degree days / 1,000",thousand degree-days F,derived (build_panel.py),control
 cdd_k,"cooling degree days / 1,000",thousand degree-days F,derived (build_panel.py),control
@@ -76,6 +77,7 @@ elecpower_nuclear_bbtu,as loaded,see name,shared/eia.csv,input
 elecpower_petrol_bbtu,as loaded,see name,shared/eia.csv,input
 elecpower_total_bbtu,as loaded,see name,shared/eia.csv,input
 fossil_prod_per_capita_mmbtu,as loaded,see name,shared/eia.csv,input
+gdp_deflator_2017,as loaded,see name,shared/eia.csv,input
 gdp_industrial_share,as loaded,see name,shared/bea.csv,input
 gdp_manufacturing_share,as loaded,see name,shared/bea.csv,input
 gdp_mining_share,as loaded,see name,shared/bea.csv,input
@@ -100,6 +102,7 @@ grid_fossil_share,as loaded,see name,shared/eia.csv,input
 grid_nuclear_share,as loaded,see name,shared/eia.csv,input
 hdd,as loaded,see name,shared/noaa.csv,input
 hogs_head,as loaded,see name,corporate/usda.csv,input
+land_area_sqmi,as loaded,see name,shared/tiger.csv,input
 milk_cows_head,as loaded,see name,corporate/usda.csv,input
 pce_energy_goods_per_capita_usd,as loaded,see name,shared/bea.csv,input
 pce_nonenergy_per_capita_usd,as loaded,see name,shared/bea.csv,input

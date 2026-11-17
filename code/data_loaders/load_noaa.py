@@ -1,7 +1,7 @@
 """Step 6: turn NOAA nClimDiv statewide files into data/interim/noaa.csv.
 
 Usage:
-    python src/load/load_noaa.py <folder with climdiv-*st-* files> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_noaa.py <folder with climdiv-*st-* files> <path/to/state_crosswalk.csv> <out_dir>
 
 Files used (the "st" = statewide versions; county "cy" and division "dv" files are ignored):
     climdiv-tmpcst-*   average temperature, deg F      -> annual mean

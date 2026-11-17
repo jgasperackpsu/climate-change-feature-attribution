@@ -1,7 +1,7 @@
 """Step 5: turn the USDA NASS Quick Stats animals & products bulk file into data/interim/usda.csv.
 
 Usage:
-    python src/load/load_usda.py <path/to/qs.animals_products_YYYYMMDD.txt.gz> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_usda.py <path/to/qs.animals_products_YYYYMMDD.txt.gz> <path/to/state_crosswalk.csv> <out_dir>
 
 Keeps annual state inventories from the SURVEY program (Census of Agriculture is only every 5 years):
     cattle_head        CATTLE, INCL CALVES - INVENTORY   as of Jan 1

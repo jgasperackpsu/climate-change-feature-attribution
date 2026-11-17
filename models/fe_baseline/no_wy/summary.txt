@@ -1,16 +1,16 @@
                           PanelOLS Estimation Summary                           
 ================================================================================
-Dep. Variable:         y_log_gross_pc   R-squared:                        0.4103
-Estimator:                   PanelOLS   R-squared (Between):             -2.5053
-No. Observations:                 846   R-squared (Within):               0.0402
-Date:                Mon, Nov 09 2026   R-squared (Overall):             -2.5034
-Time:                        16:48:31   Log-likelihood                    1478.9
+Dep. Variable:         y_log_gross_pc   R-squared:                        0.4056
+Estimator:                   PanelOLS   R-squared (Between):              0.3453
+No. Observations:                 846   R-squared (Within):               0.2634
+Date:                Tue, Nov 17 2026   R-squared (Overall):              0.3452
+Time:                        15:01:32   Log-likelihood                    1475.5
 Cov. Estimator:             Clustered                                           
-                                        F-statistic:                      48.775
+                                        F-statistic:                      47.837
 Entities:                          47   P-value                           0.0000
 Avg Obs:                       18.000   Distribution:                  F(11,771)
 Min Obs:                       18.000                                           
-Max Obs:                       18.000   F-statistic (robust):          1.128e+16
+Max Obs:                       18.000   F-statistic (robust):          7.178e+15
                                         P-value                           0.0000
 Time periods:                      18   Distribution:                  F(11,771)
 Avg Obs:                       47.000                                           
@@ -21,20 +21,20 @@ Max Obs:                       47.000
 ===================================================================================
                  Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
 -----------------------------------------------------------------------------------
-D_corporate         0.0777     0.0269     2.8848     0.0040      0.0248      0.1305
-D_household         0.0339     0.0203     1.6678     0.0958     -0.0060      0.0738
-W_D_corporate       0.0539     0.0273     1.9767     0.0484      0.0004      0.1075
-W_D_household       0.0319     0.0329     0.9673     0.3337     -0.0328      0.0965
-log_pop            -0.3323     0.1744    -1.9057     0.0571     -0.6746      0.0100
-log_gdp_real_pc     0.1816     0.0953     1.9052     0.0571     -0.0055      0.3687
-hdd_k               0.0380     0.0084     4.5438     0.0000      0.0216      0.0543
-cdd_k               0.0120     0.0105     1.1460     0.2521     -0.0086      0.0327
-brk_mn_2010         0.1091     0.0198     5.4992     0.0000      0.0701      0.1480
-brk_mi_2010         0.0543     0.0160     3.3895     0.0007      0.0228      0.0857
-brk_md_2011        -0.0436     0.0118    -3.6870     0.0002     -0.0669     -0.0204
+D_corporate         0.0781     0.0274     2.8542     0.0044      0.0244      0.1318
+D_household         0.0277     0.0176     1.5746     0.1158     -0.0068      0.0622
+W_D_corporate       0.0540     0.0280     1.9329     0.0536     -0.0008      0.1089
+W_D_household       0.0174     0.0277     0.6283     0.5300     -0.0369      0.0717
+log_pop_density    -0.3395     0.1778    -1.9092     0.0566     -0.6886      0.0096
+log_gdp_real_pc     0.1805     0.0977     1.8462     0.0652     -0.0114      0.3723
+hdd_k               0.0396     0.0082     4.8195     0.0000      0.0235      0.0558
+cdd_k               0.0152     0.0103     1.4734     0.1411     -0.0051      0.0355
+brk_mn_2010         0.1145     0.0208     5.5021     0.0000      0.0736      0.1553
+brk_mi_2010         0.0548     0.0163     3.3586     0.0008      0.0228      0.0868
+brk_md_2011        -0.0445     0.0119    -3.7406     0.0002     -0.0679     -0.0212
 ===================================================================================
 
-F-test for Poolability: 435.44
+F-test for Poolability: 452.61
 P-value: 0.0000
 Distribution: F(63,771)
 

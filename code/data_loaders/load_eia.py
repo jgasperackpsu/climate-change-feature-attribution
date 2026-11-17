@@ -1,9 +1,13 @@
 """Step 1: turn EIA SEDS (eia_data.csv) into data/interim/eia.csv.
 
 Usage:
-    python src/load/load_eia.py <path/to/eia_data.csv> <path/to/state_crosswalk.csv> <out_dir>
+    python code/data_loaders/load_eia.py <path/to/eia_data.csv> <path/to/state_crosswalk.csv> <out_dir>
 
 Output is tidy: state_fips, year, variable, value (one row per state-year-variable).
+
+Also writes gdp_deflator_2017, the national (U.S.) implicit GDP price deflator, 2017 = 1: SEDS U.S. nominal
+GDP (GDPRV) / real GDP (GDPRX, chained 2017 $). It is the same for every state in a year; build_panel.py uses
+it to put the dollar series that BEA reports only in current dollars (non-energy PCE) into 2017 dollars.
 """
 import sys
 from pathlib import Path
@@ -61,13 +65,15 @@ def main(seds_path, crosswalk_path, out_dir):
 
     d = pd.read_csv(seds_path, usecols=["MSN", "StateCode", "Year", "Data"],
                     dtype={"MSN": str, "StateCode": str})
-    d = d[d["MSN"].isin(RAW) & d["Year"].between(START, END)]
+    d = d[d["MSN"].isin(list(RAW) + ["GDPRV"]) & d["Year"].between(START, END)]
+    us = d[d["StateCode"] == "US"].pivot_table(index="Year", columns="MSN", values="Data", aggfunc="first")
+    deflator = (pd.to_numeric(us["GDPRV"]) / pd.to_numeric(us["GDPRX"])).rename("gdp_deflator_2017")
     # keep the 50 states only (drops DC, US total, X3/X5 offshore)
     d = d[d["StateCode"].isin(usps_to_fips)]
     d["Data"] = pd.to_numeric(d["Data"], errors="coerce")
 
     w = d.pivot_table(index=["StateCode", "Year"], columns="MSN", values="Data",
-                      aggfunc="first").rename(columns=RAW)
+                      aggfunc="first").drop(columns="GDPRV", errors="ignore").rename(columns=RAW)
 
     # derived variables
     w["co2_total_per_capita_t"] = w["co2_total_mmt"] * 1e6 / (w["pop_thousands"] * 1e3)
@@ -77,6 +83,7 @@ def main(seds_path, crosswalk_path, out_dir):
     w["fossil_prod_per_capita_mmbtu"] = (w["prod_coal_bbtu"].fillna(0) + w["prod_crude_bbtu"].fillna(0)
                                          + w["prod_natgas_bbtu"].fillna(0)) * 1e3 / (w["pop_thousands"] * 1e3)
     w["res_elec_per_capita_mmbtu"] = w["elec_sales_res_bbtu"] * 1e3 / (w["pop_thousands"] * 1e3)
+    w["gdp_deflator_2017"] = w.index.get_level_values("Year").map(deflator)
     w["gdp_real_per_capita_usd2017"] = w["gdp_real_musd2017"] * 1e6 / (w["pop_thousands"] * 1e3)
 
     # household vs corporate CO2 split (descriptive decomposition, Phase 3)

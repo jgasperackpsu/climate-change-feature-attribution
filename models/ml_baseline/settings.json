@@ -33,7 +33,7 @@
     "d_pce_nonenergy_pc",
     "d_res_elec_pc",
     "d_cattle_pc",
-    "log_pop",
+    "log_pop_density",
     "log_gdp_real_pc",
     "hdd_k",
     "cdd_k",
@@ -46,18 +46,18 @@
   "xgboost": {
     "n_estimators": 400,
     "learning_rate": 0.1,
-    "max_depth": 6,
-    "min_child_weight": 1,
-    "subsample": 1.0,
-    "colsample_bytree": 0.9,
-    "reg_lambda": 10.0
+    "max_depth": 5,
+    "min_child_weight": 3,
+    "subsample": 0.8,
+    "colsample_bytree": 0.7,
+    "reg_lambda": 5.0
   },
   "xgboost_state": {
-    "n_estimators": 1200,
-    "learning_rate": 0.05,
-    "max_depth": 6,
+    "n_estimators": 400,
+    "learning_rate": 0.1,
+    "max_depth": 5,
     "min_child_weight": 3,
-    "subsample": 1.0,
+    "subsample": 0.8,
     "colsample_bytree": 0.7,
     "reg_lambda": 5.0
   }
