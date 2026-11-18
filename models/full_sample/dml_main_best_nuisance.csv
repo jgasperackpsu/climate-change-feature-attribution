@@ -1,0 +1,9 @@
+nuisance,learner,params,cv_r2
+l:D_corporate,linear,{},0.22388429604521032
+l:D_household,linear,{},0.29285940209306194
+l:W_D_corporate,linear,{},0.30796076634072267
+l:W_D_household,linear,{},0.2869155405260013
+m:D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.06761109163306966
+m:D_household,rf,"{""min_samples_leaf"": 50, ""max_features"": 1.0}",0.2162521667638163
+m:W_D_corporate,rf,"{""min_samples_leaf"": 50, ""max_features"": 0.33}",0.057994912307215984
+m:W_D_household,xgb,"{""n_estimators"": 100, ""max_depth"": 3, ""min_child_weight"": 10}",0.2526267854387426

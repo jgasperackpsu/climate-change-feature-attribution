@@ -1,0 +1,13 @@
+nuisance,learner,params,cv_r2
+l:D_corporate,lasso,"{""alpha"": 0.0031421967181210326}",0.28489370748454823
+l:D_corporate_x_energy,linear,{},0.3068123770875494
+l:D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.3087290640379412
+l:D_household_x_energy,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.32021963580278023
+l:W_D_corporate,linear,{},0.3234877393785194
+l:W_D_household,linear,{},0.34323645664777014
+m:D_corporate,linear,{},0.6652283867438387
+m:D_corporate_x_energy,xgb,"{""n_estimators"": 600, ""max_depth"": 3, ""min_child_weight"": 10}",0.4777469200380795
+m:D_household,linear,{},0.4262968465427698
+m:D_household_x_energy,rf,"{""min_samples_leaf"": 5, ""max_features"": 1.0}",0.2922496998146834
+m:W_D_corporate,rf,"{""min_samples_leaf"": 20, ""max_features"": 0.33}",0.18193062582752417
+m:W_D_household,rf,"{""min_samples_leaf"": 5, ""max_features"": 0.5}",0.3085486502012228

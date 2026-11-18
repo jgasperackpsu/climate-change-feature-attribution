@@ -4,6 +4,8 @@ DoubleML partially linear models of log gross GHG per person on the corporate an
 
 **Re-run 2026-11-17** on the corrected panel: non-energy consumer spending in real 2017 dollars and population per square mile as the size control (see "Panel corrections" in the Phase 4 write-up). The corporate results are essentially unchanged. The household index changed, and its main-result effect rose from 0.035 (p = 0.080) to 0.042 (p = 0.032). The own-effect gap shrank from 0.019 to 0.012.
 
+**Addendum:** a full-sample confirmation (1997–2022) of the FE main spec and main_best is in [full_sample.md](full_sample.md). On all years the own-effect gap is 0.082 (DML p = 0.031, one-sided 0.016).
+
 ## Summary
 
 1. **The corporate index has a positive within-state effect.** In the main result, a 1 SD rise in the corporate index raises emissions per person by 0.052 log points (about 5.4%; 95% CI 0.006 to 0.099; p = 0.027). It is positive and significant at 5% with every learner (0.052–0.067) and in every version but one. The exception is the EIA energy-CO₂ outcome (0.037, p = 0.20).

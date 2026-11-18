@@ -1,0 +1,19 @@
+key,target,learner,params,cv_mse,cv_r2
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 1, 'min_child_weight': 10}",0.0020581456382694338,0.29187639046678737
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 1, 'min_child_weight': 30}",0.0020617661647511615,0.29063071560637876
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 2, 'min_child_weight': 10}",0.0019081501086574712,0.343483708174381
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 2, 'min_child_weight': 30}",0.0018952666757059782,0.3479163697291101
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 3, 'min_child_weight': 10}",0.001873425966839873,0.35543086302319726
+y,y_log_gross_pc,xgb,"{'n_estimators': 100, 'max_depth': 3, 'min_child_weight': 30}",0.0018633632118367047,0.3588930448349196
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 1, 'min_child_weight': 10}",0.0018182544119650285,0.3744131351496658
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 1, 'min_child_weight': 30}",0.0018513496910998806,0.3630264052294323
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 2, 'min_child_weight': 10}",0.0019041167789365233,0.3448714117203928
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 2, 'min_child_weight': 30}",0.001855006424296707,0.36176827312143733
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 3, 'min_child_weight': 10}",0.0018896375425057484,0.349853123885945
+y,y_log_gross_pc,xgb,"{'n_estimators': 300, 'max_depth': 3, 'min_child_weight': 30}",0.001881069296522497,0.35280110636114537
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 1, 'min_child_weight': 10}",0.0018559622856630588,0.36143940037872724
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 1, 'min_child_weight': 30}",0.0018671097648662056,0.3576040094016504
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 2, 'min_child_weight': 10}",0.001967354764275894,0.32311381128363437
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 2, 'min_child_weight': 30}",0.0019257074550403355,0.3374429444581103
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 3, 'min_child_weight': 10}",0.0019325454469541995,0.33509027153449944
+y,y_log_gross_pc,xgb,"{'n_estimators': 600, 'max_depth': 3, 'min_child_weight': 30}",0.0019631270825307893,0.324568383400221

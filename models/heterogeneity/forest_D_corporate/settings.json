@@ -1,0 +1,45 @@
+{
+  "treatment": "D_corporate",
+  "w": [
+    "D_household",
+    "W_D_corporate",
+    "W_D_household",
+    "log_pop_density",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "x": [
+    "x_level: state mean of the index over the train years",
+    "x_gdp: log_gdp_real_pc"
+  ],
+  "fixed_effects": "state + year + break dummies partialled out first",
+  "n": 864,
+  "groups": "postal_code",
+  "model_y": {
+    "learner": "lasso",
+    "params": {
+      "alpha": 0.0036186761876966698
+    },
+    "cv_r2": 0.2847136625091863
+  },
+  "model_t": {
+    "learner": "lasso",
+    "params": {
+      "alpha": 0.007152848617896144
+    },
+    "cv_r2": 0.3871150309526701
+  },
+  "forest": {
+    "n_estimators": 2000,
+    "min_samples_leaf": 10,
+    "max_samples": 0.45,
+    "honest": true,
+    "criterion": "het",
+    "inference": true,
+    "random_state": 2026
+  },
+  "cv": 5,
+  "forest_mean_cate": 0.08227168393423524,
+  "seconds": 23.6
+}

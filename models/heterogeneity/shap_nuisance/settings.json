@@ -1,0 +1,26 @@
+{
+  "target": "y_log_gross_pc, fixed effects and breaks partialled out",
+  "features": [
+    "z_d_industrial_share",
+    "z_d_fossil_prod_pc",
+    "z_d_grid_fossil_share",
+    "z_d_sand_gravel_pc",
+    "z_d_vmt_pc",
+    "z_d_air_pax_pc",
+    "z_d_pce_nonenergy_pc",
+    "z_d_res_elec_pc",
+    "W_D_corporate",
+    "W_D_household",
+    "log_pop_density",
+    "log_gdp_real_pc",
+    "hdd_k",
+    "cdd_k"
+  ],
+  "params": {
+    "n_estimators": 300,
+    "max_depth": 1,
+    "min_child_weight": 10
+  },
+  "cv_r2": 0.3744131351496658,
+  "cv": "5-fold state-grouped, train years"
+}
