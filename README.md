@@ -1,4 +1,4 @@
-# Corporate Supply or Household Demand? 
+# A Double Machine Learning Analysis of U.S. State Greenhouse Gas Emissions
 
 Which matters more for a U.S. state's greenhouse gas emissions per person: corporate supply-side activity or household demand? This project builds a state-year panel (contiguous 48 states, 1997–2022) and compares two kinds of attribution:
 
